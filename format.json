@@ -1,0 +1,175 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "fatal",
+    "timestamp": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "metacubexd",
+      "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "bypass",
+      "default_mode": "rule"
+    },
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db",
+      "store_fakeip": false
+    }
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "https://1.1.1.1/dns-query",
+        "address_resolver": "dns-direct",
+        "address_strategy": "prefer_ipv4",
+        "strategy": "prefer_ipv4"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "tcp://8.8.8.8",
+        "address_resolver": "dns-local",
+        "strategy": "prefer_ipv4",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "bypass"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain_suffix": ".ir",
+        "server": "dns-direct"
+      }
+    ],
+    "final": "dns-remote",
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "domain_strategy": "prefer_ipv4",
+      "interface_name": "sing-tun",
+      "inet4_address": "172.19.0.1/30",
+      "mtu": 1492,
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "gvisor",
+      "endpoint_independent_nat": true,
+      "sniff": true,
+      "sniff_override_destination": false
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "Proxy",
+      "type": "selector",
+      "outbounds": [
+        "WARP-MAIN",
+        "WARP-WOW"
+      ],
+      "default": "WARP-WOW",
+      "interrupt_exist_connections": false
+    },
+    {
+      "type": "wireguard",
+      "server": "188.114.98.157",
+      "server_port": 891,
+      "local_address": [
+        "172.16.0.2/32",
+        "2606:4700:110:80e3:b385:c0b2:2aa2:f828/128"
+      ],
+      "private_key": "8J1dgAFYna/Xrmb4Hoxj0VDBU6bKN5Ld4nluSQ4IIVY=",
+      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+      "reserved": [
+        4,
+        251,
+        185
+      ],
+      "mtu": 1300,
+      "workers": 2,
+      "detour": "direct",
+      "tag": "WARP-MAIN"
+    },
+    {
+      "type": "wireguard",
+      "server": "188.114.97.194",
+      "server_port": 891,
+      "local_address": [
+        "172.16.0.2/32",
+        "2606:4700:110:85c4:ebcb:5f94:b3a7:8b80/128"
+      ],
+      "private_key": "CHV21fpRl3JyoRz6/HjQCAqz0MnKY9Qp34U+sfNAVEg=",
+      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+      "reserved": [
+        182,
+        76,
+        26
+      ],
+      "mtu": 1300,
+      "workers": 2,
+      "detour": "WARP-MAIN",
+      "tag": "WARP-WOW"
+    },
+    {
+      "tag": "direct",
+      "type": "direct"
+    },
+    {
+      "tag": "block",
+      "type": "block"
+    },
+    {
+      "tag": "bypass",
+      "type": "direct"
+    },
+    {
+      "tag": "dns-out",
+      "type": "dns"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "override_android_vpn": true,
+    "final": "Proxy",
+    "rules": [
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
+        "outbound": "dns-out"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "bypass"
+      },
+      {
+        "domain_suffix": [
+          ".ir"
+        ],
+        "outbound": "bypass"
+      },
+      {
+        "protocol": "tcp",
+        "port": 80,
+        "outbound": "Proxy"
+      }
+    ]
+  }
+}
