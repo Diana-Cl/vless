@@ -156,10 +156,6 @@
         "outbound": "dns-out"
       },
       {
-        "ip_is_private": true,
-        "outbound": "bypass"
-      },
-      {
         "domain_suffix": [
           ".ir"
         ],
