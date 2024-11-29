@@ -61,6 +61,10 @@ Zenlayer**
 ```POV-Ray SDL
 156.146.53.83
 ```
+**🇺🇸 USA, Virginia Ashburn, Total Uptime Technologies**
+```POV-Ray SDL
+72.13.122.137
+```
 ![rainbow](https://github.com/NiREvil/vless/assets/126243832/1aca7f5d-6495-44b7-aced-072bae52f256)
 **🇩🇪 Germany, Frankfurt am Main, Hetzner online**
 ```POV-Ray SDL
@@ -98,7 +102,7 @@ Zenlayer**
 62.3.12.185
 ```
 ![rainbow](https://github.com/NiREvil/vless/assets/126243832/1aca7f5d-6495-44b7-aced-072bae52f256)
-~~**🇦🇪 United arab emirates, Abu Dhabi**~~
+**🇦🇪 United arab emirates, Abu Dhabi**
 ```POV-Ray SDL
 193.123.81.105
 ```
@@ -108,7 +112,7 @@ Zenlayer**
 129.151.204.91
 ```
 **🇮🇳 India, Telangana-Hyderabad, Oracle Corporation**
-```CSS
+```POV-Ray SDL
 129.159.22.4
 ```
 **🇧🇷 Brazil, Sao paulo, Oracle Corporation**
@@ -119,17 +123,18 @@ Zenlayer**
 ```POV-Ray SDL
 141.145.199.188
 ```
-**🇨🇭 Switzerland, Zurich Oberengstringen, Oracle Svenska AB**
+**🇨🇭 Switzerland, Zurich Oberengstringen, Oracle Corporation**
 ```POV-Ray SDL
 140.238.212.95
 ```
 ![rainbow](https://github.com/NiREvil/vless/assets/126243832/1aca7f5d-6495-44b7-aced-072bae52f256)
+**🇸🇬 Singapore, OVH SAS**
+```POV-Ray SDL
+15.235.162.49
+```
 **🇸🇬 Singapore, Amazon Technologies Inc.**
 ```POV-Ray SDL
 18.141.204.88
-```
-```POV-Ray SDL
-13.250.131.37
 ```
 **🇸🇬 Singapore, Hetzner online**
 ```POV-Ray SDL
@@ -140,12 +145,8 @@ Zenlayer**
 185.217.5.3
 ```
 **🇯🇵 Japan, Tokyo, M247 Europe SRL**
-```CSS
-176.97.73.20
-```
-**🇯🇵 Japan, Tokyo, Amazon Technologies Inc.**
 ```POV-Ray SDL
-154.31.113.72
+176.97.73.20
 ```
 ![rainbow](https://github.com/NiREvil/vless/assets/126243832/1aca7f5d-6495-44b7-aced-072bae52f256)
 **🇺🇸 USA, California, santa clara, Tencent cloud computing**
@@ -161,14 +162,16 @@ Zenlayer**
 45.77.109.191
 ```
 ```POV-Ray SDL
-149.28.62.21
+104.207.132.10
 ```
 ```POV-Ray SDL
 108.61.85.153
 ```
-**🇺🇸 USA, Virginia Ashburn, Total Uptime Technologies**
 ```POV-Ray SDL
-72.13.122.137
+66.135.19.169
+```
+```POV-Ray SDL
+173.199.117.101
 ```
 ![rainbow](https://github.com/NiREvil/vless/assets/126243832/1aca7f5d-6495-44b7-aced-072bae52f256)
 ~~**🇮🇱 Israel, Haifa, BroadBand**~~
