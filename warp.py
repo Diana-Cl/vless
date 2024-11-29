@@ -137,7 +137,7 @@ def toSingBox(tag, clean_ip, detour):
         try:
             data = json.loads(output)
             wg = {
-                "tag": f"{wg-ep}",
+                "tag": f"{tag}",
                 "type": "wireguard",
                 "server": f"{clean_ip.split(':')[0]}",
                 "server_port": int(clean_ip.split(":")[1]),
