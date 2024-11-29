@@ -113,7 +113,12 @@ last_modified = "//last update on: " + formatted_time + "\n"
 config_prefix, _ = export_Hiddify(Bestip)
 with open("warp.json", "w") as op:
     op.write(
-        title + update_interval + sub_info + profile_web + last_modified + config_prefix
+        title
+        + update_interval
+        + sub_info
+        + profile_web
+        + last_modified
+        + config_prefix
     )
 
 
@@ -132,7 +137,7 @@ def toSingBox(tag, clean_ip, detour):
         try:
             data = json.loads(output)
             wg = {
-                "tag": f"{tag}",
+                "tag": f"{wg-ep}",
                 "type": "wireguard",
                 "server": f"{clean_ip.split(':')[0]}",
                 "server_port": int(clean_ip.split(":")[1]),
@@ -142,9 +147,9 @@ def toSingBox(tag, clean_ip, detour):
                 ],
                 "private_key": f"{data['private_key']}",
                 "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-                "persistent_keepalive_interval": 15,
                 "mtu": 1300,
                 "reserved": data["config"]["reserved"],
+                "persistent_keepalive_interval": 30,
                 "detour": f"{detour}",
                 "workers": 2,
             }
@@ -199,7 +204,10 @@ def main(script_dir):
         os.chmod("warp", 0o755)
         print("Scanning ips...")
         subprocess.run(
-            ["./warp"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+            ["./warp"],
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
         )
         print("Warp executed successfully.")
 
