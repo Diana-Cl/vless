@@ -15,7 +15,8 @@
         "cache_file": {
             "enabled": true,
             "path": "cache.db",
-            "store_fakeip": false
+            "cache_id": "REvil",
+            "store_fakeip": true
         }
     },
     "dns": {
@@ -59,10 +60,22 @@
     "inbounds": [
         {
             "type": "tun",
-            "tag": "tun-in",
-            "domain_strategy": "prefer_ipv4",
+            "tag": "in",
+            "address": [
+                "172.19.0.1/30",
+                "fdfe:dcba:9876::1/126"
+            ],
+            "route_address": [
+                "0.0.0.0/1",
+                "128.0.0.0/1",
+                "::/1",
+                "8000::/1"
+            ],
+            "route_exclude_address": [
+                "192.168.0.0/16",
+                "fc00::/7"
+            ],
             "interface_name": "sing-tun",
-            "inet4_address": "172.19.0.1/30",
             "mtu": 1306,
             "auto_route": true,
             "strict_route": true,
@@ -90,8 +103,8 @@
                 "TEHRAN",
                 "BERLIN"
             ],
-            "url": "http://connectivitycheck.gstatic.com/generate_204",
-            "interval": "10m",
+            "url": "https://clients3.google.com/generate_204",
+            "interval": "5m",
             "tolerance": 50,
             "idle_timeout": "30m",
             "interrupt_exist_connections": false
@@ -99,19 +112,20 @@
         {
             "tag": "TEHRAN",
             "type": "wireguard",
-            "server": "162.159.195.51",
-            "server_port": 1010,
+            "server": "188.114.97.213",
+            "server_port": 3138,
             "local_address": [
                 "172.16.0.2/32",
                 "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
             ],
-            "private_key": "0INwrz/GQyep3gjNIiKgCG3XOVPJUPUk9R4IDK+ZGHo=",
+            "private_key": "KPUMTGV44g4rAG+HQn9xc5aDZpH36Zeqai8gLSHNF38=",
             "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+            "persistent_keepalive_interval": 15,
             "mtu": 1300,
             "reserved": [
-                36,
-                12,
-                4
+                171,
+                144,
+                105
             ],
             "detour": "direct",
             "workers": 2
@@ -119,19 +133,20 @@
         {
             "tag": "BERLIN",
             "type": "wireguard",
-            "server": "162.159.195.96",
-            "server_port": 908,
+            "server": "188.114.99.59",
+            "server_port": 943,
             "local_address": [
                 "172.16.0.2/32",
                 "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
             ],
-            "private_key": "8FKeKcTPqTVd3YJTK4QS1Csmy5HhTmnAUFRAd6bb8kw=",
+            "private_key": "gH1JhwMrOjywa+nbqi9o50OSeZxveFhJlPIThw1+Tm4=",
             "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+            "persistent_keepalive_interval": 15,
             "mtu": 1300,
             "reserved": [
-                42,
-                179,
-                55
+                45,
+                181,
+                103
             ],
             "detour": "TEHRAN",
             "workers": 2
