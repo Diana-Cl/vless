@@ -4,19 +4,17 @@
         "level": "fatal",
         "timestamp": true
     },
-    "experimental": {
-        "clash_api": {
-            "external_controller": "127.0.0.1:9090",
-            "external_ui": "metacubexd",
-            "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
-            "external_ui_download_detour": "bypass",
-            "default_mode": "rule"
-        },
-        "cache_file": {
-            "enabled": true,
-            "path": "cache.db",
-            "store_fakeip": false
-        }
+    "clash_api": {
+        "external_controller": "127.0.0.1:9090",
+        "external_ui": "metacubexd",
+        "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+        "external_ui_download_detour": "bypass",
+        "default_mode": "rule"
+    },
+    "cache": {
+        "enabled": true,
+        "path": "cache.db",
+        "store_fakeip": false
     },
     "dns": {
         "servers": [
@@ -24,7 +22,6 @@
                 "tag": "dns-remote",
                 "address": "tcp://185.228.168.9",
                 "address_resolver": "dns-direct",
-                "address_strategy": "prefer_ipv4",
                 "strategy": "prefer_ipv4"
             },
             {
@@ -49,7 +46,9 @@
                 "rule_set": [
                     "geosite-ir"
                 ],
-                "domain_suffix": ".ir",
+                "domain_suffix": [
+                    ".ir"
+                ],
                 "server": "dns-direct"
             }
         ],
@@ -62,8 +61,8 @@
             "tag": "tun-in",
             "domain_strategy": "prefer_ipv4",
             "interface_name": "sing-tun",
-            "inet4_address": "172.19.0.1/30",
-            "mtu": 1306,
+            "address": "172.19.0.1/30",
+            "mtu": 1280,
             "auto_route": true,
             "strict_route": true,
             "stack": "gvisor",
@@ -99,19 +98,19 @@
         {
             "tag": "TEHRAN",
             "type": "wireguard",
-            "server": "188.114.97.4",
-            "server_port": 939,
+            "server": "188.114.99.153",
+            "server_port": 945,
             "local_address": [
                 "172.16.0.2/32",
                 "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
             ],
-            "private_key": "QFD8qW59MEYHB21jaooSj49Vox/HU99gy1pamDQhdFo=",
+            "private_key": "ECLqQU97hpPd0TNCNGes8ljV3/qyifU8GShQBoDUhGs=",
             "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
             "mtu": 1300,
             "reserved": [
-                250,
-                155,
-                118
+                75,
+                238,
+                12
             ],
             "detour": "direct",
             "workers": 2
@@ -119,19 +118,19 @@
         {
             "tag": "BERLIN",
             "type": "wireguard",
-            "server": "188.114.98.79",
-            "server_port": 943,
+            "server": "188.114.99.110",
+            "server_port": 1070,
             "local_address": [
                 "172.16.0.2/32",
                 "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
             ],
-            "private_key": "wLJzntYWcpTezRr0lP5CZ2xBKpcga6AvXpJhXvw64k4=",
+            "private_key": "kLDc3EA4nqCPBAUtoR6GudtGdDObptP2U+9NDoJCME4=",
             "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
             "mtu": 1300,
             "reserved": [
-                146,
-                222,
-                185
+                113,
+                202,
+                139
             ],
             "detour": "TEHRAN",
             "workers": 2
