@@ -4,19 +4,17 @@
         "level": "fatal",
         "timestamp": true
     },
-    "experimental": {
-        "clash_api": {
-            "external_controller": "127.0.0.1:9090",
-            "external_ui": "metacubexd",
-            "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
-            "external_ui_download_detour": "bypass",
-            "default_mode": "rule"
-        },
-        "cache_file": {
-            "enabled": true,
-            "path": "cache.db",
-            "store_fakeip": false
-        }
+    "clash_api": {
+        "external_controller": "127.0.0.1:9090",
+        "external_ui": "metacubexd",
+        "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+        "external_ui_download_detour": "bypass",
+        "default_mode": "rule"
+    },
+    "cache": {
+        "enabled": true,
+        "path": "cache.db",
+        "store_fakeip": false
     },
     "dns": {
         "servers": [
@@ -24,7 +22,6 @@
                 "tag": "dns-remote",
                 "address": "tcp://185.228.168.9",
                 "address_resolver": "dns-direct",
-                "address_strategy": "prefer_ipv4",
                 "strategy": "prefer_ipv4"
             },
             {
@@ -49,7 +46,9 @@
                 "rule_set": [
                     "geosite-ir"
                 ],
-                "domain_suffix": ".ir",
+                "domain_suffix": [
+                    ".ir"
+                ],
                 "server": "dns-direct"
             }
         ],
@@ -62,8 +61,8 @@
             "tag": "tun-in",
             "domain_strategy": "prefer_ipv4",
             "interface_name": "sing-tun",
-            "inet4_address": "172.19.0.1/30",
-            "mtu": 1306,
+            "address": "172.19.0.1/30",
+            "mtu": 1280,
             "auto_route": true,
             "strict_route": true,
             "stack": "gvisor",
