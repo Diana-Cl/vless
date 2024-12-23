@@ -35,7 +35,7 @@ https://raw.githubusercontent.com/NiREvil/vless/main/sing-box.json
 ![rainbow](https://github.com/NiREvil/vless/assets/126243832/1aca7f5d-6495-44b7-aced-072bae52f256)
 
 ## table of contents
-- [Wiki Ai](https://github.com/NiREvil/vless.wiki)
+- [Wiki Ai](https://github.com/NiREvil/vless.wiki.git)
 - [Warp](#Warp)
   - [Warp Hiddify](#warp-hiddify)
   - [Warp NekoBox](#Warp-NekoBox)
