@@ -90,14 +90,14 @@
         "time": "2025-01-01 05:40:05"
     },
     {
-        "colo": "LHR",
-        "ip": "172.67.229.27",
-        "latency": 185,
+        "colo": "SJC",
+        "ip": "172.64.169.157",
+        "latency": 140,
         "line": "CT",
         "loss": 0,
-        "node": "SDO_HBCT",
-        "speed": 625,
-        "time": "2025-01-01 05:40:05"
+        "node": "QYZJBGP",
+        "speed": 290,
+        "time": "2025-01-01 05:45:20"
     },
     {
         "colo": "NRT",
