@@ -37,7 +37,7 @@ jobs:
       - name: Commit changes
         run: |
           git add -A
-          git diff --cached --quiet || git commit -m "ⅣⅭ Updated: $(TZ='Asia/Tehran' date '+%l:%M %p, %a, %d %b %y')"
+          git diff --cached --quiet || git commit -m "ⅣⅭ Updated: $(TZ='Asia/Tehran' date '+%a, %d %b %y, %l:%M %p')"
           
       - name: Push changes
         uses: ad-m/github-push-action@master
