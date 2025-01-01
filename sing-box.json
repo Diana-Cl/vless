@@ -77,10 +77,10 @@
             "tag": "Proxy",
             "type": "selector",
             "outbounds": [
-                "TEHRAN",
-                "BERLIN"
+                "\u26aa\ufe0fTehran",
+                "\ud83d\udfe1Berlin"
             ],
-            "default": "BERLIN",
+            "default": "\ud83d\udfe1Berlin",
             "interrupt_exist_connections": false
         },
         {
@@ -90,7 +90,7 @@
                 "\u26aa\ufe0fTehran",
                 "\ud83d\udfe1Berlin"
             ],
-            "url": "http://connectivitycheck.gstatic.com/generate_204",
+            "url": "https://www.gstatic.com/generate_204",
             "interval": "10m",
             "tolerance": 50,
             "idle_timeout": "30m",
@@ -99,19 +99,19 @@
         {
             "tag": "\u26aa\ufe0fTehran",
             "type": "wireguard",
-            "server": "188.114.98.67",
-            "server_port": 968,
+            "server": "188.114.96.204",
+            "server_port": 1018,
             "local_address": [
                 "172.16.0.2/32",
                 "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
             ],
-            "private_key": "AJd+a9uAkPgqbu42vCqQphZJrCJsjFNdyEbs1IF0BnQ=",
+            "private_key": "sJLeD2IJtNfr9uhvIBHHnfAyUI+fJ6eLsDVCKIFpzkY=",
             "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
             "mtu": 1300,
             "reserved": [
-                172,
-                177,
-                121
+                50,
+                190,
+                245
             ],
             "detour": "direct",
             "workers": 2
@@ -119,19 +119,19 @@
         {
             "tag": "\ud83d\udfe1Berlin",
             "type": "wireguard",
-            "server": "188.114.99.206",
-            "server_port": 1701,
+            "server": "188.114.97.79",
+            "server_port": 3854,
             "local_address": [
                 "172.16.0.2/32",
                 "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
             ],
-            "private_key": "KIRBAFI6IZLxUOEbQNKCpp58F6GH+wIPcJfViZmgM0U=",
+            "private_key": "cLLoZ+VSP5nc8nhpQN3vDtNTcq9tuh7GiAOqrkbdn2o=",
             "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
             "mtu": 1300,
             "reserved": [
-                107,
-                211,
-                110
+                16,
+                29,
+                77
             ],
             "detour": "\u26aa\ufe0fTehran",
             "workers": 2
