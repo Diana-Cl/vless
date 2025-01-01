@@ -31,13 +31,13 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "REvil"
-          git config --global user.email "nirevil@proton.me"
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Commit changes
         run: |
           git add -A
-          git diff --cached --quiet || git commit -m "ⅣⅭ Updated: $(TZ='Asia/Tehran' date '+%a, %d %b %y, %l:%M %p')"
+          git diff --cached --quiet || git commit -m "ⅣⅭ REFRESHED ON: $(TZ='Asia/Tehran' date '+%a, %d %b %y, %H:%M')"
           
       - name: Push changes
         uses: ad-m/github-push-action@master
