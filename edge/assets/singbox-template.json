@@ -77,17 +77,17 @@
             "tag": "Proxy",
             "type": "selector",
             "outbounds": [
-                "TEHRAN",
-                "BERLIN"
+                "\u26aa\ufe0fTehran",
+                "\ud83d\udfe1Berlin"
             ],
-            "default": "BERLIN",
+            "default": "\ud83d\udfe1Berlin",
             "interrupt_exist_connections": false
         },
         {
             "tag": "Auto",
             "type": "urltest",
             "outbounds": [],
-            "url": "http://connectivitycheck.gstatic.com/generate_204",
+            "url": "https://www.gstatic.com/generate_204",
             "interval": "10m",
             "tolerance": 50,
             "idle_timeout": "30m",
