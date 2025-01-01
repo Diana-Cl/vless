@@ -92,7 +92,7 @@ with open("Bestip.txt", "w") as f:
         f.write(f"{ip}\n")
 
 
-formatted_time = datetime.datetime.now().strftime("+%a, %d %b %y, %H:%M")
+formatted_time = datetime.datetime.now().strftime("%A, %d %b %Y, %H:%M")
 
 
 def export_Hiddify(t_ips):
@@ -107,10 +107,10 @@ title = (
     + base64.b64encode("Freedom to Dream 💛✨".encode("utf-8")).decode("utf-8")
     + "\n"
 )
-update_interval = "//Profile update interval: 5\n"
-sub_info = "//Subscription userinfo: upload=805306368000; download=2576980377600; total=6012954214400; expire=1762677732\n"
-profile_web = "//Profile web page url: https://github.com/NiREvil\n"
-last_modified = "//Last update on: " + formatted_time + "\n"
+update_interval = "//profile-update-interval: 4\n"
+sub_info = "//subscription-userinfo: upload=805306368000; download=2576980377600; total=6012954214400; expire=1762677732\n"
+profile_web = "//profile-web-page-url: https://github.com/NiREvil\n"
+last_modified = "//last update on: " + formatted_time + "\n"
 
 config_prefix, _ = export_Hiddify(Bestip)
 with open("warp.json", "w") as op:
