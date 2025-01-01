@@ -1,6 +1,6 @@
 //profile-title: base64:RnJlZWRvbSB0byBEcmVhbSDwn5Kb4pyo
-//Profile update interval: 5
-//Subscription userinfo: upload=805306368000; download=2576980377600; total=6012954214400; expire=1762677732
-//Profile web page url: https://github.com/NiREvil
-//Last update on: +Wed, 01 Jan 25, 22:07
-warp://188.114.98.194:8854?ifp=1-3&ifpm=m4#⚪️Tehran&&detour=warp://188.114.98.25:934?ifp=1-2&ifpm=m5#🟡Berlin
+//profile-update-interval: 4
+//subscription-userinfo: upload=805306368000; download=2576980377600; total=6012954214400; expire=1762677732
+//profile-web-page-url: https://github.com/NiREvil
+//last update on: Wednesday, 01 Jan 2025, 23:07
+warp://188.114.98.109:890?ifp=1-3&ifpm=m4#⚪️Tehran&&detour=warp://162.159.192.190:945?ifp=1-2&ifpm=m5#🟡Berlin
