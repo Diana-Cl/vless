@@ -7,7 +7,7 @@ import base64
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-# تنظیمات لاگ
+# logging 
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 # آدرس کانال تلگرام و فایل خروجی
 CHANNEL_URL = "https://t.me/s/freewireguard"
-OUTPUT_FILE = 'wireguardn'
+OUTPUT_FILE = 'sub/wireguardn'
 
 # تابع تبدیل به فرمت Nekobox
 def convert_to_nekobox_format(config_url):
@@ -48,7 +48,6 @@ Endpoint = {endpoint}
 
     return f"sn://wg?{encoded_config}"
 
-# تابع جمع‌آوری کانفیگ‌ها از کانال تلگرام
 def fetch_wireguard_configs():
     try:
         headers = {
@@ -76,7 +75,7 @@ def fetch_wireguard_configs():
         configs = configs[:25]
 
         if not configs:
-            logger.error("هیچ کانفیگی یافت نشد!")
+            logger.error("conf don't exist!")
             return
 
         final_configs = []
@@ -89,11 +88,11 @@ def fetch_wireguard_configs():
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             f.write('\n\n'.join(final_configs))
 
-        logger.info(f"موفقیت‌آمیز همگام‌سازی شد: {datetime.now()}")
+        logger.info(f"synced successfully: {datetime.now()}")
 
     except Exception as e:
-        logger.error(f"خطا رخ داد: {str(e)}")
+        logger.error(f"shiiiit: {str(e)}")
 
-# اجرای اسکریپت
+
 if __name__ == '__main__':
     fetch_wireguard_configs()
