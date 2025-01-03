@@ -17,9 +17,9 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v3
       with:
-        python-version: '3.x'
+        python-version: '3.10'
 
     - name: Install dependencies
       run: |
@@ -27,11 +27,11 @@ jobs:
         pip install -r edge/requirements.txt
 
     - name: Run script
-      run: python edge/2ndThief.py
+      run: python edge/2nd.py
 
     - name: Commit and push if changed
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add wireguardn
+        git add sub/wireguardn
         git diff --quiet && git diff --staged --quiet || (git commit -m "SYNCED at $(date)" && git push)
