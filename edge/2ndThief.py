@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 # آدرس کانال تلگرام و فایل خروجی
 CHANNEL_URL = "https://t.me/s/freewireguard"
-OUTPUT_FILE = 'wireguardnekobox'
+OUTPUT_FILE = 'wireguardn'
 
 # تابع تبدیل به فرمت Nekobox
 def convert_to_nekobox_format(config_url):
