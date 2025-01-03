@@ -54,29 +54,39 @@ def fetch_wireguard_configs():
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         }
         response = requests.get(CHANNEL_URL, headers=headers)
-        response.raise_for_status()
+        response = requests.get(CHANNEL_URL, headers=headers)
+response.raise_for_status()
+logger.info(f"Fetched page with status code: {response.status_code}")
 
-        soup = BeautifulSoup(response.text, 'html.parser')
-        messages = soup.find_all('div', class_='tgme_widget_message_text')
+soup = BeautifulSoup(response.text, 'html.parser')
+messages = soup.find_all('div', class_='tgme_widget_message_text')
 
-        configs = []
-        for message in messages:
-            if not message.text:
-                continue
+if not messages:
+    logger.error("No messages found on the page!")
+    return
+else:
+    logger.info(f"Found {len(messages)} messages on the page.")
 
-            matches = re.finditer(r'wireguard://[^\s]+', message.text)
-            for match in matches:
-                config = match.group(0)
-                configs.append(config)
+configs = []
+for message in messages:
+    logger.info(f"Processing message: {message.text}")
+    if not message.text:
+        continue
+    
+    matches = re.finditer(r'wireguard://[^\s]+', message.text)
+    for match in matches:
+        config = match.group(0)
+        base_config = config.split('#')[0]
+        configs.append(base_config)
+        
+    if len(configs) >= 25:
+        break
 
-            if len(configs) >= 25:
-                break
-
-        configs = configs[:25]
-
-        if not configs:
-            logger.error("conf don't exist!")
-            return
+if not configs:
+    logger.error("No configs were extracted from the messages!")
+else:
+    logger.info(f"Extracted {len(configs)} configs.")
+    
 
         final_configs = []
         for i, config in enumerate(configs):
