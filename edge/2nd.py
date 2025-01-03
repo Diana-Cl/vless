@@ -14,11 +14,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# آدرس کانال تلگرام و فایل خروجی
+
 CHANNEL_URL = "https://t.me/s/freewireguard"
 OUTPUT_FILE = 'sub/wireguardn'
 
-# تابع تبدیل به فرمت Nekobox
 def convert_to_nekobox_format(config_url):
     match = re.match(
         r'^wireguard://(?P<private_key>[^@]+)@(?P<endpoint>[^?]+)\?address=(?P<address>[^&]+)&publickey=(?P<publickey>[^&]+)&mtu=(?P<mtu>\d+)',
@@ -54,51 +53,49 @@ def fetch_wireguard_configs():
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         }
         response = requests.get(CHANNEL_URL, headers=headers)
-        response = requests.get(CHANNEL_URL, headers=headers)
-response.raise_for_status()
-logger.info(f"Fetched page with status code: {response.status_code}")
+        response.raise_for_status()
+        logger.info(f"Fetched page with status code: {response.status_code}")
 
-soup = BeautifulSoup(response.text, 'html.parser')
-messages = soup.find_all('div', class_='tgme_widget_message_text')
+        soup = BeautifulSoup(response.text, 'html.parser')
+        messages = soup.find_all('div', class_='tgme_widget_message_text')
 
-if not messages:
-    logger.error("No messages found on the page!")
-    return
-else:
-    logger.info(f"Found {len(messages)} messages on the page.")
+        if not messages:
+            logger.error("No messages found on the page!")
+            return
+        else:
+            logger.info(f"Found {len(messages)} messages on the page.")
 
-configs = []
-for message in messages:
-    logger.info(f"Processing message: {message.text}")
-    if not message.text:
-        continue
-    
-    matches = re.finditer(r'wireguard://[^\s]+', message.text)
-    for match in matches:
-        config = match.group(0)
-        base_config = config.split('#')[0]
-        configs.append(base_config)
-        
-    if len(configs) >= 25:
-        break
+        configs = []
+        for message in messages:
+            logger.info(f"Processing message: {message.text}")
+            if not message.text:
+                continue
 
-if not configs:
-    logger.error("No configs were extracted from the messages!")
-else:
-    logger.info(f"Extracted {len(configs)} configs.")
-    
+            matches = re.finditer(r'wireguard://[^\s]+', message.text)
+            for match in matches:
+                config = match.group(0)
+                base_config = config.split('#')[0]
+                configs.append(base_config)
 
-        final_configs = []
-        for i, config in enumerate(configs):
-            converted_config = convert_to_nekobox_format(config)
-            if converted_config:
-                final_configs.append(f"{converted_config}#NiREvil{i+1}")
+            if len(configs) >= 25:
+                break
 
-        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-        with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-            f.write('\n\n'.join(final_configs))
+        if not configs:
+            logger.error("No configs were extracted from the messages!")
+        else:
+            logger.info(f"Extracted {len(configs)} configs.")
 
-        logger.info(f"synced successfully: {datetime.now()}")
+            final_configs = []
+            for i, config in enumerate(configs):
+                converted_config = convert_to_nekobox_format(config)
+                if converted_config:
+                    final_configs.append(f"{converted_config}#NiREvil{i+1}")
+
+            os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+            with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+                f.write('\n\n'.join(final_configs))
+
+            logger.info(f"synced successfully: {datetime.now()}")
 
     except Exception as e:
         logger.error(f"shiiiit: {str(e)}")
