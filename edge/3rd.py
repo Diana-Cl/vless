@@ -16,8 +16,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 CHANNEL_URL = "https://t.me/s/freewireguard"
-OUTPUT_FILE_WG = 'sub/wireguardn'
-OUTPUT_FILE_NEKO = 'sub/nekobox'
+OUTPUT_FILE_WG = 'sub/wireguard3rd'
+OUTPUT_FILE_NEKO = 'sub/nekobox3rd'
 
 
 def wireguard_to_neko(wg_url):
@@ -112,7 +112,7 @@ def fetch_wireguard_configs():
         with open(OUTPUT_FILE_NEKO, 'w', encoding='utf-8') as f:
             f.write('\n\n'.join(final_neko_configs))
             
-        logger.info(f"Successfully SYNCED AT: {datetime.now()}")
+        logger.info(f"YESSS {datetime.now()}")
         
     except Exception as e:
         logger.error(f"Error occurred: {str(e)}")
