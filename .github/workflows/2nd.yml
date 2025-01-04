@@ -1,8 +1,8 @@
-name: Build WG Configs
+name: Fetching WG-2nd
 
 on:
-  # schedule:
-  #  - cron: '0 * * * *'
+  schedule:
+  - cron: '0 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -33,5 +33,5 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add sub/wireguardn
+        git add sub/wireguard2nd
         git diff --quiet && git diff --staged --quiet || (git commit -m "SYNCED at $(date)" && git push)
