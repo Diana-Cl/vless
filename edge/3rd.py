@@ -2,6 +2,7 @@ import re
 import os
 import time
 import base64
+import json
 import logging
 import requests
 import urllib.parse
@@ -18,6 +19,7 @@ CHANNEL_URL = "https://t.me/s/freewireguard"
 OUTPUT_FILE_WG = 'sub/wireguardn'
 OUTPUT_FILE_NEKO = 'sub/nekobox'
 
+
 def wireguard_to_neko(wg_url):
     try:
         # Parse WireGuard URL
@@ -27,27 +29,25 @@ def wireguard_to_neko(wg_url):
         # Extract credentials from username part
         private_key = urllib.parse.unquote(parsed.username)
         
-        # Build basic WireGuard config
+        # Build config in specific format that nekobox expects
         config = {
-            "Interface": {
-                "PrivateKey": private_key,
-                "Address": query['address'][0].split(',')[0],  # Only take IPv4
-                "DNS": "1.1.1.1, 1.0.0.1"
-            },
-            "Peer": {
-                "PublicKey": query['publickey'][0],
-                "AllowedIPs": "0.0.0.0/0",
-                "Endpoint": f"{parsed.hostname}:{parsed.port}"
-            }
+            "type": "wireguard",
+            "name": "WireGuard",
+            "server": parsed.hostname,
+            "port": parsed.port,
+            "private_key": private_key,
+            "public_key": query['publickey'][0],
+            "local_address": [query['address'][0].split(',')[0]],  # Only IPv4
+            "peer_endpoint": f"{parsed.hostname}:{parsed.port}",
+            "allowed_ips": ["0.0.0.0/0"],
+            "mtu": int(query.get('mtu', ['1280'])[0]),
+            "dns": ["1.1.1.1", "1.0.0.1"]
         }
         
-        # Convert to string format
-        config_str = str(config)
+        # Convert to JSON string and encode to base64
+        config_json = json.dumps(config)
+        encoded = base64.urlsafe_b64encode(config_json.encode()).decode()
         
-        # Encode to base64
-        encoded = base64.urlsafe_b64encode(config_str.encode()).decode()
-        
-        # Add nekobox prefix
         return f"sn://wg?{encoded}"
     except Exception as e:
         logger.error(f"Error converting to nekobox format: {str(e)}")
