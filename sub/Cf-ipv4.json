@@ -61,8 +61,8 @@
     },
     {
         "colo": "IAD",
-        "ip": "172.67.4.104",
-        "latency": 214,
+        "ip": "172.67.127.27",
+        "latency": 243,
         "line": "CT",
         "loss": 0,
         "node": "SDO_HBCT",
@@ -71,8 +71,8 @@
     },
     {
         "colo": "IAD",
-        "ip": "172.67.127.27",
-        "latency": 243,
+        "ip": "172.67.4.104",
+        "latency": 214,
         "line": "CT",
         "loss": 0,
         "node": "SDO_HBCT",
