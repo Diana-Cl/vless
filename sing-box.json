@@ -99,19 +99,19 @@
         {
             "tag": "\u26aa\ufe0fTehran",
             "type": "wireguard",
-            "server": "188.114.98.40",
-            "server_port": 500,
+            "server": "188.114.97.178",
+            "server_port": 1002,
             "local_address": [
                 "172.16.0.2/32",
                 "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
             ],
-            "private_key": "uHrKk5zs+V4ARHWoCt/CUrM3njdYXqCVFDL3eP0Lx2A=",
+            "private_key": "EHafgbcCvXncGHd8k4XzZEhdCsG+r9NRNk0e9lS9I2g=",
             "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
             "mtu": 1300,
             "reserved": [
-                158,
-                63,
-                27
+                156,
+                86,
+                223
             ],
             "detour": "direct",
             "workers": 2
@@ -119,19 +119,19 @@
         {
             "tag": "\ud83d\udfe1Berlin",
             "type": "wireguard",
-            "server": "188.114.97.160",
-            "server_port": 880,
+            "server": "188.114.99.252",
+            "server_port": 8886,
             "local_address": [
                 "172.16.0.2/32",
                 "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
             ],
-            "private_key": "MCWD66RUSa5oLX7AKqfUSaj6eAnp4CjSl1qM0gXfpHs=",
+            "private_key": "qNJvKu78cx6h0Cn6fxlu1Ux/dh2U9kU0+WgFb7TQgFI=",
             "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
             "mtu": 1300,
             "reserved": [
+                158,
                 142,
-                184,
-                152
+                162
             ],
             "detour": "\u26aa\ufe0fTehran",
             "workers": 2
@@ -207,7 +207,7 @@
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
                 "download_detour": "bypass",
-                "update_interval": "8d"
+                "update_interval": "4d"
             },
             {
                 "tag": "geosite-category-ads-all",
@@ -215,7 +215,7 @@
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs",
                 "download_detour": "bypass",
-                "update_interval": "8d"
+                "update_interval": "4d"
             },
             {
                 "tag": "geosite-malware",
@@ -223,7 +223,7 @@
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-malware.srs",
                 "download_detour": "bypass",
-                "update_interval": "8d"
+                "update_interval": "4d"
             },
             {
                 "tag": "geosite-phishing",
@@ -231,7 +231,7 @@
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-phishing.srs",
                 "download_detour": "bypass",
-                "update_interval": "8d"
+                "update_interval": "4d"
             },
             {
                 "tag": "geosite-cryptominers",
@@ -239,7 +239,7 @@
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-cryptominers.srs",
                 "download_detour": "bypass",
-                "update_interval": "8d"
+                "update_interval": "4d"
             },
             {
                 "tag": "geoip-ir",
@@ -247,7 +247,7 @@
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
                 "download_detour": "bypass",
-                "update_interval": "8d"
+                "update_interval": "4d"
             },
             {
                 "tag": "geoip-malware",
@@ -255,7 +255,7 @@
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-malware.srs",
                 "download_detour": "bypass",
-                "update_interval": "8d"
+                "update_interval": "4d"
             },
             {
                 "tag": "geoip-phishing",
@@ -263,7 +263,7 @@
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-phishing.srs",
                 "download_detour": "bypass",
-                "update_interval": "8d"
+                "update_interval": "4d"
             }
         ]
     }
