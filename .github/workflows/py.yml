@@ -5,8 +5,8 @@ on:
     branches: [ "main" ]
     paths:
       - 'warp.py'
-  schedule: #every fuckin 60 minutes
-    - cron: '0 * * * *'
+ # schedule: #every fuckin 60 minutes
+#   - cron: '0 * * * *'
 
 jobs:
   build:
