@@ -18,8 +18,8 @@ warp_cidr = [
 ]
 
 script_directory = os.path.dirname(__file__)
-Bestip_path = os.path.join(script_directory, "Bestip.txt")
-result_path = os.path.join(script_directory, "result.csv")
+Bestip_path = os.path.join(script_directory, "edge/Bestip.txt")
+result_path = os.path.join(script_directory, "edge/result.csv")
 
 def create_ips():
     c = 0
@@ -201,7 +201,7 @@ def main(script_dir):
         )
         print("Warp executed successfully.")
 
-        result_path = os.path.join(script_dir, "result.csv")
+        result_path = os.path.join(script_dir, "edge/result.csv")
 
     except subprocess.CalledProcessError as e:
         print(f"Error executing command: {e}")
