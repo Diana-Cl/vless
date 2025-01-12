@@ -72,6 +72,11 @@ if process.returncode != 0:
 else:
     print("Warp executed successfully.")
 
+# Check if result.csv exists
+if not os.path.exists(result_path):
+    print(f"Error: {result_path} does not exist.")
+    exit(1)
+
 Bestip = []
 
 with open(result_path, "r") as csv_file:
@@ -221,4 +226,4 @@ def main(script_dir):
 if __name__ == "__main__":
     script_directory = os.path.dirname(__file__)
     main(script_directory)
-    
+                
