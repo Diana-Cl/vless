@@ -18,8 +18,8 @@ warp_cidr = [
 ]
 
 script_directory = os.path.dirname(__file__)
-Bestip_path = os.path.join(script_directory, "edge/Bestip.txt")
-result_path = os.path.join(script_directory, "edge/result.csv")
+Bestip_path = os.path.join(script_directory, "Bestip.txt")
+result_path = os.path.join(script_directory, "result.csv")
 
 def create_ips():
     c = 0
@@ -97,7 +97,7 @@ with open("Bestip.txt", "w") as f:
     for ip in Bestip:
         f.write(f"{ip}\n")
 
-formatted_time = datetime.datetime.now().strftime("%A, %d %b %Y, %H:%M")
+formatted_time = datetime.datetime.now().strftime("%a, %d %b %Y, %H:%M")
 
 def export_Hiddify(t_ips):
     config_prefix = (
@@ -201,7 +201,7 @@ def main(script_dir):
         )
         print("Warp executed successfully.")
 
-        result_path = os.path.join(script_dir, "edge/result.csv")
+        result_path = os.path.join(script_dir, "result.csv")
 
     except subprocess.CalledProcessError as e:
         print(f"Error executing command: {e}")
