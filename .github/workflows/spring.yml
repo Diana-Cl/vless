@@ -1,32 +1,36 @@
 name: REvil WG
-
 on:
   push:
     branches: [ "main" ]
     paths:
       - 'edge/spring.py'
-#  schedule: #every fuckin 60 minutes
-#    - cron: '0 * * * *'
+#  schedule: # Runs every fuckin 2 hours
+#    - cron: '0 */2 * * *'
   workflow_dispatch:
-
+  
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: "3.x"
-    - name: Set up Python
+        python-version: "3.12"  
+        cache: 'pip'  
+
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install ipaddress
-   
-    - name: run script
-      run: python edge/spring.py
+    - name: Create required directories
+      run: |
+        mkdir -p edge
+    - name: Lets go sweetheart
+      run: |
+        cd edge
+        python spring.py
+
     - name: Commit changes with timestamp
       run: |          
           git config --global user.name "REvil"
@@ -35,9 +39,8 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "ⅨⅣ $(TZ='Asia/Tehran' date '+%H:%M:%S')"
           git push
-          
-    - name: Push if changed
+
+    - name: Push changes
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        
