@@ -18,9 +18,8 @@ warp_cidr = [
 ]
 
 script_directory = os.path.dirname(__file__)
-Bestip_path = os.path.join(script_directory, "edge/Bestip.txt")
-result_path = os.path.join(script_directory, "edge/result.csv")
-
+Bestip_path = os.path.join(script_directory, "Bestip.txt")
+result_path = os.path.join(script_directory, "result.csv")
 
 def create_ips():
     c = 0
@@ -35,14 +34,12 @@ def create_ips():
                 if c != top_ips:
                     file.write("\n")
 
-
 if os.path.exists(Bestip_path):
     print("Bestip.txt exists.")
 else:
     print("Creating Bestip.txt File.")
     create_ips()
     print("Bestip.txt File Created Successfully!")
-
 
 def arch_suffix():
     machine = platform.machine().lower()
@@ -56,7 +53,6 @@ def arch_suffix():
         return "s390x"
     else:
         raise ValueError("Unsupported CPU architecture")
-
 
 arch = arch_suffix()
 
@@ -91,16 +87,13 @@ with open("Bestip.txt", "w") as f:
     for ip in Bestip:
         f.write(f"{ip}\n")
 
-
 formatted_time = datetime.datetime.now().strftime("%A, %d %b %Y, %H:%M")
-
 
 def export_Hiddify(t_ips):
     config_prefix = (
         f"warp://{t_ips[0]}?ifp=1-3&ifpm=m4#⚪️Tehran&&detour=warp://{t_ips[1]}?ifp=1-2&ifpm=m5#🟡Berlin"
     )
     return config_prefix, formatted_time
-
 
 title = (
     "//profile-title: base64:"
@@ -118,11 +111,9 @@ with open("warp.json", "w") as op:
         title + update_interval + sub_info + profile_web + last_modified + config_prefix
     )
 
-
 os.remove(Bestip_path)
 os.remove(result_path)
 os.remove("warp")
-
 
 def toSingBox(tag, clean_ip, detour):
     print("Generating Warp Conf")
@@ -168,7 +159,6 @@ def toSingBox(tag, clean_ip, detour):
         print("Error: Command execution failed or produced no output")
         return None
 
-
 def export_SingBox(t_ips):
     with open("edge/assets/singbox-template.json", "r") as f:
         data = json.load(f)
@@ -189,7 +179,6 @@ def export_SingBox(t_ips):
 
     with open("sing-box.json", "w") as f:
         json.dump(data, f, indent=4)
-
 
 def main(script_dir):
     try:
@@ -229,7 +218,7 @@ def main(script_dir):
         if os.path.exists(result_path):
             os.remove(result_path)
 
-
 if __name__ == "__main__":
     script_directory = os.path.dirname(__file__)
     main(script_directory)
+    
