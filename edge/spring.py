@@ -78,6 +78,11 @@ if process.returncode != 0:
 else:
     print("Warp executed successfully.")
 
+
+if not os.path.exists(result_path_edge):
+    print("Error: result.csv not found!")
+    exit(1)
+
 Bestip = []
 with open(result_path_edge, "r") as csv_file:
     next(csv_file)
@@ -110,6 +115,7 @@ sub_info = "//subscription-userinfo: upload=805306368000; download=2576980377600
 profile_web = "//profile-web-page-url: https://github.com/NiREvil\n"
 last_modified = "//last update on: " + formatted_time + "\n"
 config_prefix, _ = export_Hiddify(Bestip)
+
 
 with open(warp_path_main, "w") as op:
     op.write(
