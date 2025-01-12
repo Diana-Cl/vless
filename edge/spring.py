@@ -165,7 +165,7 @@ def toSingBox(tag, clean_ip, detour):
         return None
 
 def export_SingBox(t_ips):
-    with open("edge/assets/singbox-template.json", "r") as f:
+    with open("assets/singbox-template.json", "r") as f:
         data = json.load(f)
 
     data["outbounds"][1]["outbounds"].extend(["⚪️Tehran", "🟡Berlin"])
