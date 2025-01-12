@@ -121,8 +121,6 @@ with open("warp.json", "w") as op:
         title + update_interval + sub_info + profile_web + last_modified + config_prefix
     )
 
-os.remove(Bestip_path)
-os.remove(result_path)
 os.remove("warp")
 
 def toSingBox(tag, clean_ip, detour):
@@ -227,6 +225,7 @@ def main(script_dir):
 
         if os.path.exists(result_path):
             os.remove(result_path)
+            os.remove(Bestip_path)
 
 if __name__ == "__main__":
     script_directory = os.path.dirname(__file__)
