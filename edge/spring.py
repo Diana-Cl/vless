@@ -17,17 +17,21 @@ warp_cidr = [
     "188.114.99.0/24",
 ]
 
+# تعیین مسیر فولدر edge و main
 script_directory = os.path.dirname(__file__)
 edge_directory = os.path.join(script_directory, "edge")
 main_directory = script_directory
 
+# مسیر فایل‌ها در فولدر edge
 Bestip_path = os.path.join(edge_directory, "Bestip.txt")
 result_path_edge = os.path.join(edge_directory, "result.csv")
 
+# مسیر فایل‌ها در فولدر main
 result_path_main = os.path.join(main_directory, "endpoints.csv")
 singbox_path_main = os.path.join(main_directory, "sing-box.json")
 warp_path_main = os.path.join(main_directory, "warp.json")
 
+# ایجاد فولدر edge اگر وجود نداشته باشد
 if not os.path.exists(edge_directory):
     os.makedirs(edge_directory)
 
@@ -78,7 +82,7 @@ if process.returncode != 0:
 else:
     print("Warp executed successfully.")
 
-
+# بررسی وجود فایل result.csv
 if not os.path.exists(result_path_edge):
     print("Error: result.csv not found!")
     exit(1)
@@ -116,12 +120,13 @@ profile_web = "//profile-web-page-url: https://github.com/NiREvil\n"
 last_modified = "//last update on: " + formatted_time + "\n"
 config_prefix, _ = export_Hiddify(Bestip)
 
-
+# ایجاد فایل warp.json در مسیر main
 with open(warp_path_main, "w") as op:
     op.write(
         title + update_interval + sub_info + profile_web + last_modified + config_prefix
     )
 
+# کپی فایل result.csv از edge به main و تغییر نام آن به endpoints.csv
 if os.path.exists(result_path_edge):
     with open(result_path_edge, "r") as src, open(result_path_main, "w") as dst:
         dst.write(src.read())
