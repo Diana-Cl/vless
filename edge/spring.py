@@ -18,8 +18,8 @@ warp_cidr = [
 ]
 
 script_directory = os.path.dirname(__file__)
-Bestip_path = os.path.join(script_directory, "Bestip.txt")
-result_path = os.path.join(script_directory, "result.csv")
+Bestip_path = os.path.join(script_directory, "edge/Bestip.txt")
+result_path = os.path.join(script_directory, "edge/result.csv")
 
 
 def create_ips():
