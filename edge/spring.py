@@ -88,6 +88,11 @@ with open(result_path, "r") as csv_file:
         if c == 2:
             break
 
+# Check if Bestip has at least 2 elements
+if len(Bestip) < 2:
+    print(f"Error: {result_path} does not contain enough data.")
+    exit(1)
+
 with open("Bestip.txt", "w") as f:
     for ip in Bestip:
         f.write(f"{ip}\n")
@@ -226,4 +231,3 @@ def main(script_dir):
 if __name__ == "__main__":
     script_directory = os.path.dirname(__file__)
     main(script_directory)
-                
