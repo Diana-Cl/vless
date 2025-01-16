@@ -1,4 +1,5 @@
 /**
+ * We are all REvil
  * This script handles incoming HTTP requests and proxies them to a list of backend domains.
  * - It parses the request URL and initializes a default list of backend domains.
  * - If provided, it updates the backend domain list from an environment variable.
@@ -6,7 +7,6 @@
  * - If the response from the backend domain matches the expected status code, it returns the response.
  * - If all backend domains fail, it returns a 404 response.
  * - It includes timeout functionality for backend requests and logs various details for debugging.
- * - we are all REvil
  */
 
 export default {
