@@ -3,7 +3,7 @@ name: Format Code with Prettier
 on:
   push:
     branches:
-      - main 
+      - main
   pull_request:
     branches:
       - main
@@ -25,7 +25,8 @@ jobs:
         run: npm install --save-dev prettier
 
       - name: Run Prettier
-        run: npx prettier --write "**/*.{js,json}"
+        run: |
+          npx prettier --write "./*.{js,json,py}" --ignore-path .prettierignore
 
       - name: Commit changes
         run: |
