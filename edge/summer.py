@@ -17,10 +17,10 @@ CHANNELS = {
 
 OUTPUT_DIR = "sub"
 OUTPUT_FILES = {
-    "neko": "nekobox-wg.txt",
     "husi": "husi-wg.txt",
-    "exclave": "exclave-wg.txt",
+    "neko": "nekobox-wg.txt",
     "v2ray": "v2rayng-wg.txt",
+    "exclave": "exclave-wg.txt",
 }
 
 
@@ -44,7 +44,7 @@ def fetch_configs():
 
         new_configs = {"neko": set(), "husi": set(), "exclave": set(), "v2ray": set()}
 
-        # Fetch Fetch the WireGuard config compatible with the nekobox, husi and excclave clients core from Diwire telegram channel
+        # Fetch the WireGuard config compatible with the nekobox, husi and exclave clients from Diwire telegram channel
         response = requests.get(CHANNELS["diwire"], headers=headers)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
@@ -94,7 +94,7 @@ def fetch_configs():
 
                 logger.info(f"Added {len(config_set)} new {config_type} configs")
 
-        logger.info(f"Successfully synced at- {datetime.now()}")
+        logger.info(f"SYNCED {datetime.now()}")
 
     except Exception as e:
         logger.error(f"Error occurred: {str(e)}")
