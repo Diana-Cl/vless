@@ -1,15 +1,27 @@
-# Ignore temporary files
-node_modules/
-*.log
-*.tmp
-.cache/
-.DS_Store
-
-# Ignore specific Prettier files
-.prettierignore
-package-lock.json
+# Dependencies
+node_modules
 package.json
-warp.json
-README.md
-LICENSE
+package-lock.json
+
+# Build output
+dist
+build
+
+# Environment files
+.env
+.env.*
+
+# Log files
+*.log
+
+# Other files we don't want to format
+result.csv
 Endpoints.csv
+warp.json
+
+# Specific directories
+.github/
+DNS over HTTPS/
+edge/
+hiddify/
+sub/
