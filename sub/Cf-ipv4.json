@@ -31,6 +31,16 @@
     },
     {
         "colo": "Default",
+        "ip": "172.64.98.89",
+        "latency": 233,
+        "line": "CM",
+        "loss": 0,
+        "node": "51C_SDCM",
+        "speed": 590,
+        "time": "2025-01-15 23:20:05"
+    },
+    {
+        "colo": "Default",
         "ip": "172.67.251.1",
         "latency": 233,
         "line": "CM",
@@ -38,16 +48,6 @@
         "node": "51C_SDCM",
         "speed": 340,
         "time": "2025-01-15 23:08:29"
-    },
-    {
-        "colo": "Default",
-        "ip": "172.64.135.108",
-        "latency": 232,
-        "line": "CM",
-        "loss": 0,
-        "node": "51C_SDCM",
-        "speed": 290,
-        "time": "2025-01-15 22:46:02"
     },
     {
         "colo": "HKG",
