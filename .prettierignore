@@ -1,5 +1,15 @@
+# Ignore temporary files
+node_modules/
+*.log
+*.tmp
+.cache/
+.DS_Store
+
+# Ignore specific Prettier files
+.prettierignore
+package-lock.json
+package.json
 warp.json
-result.csv
 README.md
 LICENSE
 Endpoints.csv
