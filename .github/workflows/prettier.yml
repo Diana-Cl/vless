@@ -28,6 +28,11 @@ jobs:
         run: |
           npx prettier --write "./*.{js,json,py}" --ignore-path .prettierignore
 
+      - name: Cleanup unwanted files
+        run: |
+         rm -rf node_modules/
+         rm -f package-lock.json
+        
       - name: Commit changes
         run: |
           git config --local user.name "github-actions[bot]"
