@@ -6,6 +6,7 @@ on:
       - '*.js'
       - '*.json'
       - '*.py'
+      - '*.php'
       - '*.yml'
     branches:
       - main
@@ -40,5 +41,5 @@ jobs:
       - name: Prettier Action
         uses: creyD/prettier_action@v4.3
         with:
-          prettier_options: --write **/*.{js,json,yml}
+          prettier_options: --write **/*.{js,json,php,yml}
           commit_message: "Apply code formatting"
