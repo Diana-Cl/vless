@@ -16,12 +16,13 @@ build
 
 # Other files we don't want to format
 result.csv
-Endpoints.csv
 warp.json
+vless/hiddify/WarpOnWarp.json
+
+
 
 # Specific directories
 .github/
 DNS over HTTPS/
 edge/
-hiddify/
 sub/
