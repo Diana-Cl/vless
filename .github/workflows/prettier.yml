@@ -1,13 +1,12 @@
-name: winter
+name: Winter
 
 on:
   push:
     paths:
       - '*.js'
       - '*.json'
-      - '*.py'
-      - '*.php'
       - '*.yml'
+      - '*.php'
     branches:
       - main
   pull_request:
@@ -25,21 +24,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      # Install Black to format only .py files
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
-      
-      - name: Install Black
-        run: pip install black
-      
-      - name: Run Black
-        run: black .
-
-      # Install Prettier to format anothers like js,json, yml & ...
       - name: Prettier Action
         uses: creyD/prettier_action@v4.3
         with:
-          prettier_options: --write **/*.{js,json,php,yml}
+          prettier_options: --write **/*.{js,json,yml} --ignore-unknown
           commit_message: "Apply code formatting"
+        continue-on-error: true
