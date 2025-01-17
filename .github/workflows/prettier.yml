@@ -24,7 +24,6 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           
-      # This step converts files without extensions to json in the vless/hiddify.
       - name: Rename files without extension to .json
         run: |
           cd hiddify
@@ -40,13 +39,3 @@ jobs:
           prettier_options: --write "{**/*.{js,json,yml},hiddify/*.json}" --ignore-unknown
           commit_message: "Apply code formatting"
         continue-on-error: true
-
-      # This step will restore the file names to their original state.
-      - name: Restore original filenames
-        run: |
-          cd hiddify
-          for file in *.json; do
-            if [[ "$file" != "WarpOnWarp.json" ]]; then
-              mv "$file" "${file%.json}"
-            fi
-          done
