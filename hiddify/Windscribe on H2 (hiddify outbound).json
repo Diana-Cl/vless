@@ -49,10 +49,7 @@
         "server": "dns-direct"
       },
       {
-        "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
-        ],
+        "rule_set": ["geoip-ir", "geosite-ir"],
         "server": "dns-direct"
       }
     ],
@@ -88,21 +85,14 @@
     {
       "type": "selector",
       "tag": "select",
-      "outbounds": [
-        "auto",
-        "🇫🇷Windscribe",
-        "🇸🇪H2"
-      ],
+      "outbounds": ["auto", "🇫🇷Windscribe", "🇸🇪H2"],
       "default": "auto",
       "interrupt_exist_connections": true
     },
     {
       "type": "urltest",
       "tag": "auto",
-      "outbounds": [
-        "🇫🇷Windscribe",
-        "🇸🇪H2"
-      ],
+      "outbounds": ["🇫🇷Windscribe", "🇸🇪H2"],
       "url": "https://clients3.google.com/generate_204",
       "interval": "10m0s",
       "tolerance": 1,
@@ -179,10 +169,7 @@
         "outbound": "direct"
       },
       {
-        "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
-        ],
+        "rule_set": ["geoip-ir", "geosite-ir"],
         "outbound": "direct"
       }
     ],

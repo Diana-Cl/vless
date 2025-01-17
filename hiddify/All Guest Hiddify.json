@@ -1,194 +1,48 @@
+//profile-title: base64:QWxsIEd1ZXN0IE9OIEhpZGRpZnk=
+//profile-update-interval: 48
+//subscription-userinfo: upload=5368709120; download=461708984320; total=955630223360; expire=1762677732
+//support-url: https://t.me/F_NiREvil
+//profile-web-page-url: https://github.com/NiREvil
+
 {
-  "log": {
-    "disabled": true,
-    "level": "panic"
-  },
-  "dns": {
-    "servers": [
-      {
-        "tag": "Internet-dns",
-        "address": "https://8.8.8.8/dns-query",
-        "address_resolver": "direct-dns",
-        "detour": "Internet"
-      },
-      {
-        "tag": "Best Latency-dns",
-        "address": "https://8.8.8.8/dns-query",
-        "address_resolver": "direct-dns",
-        "detour": "Best Latency"
-      },
-      {
-        "tag": "direct-dns",
-        "address": "local",
-        "detour": "direct"
-      },
-      {
-        "tag": "block-dns",
-        "address": "rcode://success"
-      }
-    ],
-    "rules": [
-      {
-        "outbound": "Internet",
-        "server": "Internet-dns",
-        "rewrite_ttl": 20
-      },
-      {
-        "outbound": "Best Latency",
-        "server": "Best Latency-dns",
-        "rewrite_ttl": 20
-      },
-      {
-        "outbound": "direct",
-        "server": "direct-dns",
-        "rewrite_ttl": 20
-      },
-      {
-        "outbound": "any",
-        "server": "direct-dns",
-        "rewrite_ttl": 20
-      }
-    ],
-    "disable_expire": true
-  },
-  "inbounds": [
-    {
-      "type": "tun",
-      "tag": "tun-in",
-      "interface_name": "tun0",
-      "mtu": 9000,
-      "inet4_address": "172.19.0.1/30",
-      "inet6_address": "fdfe:dcba:9876::1/126",
-      "auto_route": true,
-      "strict_route": true,
-      "stack": "gvisor",
-      "sniff": true
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "0.0.0.0",
-      "listen_port": 2080,
-      "sniff": true
-    }
-  ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "Internet",
-      "outbounds": [
-        "Best Latency",
-        "🇮🇷 WARP+",
-        "🇮🇷 WARP+6️⃣",
-        "🇩🇪 WARP+ detour4️⃣",
-        "🇩🇪 WARP+ detour6️⃣",
-        "warp+🇮🇷REvil",
-        "warp+🇮🇷1",
-        "warp+🇮🇷2",
-        "warp+🇮🇷3",
-        "warp+🇮🇷5",
-        "warp+🇮🇷6",
-        "warp+🇮🇷7",
-        "warp+🇮🇷8",
-        "warp+🇮🇷6️⃣ 1",
-        "warp+🇮🇷6️⃣ 2",
-        "warp+🇮🇷6️⃣ 3",
-        "warp+🇮🇷6️⃣ 4",
-        "🇳🇱 𝐈𝐑𝐂𝐏\n@Ln2Ray § hy2+ech",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § hy2+ech",
-        "🇳🇱 𝐈𝐑𝐂𝐏\n@Ln2Ray § sstls",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § sstls",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟐\n@Ln2Ray § hy2+ech",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟐 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § hy2+ech",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟐\n@Ln2Ray § sstls",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟐 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § sstls",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟏\u0026𝟐\n@Ln2Ray § vl+ws+tls+cdn+frag",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟏\u0026𝟐 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § vl+ws+tls+cdn+frag",
-        "🇸🇪 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § hy2+ech",
-        "🇸🇪 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § sstls",
-        "🇸🇪 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇸🇪 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § hy2+ech",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § hy2+ech",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § sstls",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § sstls",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § hy2+ech",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § hy2+ech",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § sstls",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § sstls",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇳🇱 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare",
-        "🇳🇱 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § 0",
-        "🇳🇱 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare",
-        "🇺🇸 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare",
-        "🇺🇸 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § 0",
-        "🇺🇸 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare",
-        "🇦🇺 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare",
-        "🇦🇺 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝟐\n@azadi_az_inja_migzare"
-      ]
+      "type": "wireguard",
+      "tag": "🇫🇷 Windscribe",
+      "local_address": "100.100.196.8/32",
+      "private_key": "qKgJJNTkkAr37k74Ix7FkdB3tVIHE1rQBOp4adjm2HU=",
+      "server": "138.199.47.222",
+      "server_port": 65142,
+      "peer_public_key": "cmaT8JIehfRf5PWWDkcBRwLWDb3jrIkk/SDbw4JmUAc=",
+      "pre_shared_key": "p9oZWElz4vn74dOqa0+UNIJGxy2/VeBF6b8YIfmVgY0=",
+      "mtu": 1280,
+      "fake_packets": "5-10"
     },
     {
-      "type": "urltest",
-      "tag": "Best Latency",
-      "outbounds": [
-        "🇮🇷 WARP+",
-        "🇮🇷 WARP+6️⃣",
-        "🇩🇪 WARP+ detour4️⃣",
-        "🇩🇪 WARP+ detour6️⃣",
-        "warp+🇮🇷REvil",
-        "warp+🇮🇷1",
-        "warp+🇮🇷2",
-        "warp+🇮🇷3",
-        "warp+🇮🇷5",
-        "warp+🇮🇷6",
-        "warp+🇮🇷7",
-        "warp+🇮🇷8",
-        "warp+🇮🇷6️⃣ 1",
-        "warp+🇮🇷6️⃣ 2",
-        "warp+🇮🇷6️⃣ 3",
-        "warp+🇮🇷6️⃣ 4",
-        "🇳🇱 𝐈𝐑𝐂𝐏\n@Ln2Ray § hy2+ech",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § hy2+ech",
-        "🇳🇱 𝐈𝐑𝐂𝐏\n@Ln2Ray § sstls",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § sstls",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟐\n@Ln2Ray § hy2+ech",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟐 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § hy2+ech",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟐\n@Ln2Ray § sstls",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟐 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § sstls",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟏\u0026𝟐\n@Ln2Ray § vl+ws+tls+cdn+frag",
-        "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟏\u0026𝟐 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § vl+ws+tls+cdn+frag",
-        "🇸🇪 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § hy2+ech",
-        "🇸🇪 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § sstls",
-        "🇸🇪 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇸🇪 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § hy2+ech",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § hy2+ech",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § sstls",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § sstls",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § hy2+ech",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § hy2+ech",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § sstls",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § sstls",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
-        "🇳🇱 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare",
-        "🇳🇱 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § 0",
-        "🇳🇱 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare",
-        "🇺🇸 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare",
-        "🇺🇸 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § 0",
-        "🇺🇸 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare",
-        "🇦🇺 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare",
-        "🇦🇺 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝟐\n@azadi_az_inja_migzare"
-      ],
-      "url": "http://www.google.com/generate_204",
-      "interval": "10m0s",
-      "tolerance": 50,
-      "idle_timeout": "30m0s"
+      "type": "wireguard",
+      "tag": "🇫🇷 Windscribe on Warp 4️⃣",
+      "detour": "🇮🇷 WARP+",
+      "local_address": "100.100.196.8/32",
+      "private_key": "qKgJJNTkkAr37k74Ix7FkdB3tVIHE1rQBOp4adjm2HU=",
+      "server": "138.199.47.222",
+      "server_port": 65142,
+      "peer_public_key": "cmaT8JIehfRf5PWWDkcBRwLWDb3jrIkk/SDbw4JmUAc=",
+      "pre_shared_key": "p9oZWElz4vn74dOqa0+UNIJGxy2/VeBF6b8YIfmVgY0=",
+      "mtu": 1280,
+      "fake_packets": "5-10"
+    },
+    {
+      "type": "wireguard",
+      "tag": "🇫🇷 Windscribe on Warp 6️⃣",
+      "detour": "🇮🇷 WARP+6️⃣",
+      "local_address": "100.100.196.8/32",
+      "private_key": "qKgJJNTkkAr37k74Ix7FkdB3tVIHE1rQBOp4adjm2HU=",
+      "server": "138.199.47.222",
+      "server_port": 65142,
+      "peer_public_key": "cmaT8JIehfRf5PWWDkcBRwLWDb3jrIkk/SDbw4JmUAc=",
+      "pre_shared_key": "p9oZWElz4vn74dOqa0+UNIJGxy2/VeBF6b8YIfmVgY0=",
+      "mtu": 1280,
+      "fake_packets": "5-10"
     },
     {
       "type": "wireguard",
@@ -198,11 +52,12 @@
         "2606:4700:110:8056:6ec9:563a:d8e7:5097/128"
       ],
       "private_key": "AN/vE11+V8r25aGti20+ZPv3LfWckXfzGJlDQuxpCkc=",
-      "server": "188.114.96.61",
-      "server_port": 891,
+      "server": "162.159.192.171",
+      "server_port": 942,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": "bfY2",
-      "mtu": 1280
+      "mtu": 1300,
+      "fake_packets": "40-80"
     },
     {
       "type": "wireguard",
@@ -212,18 +67,19 @@
         "2606:4700:110:8056:6ec9:563a:d8e7:5097/128"
       ],
       "private_key": "AN/vE11+V8r25aGti20+ZPv3LfWckXfzGJlDQuxpCkc=",
-      "server": "[2606:4700:d0::19b6:22c2:9e32:6d93]",
-      "server_port": 891,
+      "server": "162.159.192.171",
+      "server_port": 942,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": "bfY2",
-      "mtu": 1280
+      "mtu": 1300,
+      "fake_packets": "40-80"
     },
     {
       "type": "wireguard",
       "tag": "🇩🇪 WARP+ detour4️⃣",
       "detour": "🇮🇷 WARP+",
-      "server": "188.114.96.78",
-      "server_port": 955,
+      "server": "[2606:4700:d0::19b6:22c2:9e32:6d93]",
+      "server_port": 943,
       "local_address": [
         "172.16.0.2/32",
         "2606:4700:110:8d6c:45f2:d6c:544e:49e5/128"
@@ -237,8 +93,8 @@
       "type": "wireguard",
       "tag": "🇩🇪 WARP+ detour6️⃣",
       "detour": "🇮🇷 WARP+6️⃣",
-      "server": "188.114.96.78",
-      "server_port": 955,
+      "server": "[2606:4700:d1::94fc:8373:1e65:dc53]",
+      "server_port": 943,
       "local_address": [
         "172.16.0.2/32",
         "2606:4700:110:8d6c:45f2:d6c:544e:49e5/128"
@@ -250,171 +106,108 @@
     },
     {
       "type": "wireguard",
-      "tag": "warp+🇮🇷REvil",
-      "server": "ipw.nscl.ir",
-      "server_port": 1070,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
+      "tag": "🇳🇱 Proton",
+      "local_address": "10.2.0.2/32",
+      "private_key": "2HbmAORFGVs9RQ3wk91D3xl46ug+fjVg1yH5hBfQemk=",
+      "server": "169.150.218.1",
+      "server_port": 51820,
+      "peer_public_key": "bF0RahG8sdUqVt/3Q3Awy46kJ06zV0mzywelGyM/DVw=",
+      "mtu": 1280,
+      "fake_packets": "5-10"
     },
     {
+      "local_address": ["10.2.0.2/32"],
+      "mtu": 1280,
+      "peer_public_key": "FF79Ab2fcEYtsyNYxviTUtVxJLuvUcoEOpl8DYbdsgg=",
+      "pre_shared_key": "",
+      "private_key": "AGFOClYlKyqeLbjpBGkWVz/dxko8FvyVhrux5INxBEQ=",
+      "server": "156.146.54.81",
+      "server_port": 51820,
       "type": "wireguard",
-      "tag": "warp+🇮🇷1",
-      "server": "188.114.98.224",
-      "server_port": 2371,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
+      "domain_strategy": "",
+      "tag": "🚾🅿️Proton 🇺🇲1",
+      "fake_packets": "5-10"
     },
     {
+      "local_address": ["10.2.0.2/32"],
+      "mtu": 1280,
+      "peer_public_key": "MBXy2opbHbpJG1VKo2JjwnSx172hNuDx/Yj6qUT/RBk=",
+      "pre_shared_key": "",
+      "private_key": "OAnNDyLmH5F0N9gKme6AMHz4owLvihHg/XgjTXmPkVk=",
+      "server": "149.40.58.145",
+      "server_port": 51820,
       "type": "wireguard",
-      "tag": "warp+🇮🇷2",
-      "server": "162.159.192.36",
-      "server_port": 903,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
+      "domain_strategy": "",
+      "tag": "🚾🅿️Proton 🇺🇲2",
+      "fake_packets": "5-10"
     },
     {
+      "local_address": ["10.2.0.2/32"],
+      "mtu": 1280,
+      "peer_public_key": "QFE4bdNgpp+yfB6FzgcOn4taoW65WBYEh0nEebKk3Fs=",
+      "pre_shared_key": "",
+      "private_key": "GK2CR/tUaKoec2CEGk7FjwMf0NwGYBzQrYHJvEmC0WU=",
+      "server": "143.244.44.181",
+      "server_port": 51820,
       "type": "wireguard",
-      "tag": "warp+🇮🇷3",
-      "server": "188.114.96.0",
-      "server_port": 864,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
+      "domain_strategy": "",
+      "tag": "🚾🅿️Proton 🇺🇲3",
+      "fake_packets": "5-10"
     },
     {
+      "local_address": ["10.1.13.168/32"],
+      "mtu": 1280,
+      "peer_public_key": "PCHW67+lEKBQI+qRFaRptHN+RrUBIXYZ/v2Xhi+CoRk=",
+      "pre_shared_key": "",
+      "private_key": "4NMyzSD/4t5zT6exVIjgvyOwopaoMTkL1YxmkTpseVM=",
+      "server": "82.102.26.226",
+      "server_port": 60100,
       "type": "wireguard",
-      "tag": "warp+🇮🇷5",
-      "server": "162.159.192.105",
-      "server_port": 1018,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
+      "domain_strategy": "",
+      "tag": "🚾🌵Cactus | Spain🇪🇸",
+      "fake_packets": "5-10"
     },
     {
-      "type": "wireguard",
-      "tag": "warp+🇮🇷6",
-      "server": "162.159.192.118",
-      "server_port": 987,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
+      "obfs": {
+        "password": "cd7e03d161e8fe5d",
+        "type": "salamander"
+      },
+      "password": "0e9f03c78d8ff035",
+      "server": "94.228.168.216",
+      "server_port": 443,
+      "tls": {
+        "alpn": ["h3"],
+        "enabled": true,
+        "insecure": true,
+        "server_name": "www.google.com"
+      },
+      "up_mbps": 0,
+      "type": "hysteria2",
+      "domain_strategy": "",
+      "tag": "🇩🇪❄️HOSSEIN|H24️⃣"
     },
     {
-      "type": "wireguard",
-      "tag": "warp+🇮🇷7",
-      "server": "188.114.99.249",
-      "server_port": 4177,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
-    },
-    {
-      "type": "wireguard",
-      "tag": "warp+🇮🇷8",
-      "server": "wa.bachebiapain.ir",
-      "server_port": 878,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
-    },
-    {
-      "type": "wireguard",
-      "tag": "warp+🇮🇷6️⃣ 1",
-      "server": "[2606:4700:d1::94fc:8373:1e65:dc53]",
-      "server_port": 943,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
-    },
-    {
-      "type": "wireguard",
-      "tag": "warp+🇮🇷6️⃣ 2",
-      "server": "[2606:4700:d0::4649:80ce:36a6]",
-      "server_port": 903,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
-    },
-    {
-      "type": "wireguard",
-      "tag": "warp+🇮🇷6️⃣ 3",
-      "server": "[2606:4700:d0::19b6:22c2:9e32:6d93]",
-      "server_port": 943,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
-    },
-    {
-      "type": "wireguard",
-      "tag": "warp+🇮🇷6️⃣ 4",
-      "server": "[2606:4700:d0::061c:7f00:92c3]",
-      "server_port": 8886,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
-      "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [8, 84, 156],
-      "mtu": 1280
+      "domain_strategy": "",
+      "down_mbps": 0,
+      "obfs": {
+        "password": "cd7e03d161e8fe5d",
+        "type": "salamander"
+      },
+      "password": "0e9f03c78d8ff035",
+      "server": "2a12:5940:9f21::2",
+      "server_port": 443,
+      "tag": "proxy",
+      "tls": {
+        "alpn": "h3",
+        "certificate": "",
+        "disable_sni": false,
+        "enabled": true,
+        "insecure": true,
+        "server_name": "www.google.com"
+      },
+      "type": "hysteria2",
+      "up_mbps": 0,
+      "tag": "🇩🇪❄️HOSSEIN|H26️⃣"
     },
     {
       "type": "hysteria2",
@@ -647,6 +440,11 @@
     {
       "type": "vless",
       "tag": "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟏\u0026𝟐\n@Ln2Ray § vl+ws+tls+cdn+frag",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "188.114.96.12",
       "server_port": 443,
       "uuid": "5bdf790f-0af2-4481-a624-41b66e7e3489",
@@ -673,6 +471,11 @@
     {
       "type": "vless",
       "tag": "🇳🇱 𝐈𝐑𝐂𝐏 | 𝟏\u0026𝟐 | 𝐢𝐩𝐯𝟔\n@Ln2Ray § vl+ws+tls+cdn+frag",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "2a06:98c1:3121::c",
       "server_port": 443,
       "uuid": "5bdf790f-0af2-4481-a624-41b66e7e3489",
@@ -756,6 +559,11 @@
     {
       "type": "vless",
       "tag": "🇸🇪 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "188.114.96.12",
       "server_port": 443,
       "uuid": "81625684-4552-49f8-b1c1-1f14790528c5",
@@ -782,6 +590,11 @@
     {
       "type": "vless",
       "tag": "🇸🇪 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "2a06:98c1:3121::c",
       "server_port": 443,
       "uuid": "81625684-4552-49f8-b1c1-1f14790528c5",
@@ -922,6 +735,11 @@
     {
       "type": "vless",
       "tag": "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "188.114.96.12",
       "server_port": 443,
       "uuid": "b947d658-8140-4ea0-ba18-23a6d48788bb",
@@ -948,6 +766,11 @@
     {
       "type": "vless",
       "tag": "🇦🇹 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "2a06:98c1:3121::c",
       "server_port": 443,
       "uuid": "b947d658-8140-4ea0-ba18-23a6d48788bb",
@@ -1088,6 +911,11 @@
     {
       "type": "vless",
       "tag": "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "188.114.96.12",
       "server_port": 443,
       "uuid": "323f3148-db47-4f7c-a26e-50a53093c261",
@@ -1114,6 +942,11 @@
     {
       "type": "vless",
       "tag": "🇫🇮 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare § vl+ws+tls+cdn+frag",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "2a06:98c1:3121::c",
       "server_port": 443,
       "uuid": "323f3148-db47-4f7c-a26e-50a53093c261",
@@ -1168,6 +1001,11 @@
     {
       "type": "vless",
       "tag": "🇳🇱 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § 0",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "188.114.96.12",
       "server_port": 443,
       "uuid": "b947d658-8140-4ea0-ba18-23a6d48788bb",
@@ -1194,6 +1032,11 @@
     {
       "type": "vless",
       "tag": "🇳🇱 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "2a06:98c1:3121::c",
       "server_port": 443,
       "uuid": "b947d658-8140-4ea0-ba18-23a6d48788bb",
@@ -1248,6 +1091,11 @@
     {
       "type": "vless",
       "tag": "🇺🇸 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕\n@azadi_az_inja_migzare § 0",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "188.114.96.12",
       "server_port": 443,
       "uuid": "b947d658-8140-4ea0-ba18-23a6d48788bb",
@@ -1274,6 +1122,11 @@
     {
       "type": "vless",
       "tag": "🇺🇸 𝐅𝐮𝐜𝐤 𝐒𝐞𝐝𝐢𝐭𝐢𝐨𝐧 𝐨𝐟 𝟏𝟑𝟓𝟕 | 𝐢𝐩𝐯𝟔\n@azadi_az_inja_migzare",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-20",
+        "sleep": "0"
+      },
       "server": "2a06:98c1:3121::c",
       "server_port": 443,
       "uuid": "b947d658-8140-4ea0-ba18-23a6d48788bb",
@@ -1354,40 +1207,6 @@
           ]
         }
       }
-    },
-    {
-      "type": "direct",
-      "tag": "direct"
-    },
-    {
-      "type": "block",
-      "tag": "block"
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
     }
-  ],
-  "route": {
-    "rules": [
-      {
-        "port": 53,
-        "outbound": "dns-out"
-      },
-      {
-        "ip_is_private": true,
-        "outbound": "direct"
-      }
-    ],
-    "final": "Internet",
-    "auto_detect_interface": true,
-    "override_android_vpn": true
-  },
-  "experimental": {
-    "cache_file": {
-      "enabled": true,
-      "path": "cache.db",
-      "cache_id": "azadi"
-    }
-  }
+  ]
 }
