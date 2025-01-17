@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
-          
+
       - name: Rename files without extension to .json
         run: |
           cd hiddify
@@ -36,6 +36,6 @@ jobs:
       - name: Prettier Action
         uses: creyD/prettier_action@v4.3
         with:
-          prettier_options: --write "{**/*.{js,json,yml},hiddify/*.json}" --ignore-unknown
+          prettier_options: --write **/*.{js,json,yml} --ignore-unknown
           commit_message: "Apply code formatting"
         continue-on-error: true
