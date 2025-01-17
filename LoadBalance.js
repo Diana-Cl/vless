@@ -34,7 +34,7 @@ export default {
           case `/${userID}`: {
             const vlessConfig = await getAutoConfs(
               userID,
-              request.headers.get("Host")
+              request.headers.get("Host"),
             );
             return new Response(`${vlessConfig}`, {
               status: 200,
@@ -72,7 +72,7 @@ async function vlessOverWSHandler(request) {
   let portWithRandomLog = "";
   const log = (
     /** @type {string} */ info,
-    /** @type {string | undefined} */ event
+    /** @type {string | undefined} */ event,
   ) => {
     console.log(`[${address}:${portWithRandomLog}] ${info}`, event || "");
   };
@@ -81,7 +81,7 @@ async function vlessOverWSHandler(request) {
   const readableWebSocketStream = makeReadableWebSocketStream(
     webSocket,
     earlyDataHeader,
-    log
+    log,
   );
 
   /** @type {{ value: import("@cloudflare/workers-types").Socket | null}}*/
@@ -144,7 +144,7 @@ async function vlessOverWSHandler(request) {
               rawClientData,
               webSocket,
               vlessResponseHeader,
-              log
+              log,
             );
           }
           handleTCPOutBound(
@@ -155,7 +155,7 @@ async function vlessOverWSHandler(request) {
             rawClientData,
             webSocket,
             vlessResponseHeader,
-            log
+            log,
           );
         },
         close() {
@@ -164,7 +164,7 @@ async function vlessOverWSHandler(request) {
         abort(reason) {
           log(`readableWebSocketStream is abort`, JSON.stringify(reason));
         },
-      })
+      }),
     )
     .catch((err) => {
       log("readableWebSocketStream pipeTo error", err);
@@ -198,7 +198,7 @@ async function handleTCPOutBound(
   rawClientData,
   webSocket,
   vlessResponseHeader,
-  log
+  log,
 ) {
   async function connectAndWrite(address, port, socks = false) {
     /** @type {import("@cloudflare/workers-types").Socket} */
@@ -337,7 +337,7 @@ function processVlessHeader(vlessBuffer, userID) {
   //skip opt for now
 
   const command = new Uint8Array(
-    vlessBuffer.slice(18 + optLength, 18 + optLength + 1)
+    vlessBuffer.slice(18 + optLength, 18 + optLength + 1),
   )[0];
 
   // 0x01 TCP
@@ -359,7 +359,7 @@ function processVlessHeader(vlessBuffer, userID) {
 
   let addressIndex = portIndex + 2;
   const addressBuffer = new Uint8Array(
-    vlessBuffer.slice(addressIndex, addressIndex + 1)
+    vlessBuffer.slice(addressIndex, addressIndex + 1),
   );
 
   // 1--> ipv4  addressLength =4
@@ -373,22 +373,22 @@ function processVlessHeader(vlessBuffer, userID) {
     case 1:
       addressLength = 4;
       addressValue = new Uint8Array(
-        vlessBuffer.slice(addressValueIndex, addressValueIndex + addressLength)
+        vlessBuffer.slice(addressValueIndex, addressValueIndex + addressLength),
       ).join(".");
       break;
     case 2:
       addressLength = new Uint8Array(
-        vlessBuffer.slice(addressValueIndex, addressValueIndex + 1)
+        vlessBuffer.slice(addressValueIndex, addressValueIndex + 1),
       )[0];
       addressValueIndex += 1;
       addressValue = new TextDecoder().decode(
-        vlessBuffer.slice(addressValueIndex, addressValueIndex + addressLength)
+        vlessBuffer.slice(addressValueIndex, addressValueIndex + addressLength),
       );
       break;
     case 3:
       addressLength = 16;
       const dataView = new DataView(
-        vlessBuffer.slice(addressValueIndex, addressValueIndex + addressLength)
+        vlessBuffer.slice(addressValueIndex, addressValueIndex + addressLength),
       );
       // 2001:0db8:85a3:0000:0000:8a2e:0370:7334
       const ipv6 = [];
@@ -435,7 +435,7 @@ async function remoteSocketToWS(
   webSocket,
   vlessResponseHeader,
   retry,
-  log
+  log,
 ) {
   // remote--> ws
   let remoteChunkCount = 0;
@@ -472,14 +472,14 @@ async function remoteSocketToWS(
         },
         close() {
           log(
-            `remoteConnection!.readable is close with hasIncomingData is ${hasIncomingData}`
+            `remoteConnection!.readable is close with hasIncomingData is ${hasIncomingData}`,
           );
           // safeCloseWebSocket(webSocket); // no need server close websocket frist for some case will casue HTTP ERR_CONTENT_LENGTH_MISMATCH issue, client will send close event anyway.
         },
         abort(reason) {
           console.error(`remoteConnection!.readable abort`, reason);
         },
-      })
+      }),
     )
     .catch((error) => {
       console.error(`remoteSocketToWS has exception `, error.stack || error);
@@ -611,7 +611,7 @@ async function handleDNSQuery(udpChunk, webSocket, vlessResponseHeader, log) {
           if (webSocket.readyState === WS_READY_STATE_OPEN) {
             if (vlessHeader) {
               webSocket.send(
-                await new Blob([vlessHeader, chunk]).arrayBuffer()
+                await new Blob([vlessHeader, chunk]).arrayBuffer(),
               );
               vlessHeader = null;
             } else {
@@ -625,7 +625,7 @@ async function handleDNSQuery(udpChunk, webSocket, vlessResponseHeader, log) {
         abort(reason) {
           console.error(`dns server(${dnsServer}) tcp is abort`, reason);
         },
-      })
+      }),
     );
   } catch (error) {
     console.error(`handleDNSQuery have exception, error: ${error.message}`);
