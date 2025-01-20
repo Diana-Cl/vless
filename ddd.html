@@ -157,18 +157,20 @@ layout: default
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
   (async () => {
-  await import("https://cdnjs.cloudflare.com/ajax/libs/anchor-js/5.0.0/anchor.min.js");
-  anchors.options = {
-    visible: "hover",
-    placement: "right",
-    // icon: '#'
-  };
-  anchors
-    .add()
-    .remove(".intro-header h1")
-    .remove(".subheading")
-    .remove(".sidebar-container h5");
-})();
+    await import(
+      "https://cdnjs.cloudflare.com/ajax/libs/anchor-js/5.0.0/anchor.min.js"
+    );
+    anchors.options = {
+      visible: "hover",
+      placement: "right",
+      // icon: '#'
+    };
+    anchors
+      .add()
+      .remove(".intro-header h1")
+      .remove(".subheading")
+      .remove(".sidebar-container h5");
+  })();
 </script>
 <style>
   /* place left on bigger screen */

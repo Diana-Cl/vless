@@ -3,12 +3,12 @@ name: Format Code
 on:
   push:
     paths:
-      - '*.js'
-      - '*.json'
-      - '*.html'
-      - '*.css' 
-      - '*.yml'
-      - 'hiddify/*'
+      - "*.js"
+      - "*.json"
+      - "*.html"
+      - "*.css"
+      - "*.yml"
+      - "hiddify/*"
     branches:
       - main
   pull_request:
