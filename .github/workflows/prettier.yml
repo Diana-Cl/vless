@@ -6,6 +6,7 @@ on:
       - '*.js'
       - '*.json'
       - '*.yml'
+      - '*.html'
       - 'hiddify/*'
     branches:
       - main
@@ -36,6 +37,6 @@ jobs:
       - name: Prettier Action
         uses: creyD/prettier_action@v4.3
         with:
-          prettier_options: --write **/*.{js,json,yml} --ignore-unknown
+          prettier_options: --write **/*.{js,json,html,yml} --ignore-unknown
           commit_message: "Apply code formatting"
         continue-on-error: true
