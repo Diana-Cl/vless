@@ -1,72 +1,184 @@
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="{{ site.description }}">
-    <meta name="keywords" content="{{ site.keyword }}">
-    <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
+---
+layout: default
+---
 
-    <!-- Open Graph -->
-    <meta property="og:title"
-        content="{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}">
-    {% case page.layout %}
-    {% when 'post' %}
-    <meta property="og:type" content="article">
-    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate:200 }}">
-    {% if page.date %}
-    <meta property="article:published_time" content="{{ page.date | date: " %Y-%m-%dT%H:%M:%SZ" }}">
-    {% endif %}
-    {% if page.author %}
-    <meta property="article:author" content="{{ page.author }}">
-    {% endif %}
-    {% for tag in page.tags %}
-    <meta property="article:tag" content="{{ tag }}">
-    {% endfor %}
-    {% else %}
-    <meta property="og:type" content="website">
-    <meta property="og:description"
-        content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    {% endcase %}
-    <meta property="og:image" content="{{ site.url }}{{ site.sidebar-avatar }}">
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-    <meta property="og:site_name" content="{{ site.SEOTitle }}">
+<!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
-    <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title>
+<!-- Post Header -->
+{% include intro-header.html type='post' %}
 
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json">
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div
+        class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container"
+      >
+        <!-- Multi-Lingual -->
+        {% if page.multilingual %} {% include multilingual-sel.html %} {% endif
+        %} {{ content }}
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ site.baseurl }}/img/favicon.ico">
+        <hr style="visibility: hidden" />
+        <ul class="pager">
+          {% if page.previous.url %}
+          <li class="previous">
+            <a
+              href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="{{page.previous.title}}"
+            >
+              Previous<br />
+              <span>{{page.previous.title}}</span>
+            </a>
+          </li>
+          {% endif %} {% if page.next.url %}
+          <li class="next">
+            <a
+              href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="{{page.next.title}}"
+            >
+              Next<br />
+              <span>{{page.next.title}}</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+        <hr style="visibility: hidden" />
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+        {% if site.disqus_username %}
+        <!-- disqus start -->
+        <div class="comment">
+          <div id="disqus_thread" class="disqus-thread"></div>
+        </div>
+        <!-- disqus end -->
+        {% endif %} {% if site.netease_comment %}
+        <!-- start -->
+        <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+        <!-- end -->
+        {% endif %}
+      </div>
 
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="{{ " /css/bootstrap.min.css" | prepend: site.baseurl }}">
+      <!-- Side Catalog Container -->
+      {% unless page.no-catalog %}
+      <div
+        class="col-lg-2 col-lg-offset-0 visible-lg-block sidebar-container catalog-container"
+      >
+        <div class="side-catalog">
+          <hr class="hidden-sm hidden-xs" />
+          <h5>
+            <a class="catalog-toggle" href="#">CATALOG</a>
+          </h5>
+          <ul class="catalog-body"></ul>
+        </div>
+      </div>
+      {% endunless %}
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ " /css/hux-blog.min.css" | prepend: site.baseurl }}">
+      <!-- Sidebar Container -->
+      <div
+        class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 sidebar-container"
+      >
+        <!-- Featured Tags -->
+        {% include featured-tags.html bottom=true %}
 
-    <!-- ifeng Custom CSS -->
-    <link rel="stylesheet" href="{{ " /css/style.css" | prepend: site.baseurl }}">
+        <!-- Friends Blog -->
+        {% include friends.html %}
 
-    <!-- Custom Fonts -->
-    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- Hux change font-awesome CDN to qiniu -->
-    <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- Modified by Diana for Font Awesome due to Cloudflare CDN.  202403061305 -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css" integrity="sha512-v8QQ0YQ3H4K6Ic3PJkym91KoeNT5S3PnDKvqnwqFD1oiqIl653crGZplPdU5KKtHjO0QKcQ2aUlQZYjHczkmGw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
-    
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <!-- add support for mathjax by voleking-->
+        {% if page.mathjax %} {% include mathjax_support.html %} {% endif %}
+      </div>
+    </div>
+  </div>
+</article>
 
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
+{% if site.netease_comment %}
+<!-- JS start -->
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href,
+    sourceId: "",
+    productKey: "de25fc98a6fe48b3bc8a7ae765da99a0",
+    target: "cloud-tie-wrapper",
+  };
+  var yunManualLoad = true;
+  Tie.loader(
+    "aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s",
+    true,
+  );
+</script>
+<!-- JS end -->
+{% endif %} {% if site.disqus_username %}
+<!-- disqus  start -->
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = "{{site.disqus_username}}";
+  var disqus_identifier = "{{page.id}}";
+  var disqus_url = "{{site.url}}{{page.url}}";
+
+  (function () {
+    var dsq = document.createElement("script");
+    dsq.type = "text/javascript";
+    dsq.async = true;
+    dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+    (
+      document.getElementsByTagName("head")[0] ||
+      document.getElementsByTagName("body")[0]
+    ).appendChild(dsq);
+  })();
+</script>
+<!-- disqus end -->
+{% endif %} {% if site.anchorjs %}
+<!-- async load function -->
+<script>
+  function async(u, c) {
+    var d = document,
+      t = "script",
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener(
+        "load",
+        function (e) {
+          c(null, e);
+        },
+        false,
+      );
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+  (async () => {
+  await import("https://cdnjs.cloudflare.com/ajax/libs/anchor-js/5.0.0/anchor.min.js");
+  anchors.options = {
+    visible: "hover",
+    placement: "right",
+    // icon: '#'
+  };
+  anchors
+    .add()
+    .remove(".intro-header h1")
+    .remove(".subheading")
+    .remove(".sidebar-container h5");
+})();
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+{% endif %}
