@@ -1,77 +1,49 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- Page Header -->
-{% include intro-header.html type='page' %}
+{% include head.html %}
 
-<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    {% if site.sidebar == false %}
-    <!-- NO SIDEBAR -->
-    <!-- PostList Container -->
-    <div
-      class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 postlist-container"
-    >
-      {{ content }}
-    </div>
-    <!-- Sidebar Container -->
-    <div
-      class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 sidebar-container"
-    >
-      <!-- Featured Tags -->
-      {% include featured-tags.html %}
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+    
+    {% include nav.html %}
+    {% include search.html %}
 
-      <!-- Friends Blog -->
-      {% include friends.html %}
-    </div>
-    {% else %}
+    {{ content }}
 
-    <!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    <div
-      class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 postlist-container"
-    >
-      {{ content }}
-    </div>
-    <!-- Sidebar Container -->
-    <div
-      class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-xs-12 sidebar-container"
-    >
-      <!-- Featured Tags -->
-      {% include featured-tags.html %}
+    {% if page.rtl %}rtl{% endif %}">
+    {{ content }}
 
-      <!-- Short About -->
-      {% include short-about.html %}
+    {% include footer.html %}
+    
+<!-- Image to hack wechat -->
+<!--<img src="/img/icon_wechat.png" width="0" height="0" />-->
+<!-- Migrate from head to bottom, no longer block render and still work -->
 
-      <!-- Friends Blog -->
-      {% include friends.html %}
-    </div>
-    {% endif %}
-  </div>
+<div id="back-to-top">
+    <a href="#" data-toggle="tooltip" data-placement="top" title="top">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+    </a>
 </div>
-
-{% if site.page-mathjax %}
-<!-- Add support for Mathjax by Voleking-->
-<!-- If you want to see formulars well in post preview, Maybe you should add this.-->
-<!-- However, most of the time formulars may not appear in the post preview, you can delete it.-->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      displayMath: [ ['$$','$$'] ],
-      processEscapes: true,
-    }
-  });
+<script>
+$(document).ready(function(){
+     $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+        $('#back-to-top').tooltip('show');
+});	
 </script>
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-></script>
-{% endif %}
+</body>
+</html>
