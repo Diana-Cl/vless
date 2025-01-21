@@ -22,7 +22,7 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "https://dns.nscl.ir/dns-query",
+        "address": "tcp://185.228.168.9",
         "address_resolver": "dns-direct",
         "address_strategy": "prefer_ipv4",
         "strategy": "prefer_ipv4"
