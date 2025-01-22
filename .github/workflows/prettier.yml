@@ -64,7 +64,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirementss.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -129,10 +129,10 @@ jobs:
           commit_message: "style: apply code formatting standards"
           commit_description: "Applied automatic formatting using Black and Prettier"
           prettier_version: ${{ env.PRETTIER_VERSION }}
-          git_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          git_email: "github-actions[bot]@users.noreply.github.com"
           git_name: "github-actions[bot]"
           only_changed: true  # Only format changed files
-          skip_commit: true  # Still create a commit even if no package-lock.json exists
+          skip_commit: false  # Still create a commit even if no package-lock.json exists
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
