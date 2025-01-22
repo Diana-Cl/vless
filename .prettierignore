@@ -15,11 +15,12 @@ build
 *.log
 
 # Other files we don't want to format
+.prettierrc
+pyproject.toml
+
 result.csv
 warp.json
 vless/hiddify/WarpOnWarp.json
-
-
 
 # Specific directories
 .github/
