@@ -88,23 +88,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          node-version: '20'
 
-      # Cache Node.js dependencies
-      - name: Cache Node modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      # Install Prettier and related tools
+      - name: Initialize npm if needed
+        run: |
+          if [ ! -f package.json ]; then
+            npm init -y
+          fi
+      
       - name: Install Prettier
         run: |
-          npm install -g prettier@${{ env.PRETTIER_VERSION }}
-          npm install -g prettier-plugin-toml
+          npm install prettier@${{ env.PRETTIER_VERSION }}
+          npm install prettier-plugin-toml
 
       # Validate configuration files
       - name: Validate formatting configs
