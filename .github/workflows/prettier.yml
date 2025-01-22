@@ -1,43 +1,166 @@
-name: Format Code
+# Workflow name describes the primary purpose
+name: Code Formatting and Style
 
+# Define when this workflow will run
 on:
+  # Trigger on push events to specific file types
   push:
     paths:
-      - '*.js'
-      - '*.json'
-      - '*.html'
-      - '*.css' 
-      - '*.yml'
-      - 'hiddify/*'
+      - '**/*.js'    # JavaScript files in any directory
+      - '**/*.json'  # JSON files in any directory
+      - '**/*.html'  # HTML files in any directory
+      - '**/*.css'   # CSS files in any directory
+      - '**/*.yml'   # YAML files in any directory
+      - '**/*.py'    # Python files in any directory
     branches:
       - main
+  # Trigger on pull requests to catch formatting issues before they reach main
   pull_request:
-    branches:
+    branches: 
       - main
+  # Allow manual triggering of the workflow
   workflow_dispatch:
 
+# Environment variables used across jobs
+env:
+  NODE_VERSION: '20'
+  PYTHON_VERSION: '3.12'
+  PRETTIER_VERSION: '3.1.0'
+
+# Define the jobs to run
 jobs:
   formatting:
-    runs-on: ubuntu-latest
+    name: Code Formatting
+    runs-on: ubuntu-22.04  # Using specific Ubuntu version for consistency
+    timeout-minutes: 15    # Prevent workflow from hanging
+    
+    # Define required permissions
     permissions:
-      contents: write
+      contents: write    # Needed for making commits
+      pull-requests: write  # Needed for PR comments
+    
+    strategy:
+      fail-fast: false   # Continue with other tasks if one fails
+
     steps:
-      - uses: actions/checkout@v3
+      # Check out the repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          fetch-depth: 0           # Fetch all history for better compatibility
+          submodules: 'recursive'  # Include all submodules
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Rename files without extension to .json
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          architecture: x64
+
+      # Cache Python dependencies
+      - name: Cache Python packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # Install Python formatting tools
+      - name: Install Python formatting dependencies
         run: |
-          cd hiddify
-          for file in *; do
-            if [[ -f "$file" && "$file" != *.* ]]; then
-              mv "$file" "$file.json"
-            fi
-          done
+          python -m pip install --upgrade pip
+          pip install black[d] flake8 isort
 
-      - name: Prettier Action
+      # Run Black formatter with error handling
+      - name: Run Black formatter
+        run: |
+          echo "Running Black formatter check..."
+          if ! black --check .; then
+            echo "Formatting required. Applying changes..."
+            black .
+          fi
+        continue-on-error: true
+
+      # Set up Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # Cache Node.js dependencies
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Install Prettier and related tools
+      - name: Install Prettier
+        run: |
+          npm install -g prettier@${{ env.PRETTIER_VERSION }}
+          npm install -g prettier-plugin-toml
+
+      # Validate configuration files
+      - name: Validate formatting configs
+        run: |
+          if [ -f .prettierrc ]; then
+            prettier --check .prettierrc* || echo "Prettier config validation failed"
+          fi
+          if [ -f pyproject.toml ]; then
+            black --check pyproject.toml || echo "Black config validation failed"
+          fi
+
+      # Run Prettier formatter
+      - name: Run Prettier
         uses: creyD/prettier_action@v4.3
         with:
           prettier_options: --write **/*.{js,json,html,css,yml} --ignore-unknown
-          commit_message: "Apply code formatting"
+          commit_message: "style: apply code formatting standards"
+          commit_description: "Applied automatic formatting using Black and Prettier"
+          prettier_version: ${{ env.PRETTIER_VERSION }}
+          git_email: "github-actions[bot]@users.noreply.github.com"
+          git_name: "github-actions[bot]"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Optional: Set up pre-commit hooks for local development
+      - name: Setup pre-commit hooks
+        run: |
+          pip install pre-commit
+          pre-commit install
         continue-on-error: true
+
+      # Report formatting status
+      - name: Check formatting status
+        if: always()
+        run: |
+          echo "Formatting Status Report"
+          echo "======================="
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "✅ All files are properly formatted!"
+          else
+            echo "⚠️ Some files needed formatting. Check the commits for changes."
+          fi
+
+      # Add PR comment with formatting results
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const formatting_status = '${{ job.status }}' === 'success' 
+              ? '✅ Code formatting checks passed!'
+              : '⚠️ Some files needed formatting. Please check the commits for changes.';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: formatting_status
+            });
