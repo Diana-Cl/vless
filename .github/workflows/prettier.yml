@@ -61,7 +61,7 @@ jobs:
 
       # Cache Python dependencies
       - name: Cache Python packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
@@ -110,7 +110,13 @@ jobs:
           if [ -f pyproject.toml ]; then
             black --check pyproject.toml || echo "Black config validation failed"
           fi
-
+          
+      - name: Initialize npm project
+        run: |
+          if [ ! -f package.json ]; then
+            npm init -y
+          fi
+      
       # Run Prettier formatter
       - name: Run Prettier
         uses: creyD/prettier_action@v4.3
@@ -121,8 +127,21 @@ jobs:
           prettier_version: ${{ env.PRETTIER_VERSION }}
           git_email: "github-actions[bot]@users.noreply.github.com"
           git_name: "github-actions[bot]"
+          only_changed: true  # Only format changed files
+          skip_commit: false  # Still create a commit even if no package-lock.json exists
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      # Add a manual commit step in case the Prettier action fails to commit
+      - name: Commit changes if any
+        if: failure()
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
+        continue-on-error: true
 
       # Optional: Set up pre-commit hooks for local development
       - name: Setup pre-commit hooks
