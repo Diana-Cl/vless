@@ -3,12 +3,13 @@ name: Code Formatting and Style
 on:
   push:
     paths:
+      - '**/*.py'      
       - '**/*.js'
       - '**/*.json'
-      - '**/*.html'
       - '**/*.css'
+      - '**/*.html'
       - '**/*.yml'
-      - '**/*.py'
+      - '**/*.md'
     branches: [main]
   pull_request:
     branches: [main]
@@ -33,7 +34,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -53,8 +54,9 @@ jobs:
 
       - name: Initialize npm project
         run: |
+          cd ./project-root
           if [ ! -f package.json ]; then
-            npm init -y --scope=@vless
+           npm init -y --scope=@vless
           fi
           npm install prettier@${{ env.PRETTIER_VERSION }} prettier-plugin-toml --save-dev
           npm install --package-lock-only 
@@ -63,30 +65,32 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            ~/.npm
-            node_modules
+           ~/.npm
+           ./project-root/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+           ${{ runner.os }}-node-
 
+     
       - name: Run Black formatter
         run: |
-          black --check . || (black .; exit 0)
+         black --config ./project-root/pyproject.toml --check . || (black --config ./project-root/pyproject.toml .;exit 0)
         continue-on-error: true
+
 
       - name: Run Prettier
         uses: creyD/prettier_action@v4.3
         with:
-          prettier_options: --write **/*.{js,json,html,css,yml} --ignore-unknown
+          prettier_options: --write **/*.{js,json,css,html,yml,md} --ignore-unknown --config ./project-root/.prettierrc.js
           commit_message: "style: apply code formatting"
           prettier_version: ${{ env.PRETTIER_VERSION }}
           only_changed: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Commit changes
         run: |
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "Diana-Cl"
           git config --global user.email "135276904+Diana-Cl@users.noreply.github.com"
           git add -A
           git diff --cached --quiet || git commit -m "style: auto-formatting"
