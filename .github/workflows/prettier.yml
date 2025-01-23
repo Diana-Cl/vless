@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '**/*.js'
-      - '**/*.json' 
+      - '**/*.json'
       - '**/*.html'
       - '**/*.css'
       - '**/*.yml'
@@ -54,9 +54,20 @@ jobs:
       - name: Initialize npm project
         run: |
           if [ ! -f package.json ]; then
-            npm init -y
+            npm init -y --scope=@vless
           fi
           npm install prettier@${{ env.PRETTIER_VERSION }} prettier-plugin-toml --save-dev
+          npm install --package-lock-only  # ایجاد package-lock.json
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Run Black formatter
         run: |
@@ -77,7 +88,7 @@ jobs:
         if: failure()
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.email "135276904+Diana-Cl@users.noreply.github.com"
           git add -A
           git commit -m "style: auto-formatting" || echo "No changes to commit"
           git push
