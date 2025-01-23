@@ -1,4 +1,4 @@
-node_modules/
+# The files  we don't want to format
 dist/
 build/
 *.lock
@@ -6,7 +6,6 @@ build/
 .env
 .env.*
 
-# Other files we don't want to format
 result.csv
 warp.json
 Endpoints.csv
