@@ -193,10 +193,7 @@
     {
       "type": "wireguard",
       "tag": "🇮🇷 WARP+",
-      "local_address": [
-        "172.16.0.2/24",
-        "2606:4700:110:8056:6ec9:563a:d8e7:5097/128"
-      ],
+      "local_address": ["172.16.0.2/24", "2606:4700:110:8056:6ec9:563a:d8e7:5097/128"],
       "private_key": "AN/vE11+V8r25aGti20+ZPv3LfWckXfzGJlDQuxpCkc=",
       "server": "188.114.96.61",
       "server_port": 891,
@@ -207,10 +204,7 @@
     {
       "type": "wireguard",
       "tag": "🇮🇷 WARP+6️⃣",
-      "local_address": [
-        "172.16.0.2/24",
-        "2606:4700:110:8056:6ec9:563a:d8e7:5097/128"
-      ],
+      "local_address": ["172.16.0.2/24", "2606:4700:110:8056:6ec9:563a:d8e7:5097/128"],
       "private_key": "AN/vE11+V8r25aGti20+ZPv3LfWckXfzGJlDQuxpCkc=",
       "server": "[2606:4700:d0::19b6:22c2:9e32:6d93]",
       "server_port": 891,
@@ -224,10 +218,7 @@
       "detour": "🇮🇷 WARP+",
       "server": "188.114.96.78",
       "server_port": 955,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8d6c:45f2:d6c:544e:49e5/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8d6c:45f2:d6c:544e:49e5/128"],
       "private_key": "ONlvNUodQ5sUM6cB7v1D/OasYhX9UI1XcPMlETaM730=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [240, 151, 246],
@@ -239,10 +230,7 @@
       "detour": "🇮🇷 WARP+6️⃣",
       "server": "188.114.96.78",
       "server_port": 955,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8d6c:45f2:d6c:544e:49e5/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8d6c:45f2:d6c:544e:49e5/128"],
       "private_key": "ONlvNUodQ5sUM6cB7v1D/OasYhX9UI1XcPMlETaM730=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [240, 151, 246],
@@ -253,10 +241,7 @@
       "tag": "warp+🇮🇷REvil",
       "server": "ipw.nscl.ir",
       "server_port": 1070,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -267,10 +252,7 @@
       "tag": "warp+🇮🇷1",
       "server": "188.114.98.224",
       "server_port": 2371,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -281,10 +263,7 @@
       "tag": "warp+🇮🇷2",
       "server": "162.159.192.36",
       "server_port": 903,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -295,10 +274,7 @@
       "tag": "warp+🇮🇷3",
       "server": "188.114.96.0",
       "server_port": 864,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -309,10 +285,7 @@
       "tag": "warp+🇮🇷5",
       "server": "162.159.192.105",
       "server_port": 1018,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -323,10 +296,7 @@
       "tag": "warp+🇮🇷6",
       "server": "162.159.192.118",
       "server_port": 987,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -337,10 +307,7 @@
       "tag": "warp+🇮🇷7",
       "server": "188.114.99.249",
       "server_port": 4177,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -351,10 +318,7 @@
       "tag": "warp+🇮🇷8",
       "server": "wa.bachebiapain.ir",
       "server_port": 878,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -365,10 +329,7 @@
       "tag": "warp+🇮🇷6️⃣ 1",
       "server": "[2606:4700:d1::94fc:8373:1e65:dc53]",
       "server_port": 943,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -379,10 +340,7 @@
       "tag": "warp+🇮🇷6️⃣ 2",
       "server": "[2606:4700:d0::4649:80ce:36a6]",
       "server_port": 903,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -393,10 +351,7 @@
       "tag": "warp+🇮🇷6️⃣ 3",
       "server": "[2606:4700:d0::19b6:22c2:9e32:6d93]",
       "server_port": 943,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],
@@ -407,10 +362,7 @@
       "tag": "warp+🇮🇷6️⃣ 4",
       "server": "[2606:4700:d0::061c:7f00:92c3]",
       "server_port": 8886,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8b3d:48e6:7685:15cc:d26d/128"],
       "private_key": "UIa+x5F1VZ1fEjsJhq1/+hdz/wD75mSGDjqxiFVQ4k8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": [8, 84, 156],

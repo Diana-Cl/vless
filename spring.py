@@ -196,12 +196,7 @@ def main():
 
         with open(main_warp_path, "w") as op:
             op.write(
-                title
-                + update_interval
-                + sub_info
-                + profile_web
-                + last_modified
-                + config_prefix
+                title + update_interval + sub_info + profile_web + last_modified + config_prefix
             )
 
         export_SingBox(Bestip)

@@ -9,10 +9,7 @@
     {
       "type": "wireguard",
       "tag": "Hiddify Warp",
-      "local_address": [
-        "172.16.0.2/24",
-        "2606:4700:110:8480:3fbf:fd5c:446a:8672/128"
-      ],
+      "local_address": ["172.16.0.2/24", "2606:4700:110:8480:3fbf:fd5c:446a:8672/128"],
       "private_key": "WPwk+Qze5c524lGVke7IQVyEZSYli96XjXK+v0NMeWc=",
       "server": "188.114.99.223",
       "server_port": 2506,
@@ -191,10 +188,7 @@
       "type": "wireguard",
       "tag": "WsW🇵🇱⚪️🔴",
       "detour": "🇵🇱-⚪️November❄️D",
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8867:f596:5ee6:1434:ef0/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8867:f596:5ee6:1434:ef0/128"],
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "private_key": "+Nn6ZC4tOnUIOPMT+OrX4m7vDaT2sRvbswmGvvoFlXQ=",
       "server": "162.159.192.150",
@@ -206,10 +200,7 @@
       "type": "wireguard",
       "tag": "Proton-US",
       "detour": "Proton-US2",
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8867:f596:5ee6:1434:ef0/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8867:f596:5ee6:1434:ef0/128"],
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "private_key": "+Nn6ZC4tOnUIOPMT+OrX4m7vDaT2sRvbswmGvvoFlXQ=",
       "server": "162.159.192.150",

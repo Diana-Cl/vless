@@ -48,15 +48,11 @@
         "tag": "dns_fakeip",
         "address": "fakeip",
         "strategy": "ipv4_only"
-    }
-      
+      }
     ],
     "rules": [
       {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
+        "query_type": ["A", "AAAA"],
         "server": "dns_fakeip"
       },
       {
@@ -72,16 +68,12 @@
         "server": "dns-direct2"
       },
       {
-        "auth_user": [
-          "fakedns"
-        ],
+        "auth_user": ["fakedns"],
         "server": "dns-remote"
       },
       {
         "disable_cache": true,
-        "inbound": [
-          "tun-in"
-        ],
+        "inbound": ["tun-in"],
         "server": "dns-fake"
       }
     ],
@@ -106,9 +98,7 @@
     {
       "domain_strategy": "",
       "endpoint_independent_nat": true,
-      "inet4_address": [
-        "172.19.0.1/28"
-      ],
+      "inet4_address": ["172.19.0.1/28"],
       "sniff": true,
       "sniff_override_destination": false,
       "stack": "system",
@@ -186,17 +176,10 @@
       "type": "wireguard",
       "server": "162.159.195.104",
       "server_port": 880,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8ed3:f932:3d08:f6de:34d1/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8ed3:f932:3d08:f6de:34d1/128"],
       "private_key": "xxxxxxxxxxxxxx",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [
-        74,
-        241,
-        73
-      ],
+      "reserved": [74, 241, 73],
       "mtu": 1280,
       "network": "tcp"
     },
@@ -206,17 +189,10 @@
       "type": "wireguard",
       "server": "162.159.195.104",
       "server_port": 880,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:849c:85dd:8a0b:6792:776a/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:849c:85dd:8a0b:6792:776a/128"],
       "private_key": "xxxxxxxxxxxxxx",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [
-        35,
-        174,
-        8
-      ],
+      "reserved": [35, 174, 8],
       "mtu": 1280,
       "network": "udp"
     },
@@ -226,17 +202,10 @@
       "type": "wireguard",
       "server": "engage.ircf.space",
       "server_port": 2408,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:872e:6c1b:a513:a0fc:fa28/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:872e:6c1b:a513:a0fc:fa28/128"],
       "private_key": "xxxxxxxxxxxxx",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [
-        216,
-        227,
-        41
-      ],
+      "reserved": [216, 227, 41],
       "mtu": 1280,
       "network": "udp"
     },
@@ -246,17 +215,10 @@
       "type": "wireguard",
       "server": "engage.ircf.space",
       "server_port": 2408,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8090:618e:f556:484d:7ed2/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8090:618e:f556:484d:7ed2/128"],
       "private_key": "xxxxxxxxxxxxxx",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [
-        245,
-        147,
-        6
-      ],
+      "reserved": [245, 147, 6],
       "mtu": 1280,
       "network": "tcp"
     },
@@ -266,17 +228,10 @@
       "type": "wireguard",
       "server": "::ffff:a29f:c368",
       "server_port": 880,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8ed3:f932:3d08:f6de:34d1/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:8ed3:f932:3d08:f6de:34d1/128"],
       "private_key": "xxxxxxxxxxxxxx",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [
-        74,
-        241,
-        73
-      ],
+      "reserved": [74, 241, 73],
       "mtu": 1280,
       "network": "udp"
     },
@@ -286,17 +241,10 @@
       "type": "wireguard",
       "server": "::ffff:a29f:c368",
       "server_port": 880,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:849c:85dd:8a0b:6792:776a/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:849c:85dd:8a0b:6792:776a/128"],
       "private_key": "xxxxxxxxxxxxx",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [
-        35,
-        174,
-        8
-      ],
+      "reserved": [35, 174, 8],
       "mtu": 1280,
       "network": "tcp"
     },
@@ -306,17 +254,10 @@
       "type": "wireguard",
       "server": "162.159.195.104.sslip.io",
       "server_port": 880,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:849c:85dd:8a0b:6792:776a/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:849c:85dd:8a0b:6792:776a/128"],
       "private_key": "xxxxxxxxxxxxxx",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [
-        35,
-        174,
-        8
-      ],
+      "reserved": [35, 174, 8],
       "mtu": 1280,
       "network": "udp"
     },
@@ -326,17 +267,10 @@
       "type": "wireguard",
       "server": "162.159.195.104.sslip.io",
       "server_port": 880,
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:849c:85dd:8a0b:6792:776a/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:849c:85dd:8a0b:6792:776a/128"],
       "private_key": "xxxxxxxxxxxxxx",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": [
-        35,
-        174,
-        8
-      ],
+      "reserved": [35, 174, 8],
       "mtu": 1280,
       "network": "tcp"
     },
@@ -363,73 +297,40 @@
     "rules": [
       {
         "network": "udp",
-        "geosite": [
-          "google"
-        ],
-        "geoip": [
-          "google"
-        ],
-        "port": [
-          443
-        ],
+        "geosite": ["google"],
+        "geoip": ["google"],
+        "port": [443],
         "outbound": "block"
       },
       {
-        "domain_suffix": [
-          "googlesyndication.com"
-        ],
+        "domain_suffix": ["googlesyndication.com"],
         "outbound": "Internet"
       },
       {
-        "geosite": [
-          "rule-malicious"
-        ],
+        "geosite": ["rule-malicious"],
         "outbound": "block"
       },
       {
-        "port": [
-          3478,
-          4244,
-          5222,
-          5223,
-          5242,
-          45395,
-          50318,
-          59234
-        ],
-        "geoip": [
-          "facebook"
-        ],
+        "port": [3478, 4244, 5222, 5223, 5242, 45395, 50318, 59234],
+        "geoip": ["facebook"],
         "outbound": "bypass"
       },
       {
-        "ip_cidr": [
-          "8.8.8.8"
-        ],
+        "ip_cidr": ["8.8.8.8"],
         "outbound": "Internet"
       },
       {
-        "inbound": [
-          "dns-in"
-        ],
+        "inbound": ["dns-in"],
         "outbound": "dns-out"
       },
       {
         "outbound": "dns-out",
-        "port": [
-          53
-        ]
+        "port": [53]
       },
       {
-        "ip_cidr": [
-          "224.0.0.0/3",
-          "ff00::/8"
-        ],
+        "ip_cidr": ["224.0.0.0/3", "ff00::/8"],
         "outbound": "block",
-        "source_ip_cidr": [
-          "224.0.0.0/3",
-          "ff00::/8"
-        ]
+        "source_ip_cidr": ["224.0.0.0/3", "ff00::/8"]
       }
     ]
   }

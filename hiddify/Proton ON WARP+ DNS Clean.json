@@ -95,16 +95,7 @@
     {
       "type": "selector",
       "tag": "select",
-      "outbounds": [
-        "auto",
-        "WARP+",
-        " 🇳🇱",
-        " 🇯🇵",
-        " 🇺🇲",
-        " 🇳🇱 2",
-        " 🇯🇵 2",
-        " 🇺🇲 2"
-      ],
+      "outbounds": ["auto", "WARP+", " 🇳🇱", " 🇯🇵", " 🇺🇲", " 🇳🇱 2", " 🇯🇵 2", " 🇺🇲 2"],
       "default": "auto"
     },
     {
@@ -117,10 +108,7 @@
     {
       "type": "wireguard",
       "tag": "WARP+",
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:80ba:1928:b48:898b:f763/128"
-      ],
+      "local_address": ["172.16.0.2/32", "2606:4700:110:80ba:1928:b48:898b:f763/128"],
       "private_key": "IBYE0QdaUaQpS0G7Tq/EyjHpNW27cWSOnFH80j2gF3A=",
       "server": "162.159.192.167",
       "server_port": 2506,
