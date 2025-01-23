@@ -4,108 +4,108 @@ const includeOriginalConfigs = 0;
 
 const subLinks = [];
 const cnfLinks = [
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt',
-  'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt',
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/EternityAir.txt",
 ];
 const cleanIPLink =
-  'https://raw.githubusercontent.com/coldwater-10/clash_rules/main/List%20of%20clean%20IPs.txt';
+  "https://raw.githubusercontent.com/coldwater-10/clash_rules/main/List%20of%20clean%20IPs.txt";
 const operatorList = [
-  'AST',
-  'HWB',
-  'IRC',
-  'MBT',
-  'MCI',
-  'MKB',
-  'PRS',
-  'RTL',
-  'SHT',
-  'ZTL',
-  'PIS',
-  'DAT',
-  'SAB',
-  'ASR',
-  'FAN',
-  'ZTL',
-  'SFR',
-  'DID',
-  'LAY',
-  'MAH',
-  'TAK',
-  'PET',
-  'AND',
-  'RES',
-  'AFR',
-  'ARA',
-  'SAM',
-  'APT',
-  'ALL',
-  'PLUS',
-  'TEST',
-  'ENG',
-  'FA',
-  'IPV6',
-  'IRCF',
-  'ANTY',
+  "AST",
+  "HWB",
+  "IRC",
+  "MBT",
+  "MCI",
+  "MKB",
+  "PRS",
+  "RTL",
+  "SHT",
+  "ZTL",
+  "PIS",
+  "DAT",
+  "SAB",
+  "ASR",
+  "FAN",
+  "ZTL",
+  "SFR",
+  "DID",
+  "LAY",
+  "MAH",
+  "TAK",
+  "PET",
+  "AND",
+  "RES",
+  "AFR",
+  "ARA",
+  "SAM",
+  "APT",
+  "ALL",
+  "PLUS",
+  "TEST",
+  "ENG",
+  "FA",
+  "IPV6",
+  "IRCF",
+  "ANTY",
 ];
 const addressList = [
-  'www.ipchicken.com',
-  'www.udacity.com',
-  'edtunnel-dgp.pages.dev',
-  'iplocation.io',
-  'time.is',
-  'ip.sb',
-  'www.wto.org',
-  'icook.hk',
-  'skk.moe',
-  'fbi.gov',
-  'www.12377.cn',
+  "www.ipchicken.com",
+  "www.udacity.com",
+  "edtunnel-dgp.pages.dev",
+  "iplocation.io",
+  "time.is",
+  "ip.sb",
+  "www.wto.org",
+  "icook.hk",
+  "skk.moe",
+  "fbi.gov",
+  "www.12377.cn",
 ];
-const fpList = ['chrome', 'firefox', 'edge', 'safari', 'random'];
-const alpnList = ['http/1.1', 'h2,http/1.1', 'h2,http/1.1'];
+const fpList = ["chrome", "firefox", "edge", "safari", "random"];
+const alpnList = ["http/1.1", "h2,http/1.1", "h2,http/1.1"];
 var cleanIPs = [];
 
 export default {
   async fetch(request) {
     var url = new URL(request.url);
-    var pathParts = url.pathname.replace(/^\/|\/$/g, '').split('/');
+    var pathParts = url.pathname.replace(/^\/|\/$/g, "").split("/");
     var type = pathParts[0].toLowerCase();
-    if (['sub', 'clash'].includes(type)) {
+    if (["sub", "clash"].includes(type)) {
       if (pathParts[1] !== undefined) {
         var operator = pathParts[1].toUpperCase();
         if (operatorList.includes(operator)) {
           cleanIPs = await fetch(cleanIPLink)
             .then((r) => r.text())
-            .then((t) => t.split('\n'));
+            .then((t) => t.split("\n"));
           cleanIPs = cleanIPs.filter((line) => line.search(operator) > 0);
-          cleanIPs = cleanIPs.map((line) => line.split(' ')[0].trim());
+          cleanIPs = cleanIPs.map((line) => line.split(" ")[0].trim());
         } else {
           cleanIPs = [operator.toLowerCase()];
         }
@@ -118,7 +118,7 @@ export default {
             await fetch(subLink)
               .then((r) => r.text())
               .then((a) => atob(a))
-              .then((t) => t.split('\n')),
+              .then((t) => t.split("\n")),
           );
         } catch (e) {}
       }
@@ -127,17 +127,21 @@ export default {
           configList = configList.concat(
             await fetch(cnfLink)
               .then((r) => r.text())
-              .then((t) => t.split('\n')),
+              .then((t) => t.split("\n")),
           );
         } catch (e) {}
       }
 
-      var vmessConfigList = configList.filter((cnf) => cnf.search('vmess://') == 0);
-      var trojanConfigList = configList.filter((cnf) => cnf.search('trojan://') == 0);
-      var ssConfigList = configList.filter((cnf) => cnf.search('ss://') == 0);
+      var vmessConfigList = configList.filter(
+        (cnf) => cnf.search("vmess://") == 0,
+      );
+      var trojanConfigList = configList.filter(
+        (cnf) => cnf.search("trojan://") == 0,
+      );
+      var ssConfigList = configList.filter((cnf) => cnf.search("ss://") == 0);
       var mergedConfigList = [];
 
-      if (type == 'sub') {
+      if (type == "sub") {
         if (includeOriginalConfigs) {
           mergedConfigList = mergedConfigList.concat(
             getMultipleRandomElements(vmessConfigList, maxPerType),
@@ -147,7 +151,7 @@ export default {
           getMultipleRandomElements(
             vmessConfigList
               .map(decodeVmess)
-              .map((cnf) => mixConfig(cnf, url, 'vmess'))
+              .map((cnf) => mixConfig(cnf, url, "vmess"))
               .filter((cnf) => !!cnf && cnf.id)
               .map(encodeVmess)
               .filter((cnf) => !!cnf),
@@ -165,7 +169,11 @@ export default {
         }
 
         return new Response(
-          btoa(getMultipleRandomElements(mergedConfigList, maxConfigItems).join('\n')),
+          btoa(
+            getMultipleRandomElements(mergedConfigList, maxConfigItems).join(
+              "\n",
+            ),
+          ),
         );
       } else {
         // clash
@@ -175,7 +183,7 @@ export default {
               vmessConfigList
                 .map(decodeVmess)
                 .filter((cnf) => cnf && cnf.id)
-                .map((cnf) => toClash(cnf, 'vmess'))
+                .map((cnf) => toClash(cnf, "vmess"))
                 .filter((cnf) => cnf && cnf.uuid),
               maxPerType,
             ),
@@ -185,9 +193,9 @@ export default {
           getMultipleRandomElements(
             vmessConfigList
               .map(decodeVmess)
-              .map((cnf) => mixConfig(cnf, url, 'vmess'))
+              .map((cnf) => mixConfig(cnf, url, "vmess"))
               .filter((cnf) => cnf && cnf.id)
-              .map((cnf) => toClash(cnf, 'vmess')),
+              .map((cnf) => toClash(cnf, "vmess")),
             maxPerType,
           ),
         );
@@ -195,7 +203,7 @@ export default {
       }
     } else {
       var url = new URL(request.url);
-      var newUrl = new URL('https://' + url.pathname.replace(/^\/|\/$/g, ''));
+      var newUrl = new URL("https://" + url.pathname.replace(/^\/|\/$/g, ""));
       return fetch(new Request(newUrl, request));
     }
   },
@@ -203,7 +211,7 @@ export default {
 
 function encodeVmess(conf) {
   try {
-    return 'vmess://' + btoa(JSON.stringify(conf));
+    return "vmess://" + btoa(JSON.stringify(conf));
   } catch {
     return null;
   }
@@ -219,7 +227,7 @@ function decodeVmess(conf) {
 
 function mixConfig(conf, url, protocol) {
   try {
-    if (conf.tls != 'tls') {
+    if (conf.tls != "tls") {
       return {};
     }
     var addr = conf.sni;
@@ -233,7 +241,7 @@ function mixConfig(conf, url, protocol) {
     if (!addr) {
       return conf;
     }
-    conf.name = (conf.name ? conf.name : conf.ps) + '-Worker';
+    conf.name = (conf.name ? conf.name : conf.ps) + "-Worker";
     conf.sni = url.hostname;
     if (cleanIPs.length) {
       conf.add = cleanIPs[Math.floor(Math.random() * cleanIPs.length)];
@@ -241,13 +249,14 @@ function mixConfig(conf, url, protocol) {
       conf.add = addressList[Math.floor(Math.random() * addressList.length)];
     }
 
-    if (protocol == 'vmess') {
+    if (protocol == "vmess") {
       conf.sni = url.hostname;
       conf.host = url.hostname;
       if (conf.path == undefined) {
-        conf.path = '';
+        conf.path = "";
       }
-      conf.path = '/' + addr + ':' + conf.port + '/' + conf.path.replace(/^\//g, '');
+      conf.path =
+        "/" + addr + ":" + conf.port + "/" + conf.path.replace(/^\//g, "");
       conf.fp = fpList[Math.floor(Math.random() * fpList.length)];
       conf.alpn = alpnList[Math.floor(Math.random() * alpnList.length)];
       conf.port = 443;
@@ -265,7 +274,7 @@ function getMultipleRandomElements(arr, num) {
 
 function isIp(str) {
   try {
-    if (str == '' || str == undefined) return false;
+    if (str == "" || str == undefined) return false;
     if (
       !/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])(\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])){2}\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-4])$/.test(
         str,
@@ -273,8 +282,8 @@ function isIp(str) {
     ) {
       return false;
     }
-    var ls = str.split('.');
-    if (ls == null || ls.length != 4 || ls[3] == '0' || parseInt(ls[3]) === 0) {
+    var ls = str.split(".");
+    if (ls == null || ls.length != 4 || ls[3] == "0" || parseInt(ls[3]) === 0) {
       return false;
     }
     return true;
@@ -295,11 +304,11 @@ function toClash(conf, protocol) {
       uuid: conf.id,
       alterId: 0,
       tls: true,
-      cipher: conf.cipher ? conf.cipher : 'auto',
-      'skip-cert-verify': true,
+      cipher: conf.cipher ? conf.cipher : "auto",
+      "skip-cert-verify": true,
       servername: conf.sni,
       network: conf.net,
-      'ws-opts': {
+      "ws-opts": {
         path: conf.path,
         headers: {
           host: conf.host,
@@ -307,8 +316,10 @@ function toClash(conf, protocol) {
       },
     };
     config.name =
-      config.name.replace(/[^\x20-\x7E]/g, '').replace(/[\s\/:|\[\]@\(\)\.]/g, '') +
-      '-' +
+      config.name
+        .replace(/[^\x20-\x7E]/g, "")
+        .replace(/[\s\/:|\[\]@\(\)\.]/g, "") +
+      "-" +
       Math.floor(Math.random() * 10000);
     if (!regexUUID.test(config.uuid)) {
       return {};

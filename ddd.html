@@ -14,9 +14,12 @@ layout: default
   <div class="container">
     <div class="row">
       <!-- Post Container -->
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
+      <div
+        class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container"
+      >
         <!-- Multi-Lingual -->
-        {% if page.multilingual %} {% include multilingual-sel.html %} {% endif %} {{ content }}
+        {% if page.multilingual %} {% include multilingual-sel.html %} {% endif
+        %} {{ content }}
 
         <hr style="visibility: hidden" />
         <ul class="pager">
@@ -63,7 +66,9 @@ layout: default
 
       <!-- Side Catalog Container -->
       {% unless page.no-catalog %}
-      <div class="col-lg-2 col-lg-offset-0 visible-lg-block sidebar-container catalog-container">
+      <div
+        class="col-lg-2 col-lg-offset-0 visible-lg-block sidebar-container catalog-container"
+      >
         <div class="side-catalog">
           <hr class="hidden-sm hidden-xs" />
           <h5>
@@ -75,7 +80,9 @@ layout: default
       {% endunless %}
 
       <!-- Sidebar Container -->
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 sidebar-container">
+      <div
+        class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 sidebar-container"
+      >
         <!-- Featured Tags -->
         {% include featured-tags.html bottom=true %}
 
@@ -95,29 +102,33 @@ layout: default
 <script>
   var cloudTieConfig = {
     url: document.location.href,
-    sourceId: '',
-    productKey: 'de25fc98a6fe48b3bc8a7ae765da99a0',
-    target: 'cloud-tie-wrapper',
+    sourceId: "",
+    productKey: "de25fc98a6fe48b3bc8a7ae765da99a0",
+    target: "cloud-tie-wrapper",
   };
   var yunManualLoad = true;
-  Tie.loader('aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s', true);
+  Tie.loader(
+    "aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s",
+    true,
+  );
 </script>
 <!-- JS end -->
 {% endif %} {% if site.disqus_username %}
 <!-- disqus  start -->
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES * * */
-  var disqus_shortname = '{{site.disqus_username}}';
-  var disqus_identifier = '{{page.id}}';
-  var disqus_url = '{{site.url}}{{page.url}}';
+  var disqus_shortname = "{{site.disqus_username}}";
+  var disqus_identifier = "{{page.id}}";
+  var disqus_url = "{{site.url}}{{page.url}}";
 
   (function () {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
+    var dsq = document.createElement("script");
+    dsq.type = "text/javascript";
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
     (
-      document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]
+      document.getElementsByTagName("head")[0] ||
+      document.getElementsByTagName("body")[0]
     ).appendChild(dsq);
   })();
 </script>
@@ -127,13 +138,13 @@ layout: default
 <script>
   function async(u, c) {
     var d = document,
-      t = 'script',
+      t = "script",
       o = d.createElement(t),
       s = d.getElementsByTagName(t)[0];
     o.src = u;
     if (c) {
       o.addEventListener(
-        'load',
+        "load",
         function (e) {
           c(null, e);
         },
@@ -146,13 +157,19 @@ layout: default
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
   (async () => {
-    await import('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/5.0.0/anchor.min.js');
+    await import(
+      "https://cdnjs.cloudflare.com/ajax/libs/anchor-js/5.0.0/anchor.min.js"
+    );
     anchors.options = {
-      visible: 'hover',
-      placement: 'right',
+      visible: "hover",
+      placement: "right",
       // icon: '#'
     };
-    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    anchors
+      .add()
+      .remove(".intro-header h1")
+      .remove(".subheading")
+      .remove(".sidebar-container h5");
   })();
 </script>
 <style>

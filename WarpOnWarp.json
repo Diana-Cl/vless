@@ -55,7 +55,12 @@
     ],
     "final": "dns-remote",
     "static_ips": {
-      "sky.rethinkdns.com": ["104.17.148.22", "104.17.147.22", "188.114.99.0", "188.114.98.0"]
+      "sky.rethinkdns.com": [
+        "104.17.148.22",
+        "104.17.147.22",
+        "188.114.99.0",
+        "188.114.98.0"
+      ]
     },
     "independent_cache": true
   },
@@ -96,7 +101,10 @@
     {
       "type": "wireguard",
       "tag": "Tehran § 0",
-      "local_address": ["172.16.0.2/24", "2606:4700:110:8f3a:ea39:ed71:ca5e:9ea4/128"],
+      "local_address": [
+        "172.16.0.2/24",
+        "2606:4700:110:8f3a:ea39:ed71:ca5e:9ea4/128"
+      ],
       "private_key": "yNbtLWHvVlXrayxosI7l/aja+6KiMajKdbdVFbhUmFw=",
       "server": "162.159.192.126",
       "server_port": 928,
@@ -112,7 +120,10 @@
       "type": "wireguard",
       "tag": "Berlin § 1",
       "detour": "Tehran § 0",
-      "local_address": ["172.16.0.2/32", "2606:4700:110:897b:9c3:13fb:7b2c:8cae/128"],
+      "local_address": [
+        "172.16.0.2/32",
+        "2606:4700:110:897b:9c3:13fb:7b2c:8cae/128"
+      ],
       "private_key": "oMUx2ZTi1G7ZQvWlClFuKVbWixrdxq+RyIfVpVio/1s=",
       "server": "162.159.192.126",
       "server_port": 928,

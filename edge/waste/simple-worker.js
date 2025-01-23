@@ -1,22 +1,23 @@
 // @ts-ignore
-import { connect } from 'cloudflare:sockets';
+import { connect } from "cloudflare:sockets";
 
-let userID = '00dc6dd8-885d-42f6-9c17-2e88bab84360';
+let userID = "00dc6dd8-885d-42f6-9c17-2e88bab84360";
 
 // Find proxyIP : https://github.com/NiREvil/vless/blob/main/sub/ProxyIP.md
-const proxyIPs = ['nima.nscl.ir']; // can using more than once: ['IP1', 'IP2', 'IP3', 'IP4']
+const proxyIPs = ["nima.nscl.ir"]; // can using more than once: ['IP1', 'IP2', 'IP3', 'IP4']
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 
-let dohURL = 'https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg='; // OR use https://dns.adguard-dns.com/dns-query  OR  https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg=  OR  https://8.8.8.8/dns-query OR https://cloudflare-dns.com/dns-query
+let dohURL =
+  "https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg="; // OR use https://dns.adguard-dns.com/dns-query  OR  https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg=  OR  https://8.8.8.8/dns-query OR https://cloudflare-dns.com/dns-query
 
-let nodeId = '';
+let nodeId = "";
 
-let apiToken = '';
+let apiToken = "";
 
-let apiHost = '';
+let apiHost = "";
 
 if (!isValidUUID(userID)) {
-  throw new Error('uuid is not valid');
+  throw new Error("uuid is not valid");
 }
 
 export default {
@@ -34,19 +35,19 @@ export default {
       nodeId = env.NODE_ID || nodeId;
       apiToken = env.API_TOKEN || apiToken;
       apiHost = env.API_HOST || apiHost;
-      const upgradeHeader = request.headers.get('Upgrade');
-      if (!upgradeHeader || upgradeHeader !== 'websocket') {
+      const upgradeHeader = request.headers.get("Upgrade");
+      if (!upgradeHeader || upgradeHeader !== "websocket") {
         const url = new URL(request.url);
         switch (url.pathname) {
-          case '/cf':
+          case "/cf":
             return new Response(JSON.stringify(request.cf, null, 4), {
               status: 200,
               headers: {
-                'Content-Type': 'application/json;charset=utf-8',
+                "Content-Type": "application/json;charset=utf-8",
               },
             });
-          case '/connect': // for test connect to cf socket
-            const [hostname, port] = ['cloudflare.com', '80'];
+          case "/connect": // for test connect to cf socket
+            const [hostname, port] = ["cloudflare.com", "80"];
             console.log(`Connecting to ${hostname}:${port}...`);
 
             try {
@@ -59,7 +60,9 @@ export default {
 
               try {
                 await writer.write(
-                  new TextEncoder().encode('GET / HTTP/1.1\r\nHost: ' + hostname + '\r\n\r\n'),
+                  new TextEncoder().encode(
+                    "GET / HTTP/1.1\r\nHost: " + hostname + "\r\n\r\n",
+                  ),
                 );
               } catch (writeError) {
                 writer.releaseLock();
@@ -84,22 +87,27 @@ export default {
               await reader.releaseLock();
               await socket.close();
 
-              return new Response(new TextDecoder().decode(value), { status: 200 });
+              return new Response(new TextDecoder().decode(value), {
+                status: 200,
+              });
             } catch (connectError) {
               return new Response(connectError.message, { status: 500 });
             }
           case `/${userID}`: {
-            const vlessConfig = getVLESSConfig(userID, request.headers.get('Host'));
+            const vlessConfig = getVLESSConfig(
+              userID,
+              request.headers.get("Host"),
+            );
             return new Response(`${vlessConfig}`, {
               status: 200,
               headers: {
-                'Content-Type': 'text/plain;charset=utf-8',
+                "Content-Type": "text/plain;charset=utf-8",
               },
             });
           }
           default:
-            url.hostname = 'www.speedtest.net';
-            url.protocol = 'https:';
+            url.hostname = "www.speedtest.net";
+            url.protocol = "https:";
             request = new Request(url, request);
             return await fetch(request);
         }
@@ -125,14 +133,21 @@ async function vlessOverWSHandler(request) {
 
   webSocket.accept();
 
-  let address = '';
-  let portWithRandomLog = '';
-  const log = (/** @type {string} */ info, /** @type {string | undefined} */ event) => {
-    console.log(`[${address}:${portWithRandomLog}] ${info}`, event || '');
+  let address = "";
+  let portWithRandomLog = "";
+  const log = (
+    /** @type {string} */ info,
+    /** @type {string | undefined} */ event,
+  ) => {
+    console.log(`[${address}:${portWithRandomLog}] ${info}`, event || "");
   };
-  const earlyDataHeader = request.headers.get('sec-websocket-protocol') || '';
+  const earlyDataHeader = request.headers.get("sec-websocket-protocol") || "";
 
-  const readableWebSocketStream = makeReadableWebSocketStream(webSocket, earlyDataHeader, log);
+  const readableWebSocketStream = makeReadableWebSocketStream(
+    webSocket,
+    earlyDataHeader,
+    log,
+  );
 
   /** @type {{ value: import("@cloudflare/workers-types").Socket | null}}*/
   let remoteSocketWapper = {
@@ -160,15 +175,18 @@ async function vlessOverWSHandler(request) {
             hasError,
             message,
             portRemote = [
-              443, 8443, 2053, 2083, 2087, 2096, 80, 8080, 8880, 2052, 2082, 2086, 2095,
+              443, 8443, 2053, 2083, 2087, 2096, 80, 8080, 8880, 2052, 2082,
+              2086, 2095,
             ],
-            addressRemote = '',
+            addressRemote = "",
             rawDataIndex,
             vlessVersion = new Uint8Array([0, 0]),
             isUDP,
           } = await processVlessHeader(chunk, userID);
           address = addressRemote;
-          portWithRandomLog = `${portRemote}--${Math.random()} ${isUDP ? 'udp ' : 'tcp '} `;
+          portWithRandomLog = `${portRemote}--${Math.random()} ${
+            isUDP ? "udp " : "tcp "
+          } `;
           if (hasError) {
             // controller.error(message);
             throw new Error(message); // cf seems has bug, controller.error will not end stream
@@ -181,7 +199,7 @@ async function vlessOverWSHandler(request) {
               isDns = true;
             } else {
               // controller.error('UDP proxy only enable for DNS which is port 53');
-              throw new Error('UDP proxy only enable for DNS which is port 53'); // cf seems has bug, controller.error will not end stream
+              throw new Error("UDP proxy only enable for DNS which is port 53"); // cf seems has bug, controller.error will not end stream
               return;
             }
           }
@@ -191,7 +209,11 @@ async function vlessOverWSHandler(request) {
 
           // TODO: support udp here when cf runtime has udp support
           if (isDns) {
-            const { write } = await handleUDPOutBound(webSocket, vlessResponseHeader, log);
+            const { write } = await handleUDPOutBound(
+              webSocket,
+              vlessResponseHeader,
+              log,
+            );
             udpStreamWrite = write;
             udpStreamWrite(rawClientData);
             return;
@@ -215,7 +237,7 @@ async function vlessOverWSHandler(request) {
       }),
     )
     .catch((err) => {
-      log('readableWebSocketStream pipeTo error', err);
+      log("readableWebSocketStream pipeTo error", err);
     });
 
   return new Response(null, {
@@ -234,8 +256,8 @@ let cacheTimeout = null;
  */
 async function fetchApiResponse() {
   const requestOptions = {
-    method: 'GET',
-    redirect: 'follow',
+    method: "GET",
+    redirect: "follow",
   };
 
   try {
@@ -245,7 +267,7 @@ async function fetchApiResponse() {
     );
 
     if (!response.ok) {
-      console.error('Error: Network response was not ok');
+      console.error("Error: Network response was not ok");
       return null;
     }
     const apiResponse = await response.json();
@@ -259,7 +281,7 @@ async function fetchApiResponse() {
 
     return apiResponse;
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
     return null;
   }
 }
@@ -291,10 +313,12 @@ async function checkUuidInApiResponse(targetUuid) {
     if (!apiResponse) {
       return false;
     }
-    const isUuidInResponse = apiResponse.users.some((user) => user.uuid === targetUuid);
+    const isUuidInResponse = apiResponse.users.some(
+      (user) => user.uuid === targetUuid,
+    );
     return isUuidInResponse;
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
     return false;
   }
 }
@@ -340,11 +364,14 @@ async function handleTCPOutBound(
 
   // if the cf connect tcp socket have no incoming data, we retry to redirect ip
   async function retry() {
-    const tcpSocket = await connectAndWrite(proxyIP || addressRemote, portRemote);
+    const tcpSocket = await connectAndWrite(
+      proxyIP || addressRemote,
+      portRemote,
+    );
     // no matter retry success or not, close websocket
     tcpSocket.closed
       .catch((error) => {
-        console.log('retry tcpSocket closed error', error);
+        console.log("retry tcpSocket closed error", error);
       })
       .finally(() => {
         safeCloseWebSocket(webSocket);
@@ -369,7 +396,7 @@ function makeReadableWebSocketStream(webSocketServer, earlyDataHeader, log) {
   let readableStreamCancel = false;
   const stream = new ReadableStream({
     start(controller) {
-      webSocketServer.addEventListener('message', (event) => {
+      webSocketServer.addEventListener("message", (event) => {
         if (readableStreamCancel) {
           return;
         }
@@ -380,7 +407,7 @@ function makeReadableWebSocketStream(webSocketServer, earlyDataHeader, log) {
       // The event means that the client closed the client -> server stream.
       // However, the server -> client stream is still open until you call close() on the server side.
       // The WebSocket protocol says that a separate close message must be sent in each direction to fully close the socket.
-      webSocketServer.addEventListener('close', () => {
+      webSocketServer.addEventListener("close", () => {
         // client send close, need close server
         // if stream is cancel, skip controller.close
         safeCloseWebSocket(webSocketServer);
@@ -389,8 +416,8 @@ function makeReadableWebSocketStream(webSocketServer, earlyDataHeader, log) {
         }
         controller.close();
       });
-      webSocketServer.addEventListener('error', (err) => {
-        log('webSocketServer has error');
+      webSocketServer.addEventListener("error", (err) => {
+        log("webSocketServer has error");
         controller.error(err);
       });
       // for ws 0rtt
@@ -435,7 +462,7 @@ async function processVlessHeader(vlessBuffer, userID) {
   if (vlessBuffer.byteLength < 24) {
     return {
       hasError: true,
-      message: 'invalid data',
+      message: "invalid data",
     };
   }
   const version = new Uint8Array(vlessBuffer.slice(0, 1));
@@ -444,10 +471,12 @@ async function processVlessHeader(vlessBuffer, userID) {
   const slicedBuffer = new Uint8Array(vlessBuffer.slice(1, 17));
   const slicedBufferString = stringify(slicedBuffer);
 
-  const uuids = userID.includes(',') ? userID.split(',') : [userID];
+  const uuids = userID.includes(",") ? userID.split(",") : [userID];
 
   const checkUuidInApi = await checkUuidInApiResponse(slicedBufferString);
-  isValidUser = uuids.some((userUuid) => checkUuidInApi || slicedBufferString === userUuid.trim());
+  isValidUser = uuids.some(
+    (userUuid) => checkUuidInApi || slicedBufferString === userUuid.trim(),
+  );
 
   console.log(
     `checkUuidInApi: ${await checkUuidInApiResponse(
@@ -458,14 +487,16 @@ async function processVlessHeader(vlessBuffer, userID) {
   if (!isValidUser) {
     return {
       hasError: true,
-      message: 'invalid user',
+      message: "invalid user",
     };
   }
 
   const optLength = new Uint8Array(vlessBuffer.slice(17, 18))[0];
   //skip opt for now
 
-  const command = new Uint8Array(vlessBuffer.slice(18 + optLength, 18 + optLength + 1))[0];
+  const command = new Uint8Array(
+    vlessBuffer.slice(18 + optLength, 18 + optLength + 1),
+  )[0];
 
   // 0x01 TCP
   // 0x02 UDP
@@ -485,7 +516,9 @@ async function processVlessHeader(vlessBuffer, userID) {
   const portRemote = new DataView(portBuffer).getUint16(0);
 
   let addressIndex = portIndex + 2;
-  const addressBuffer = new Uint8Array(vlessBuffer.slice(addressIndex, addressIndex + 1));
+  const addressBuffer = new Uint8Array(
+    vlessBuffer.slice(addressIndex, addressIndex + 1),
+  );
 
   // 1--> ipv4  addressLength =4
   // 2--> domain name addressLength=addressBuffer[1]
@@ -493,13 +526,13 @@ async function processVlessHeader(vlessBuffer, userID) {
   const addressType = addressBuffer[0];
   let addressLength = 0;
   let addressValueIndex = addressIndex + 1;
-  let addressValue = '';
+  let addressValue = "";
   switch (addressType) {
     case 1:
       addressLength = 4;
       addressValue = new Uint8Array(
         vlessBuffer.slice(addressValueIndex, addressValueIndex + addressLength),
-      ).join('.');
+      ).join(".");
       break;
     case 2:
       addressLength = new Uint8Array(
@@ -520,7 +553,7 @@ async function processVlessHeader(vlessBuffer, userID) {
       for (let i = 0; i < 8; i++) {
         ipv6.push(dataView.getUint16(i * 2).toString(16));
       }
-      addressValue = ipv6.join(':');
+      addressValue = ipv6.join(":");
       // seems no need add [] for ipv6
       break;
     default:
@@ -555,7 +588,13 @@ async function processVlessHeader(vlessBuffer, userID) {
  * @param {(() => Promise<void>) | null} retry
  * @param {*} log
  */
-async function remoteSocketToWS(remoteSocket, webSocket, vlessResponseHeader, retry, log) {
+async function remoteSocketToWS(
+  remoteSocket,
+  webSocket,
+  vlessResponseHeader,
+  retry,
+  log,
+) {
   // remote--> ws
   let remoteChunkCount = 0;
   let chunks = [];
@@ -575,7 +614,7 @@ async function remoteSocketToWS(remoteSocket, webSocket, vlessResponseHeader, re
           hasIncomingData = true;
           // remoteChunkCount++;
           if (webSocket.readyState !== WS_READY_STATE_OPEN) {
-            controller.error('webSocket.readyState is not open, maybe close');
+            controller.error("webSocket.readyState is not open, maybe close");
           }
           if (vlessHeader) {
             webSocket.send(await new Blob([vlessHeader, chunk]).arrayBuffer());
@@ -590,7 +629,9 @@ async function remoteSocketToWS(remoteSocket, webSocket, vlessResponseHeader, re
           }
         },
         close() {
-          log(`remoteConnection!.readable is close with hasIncomingData is ${hasIncomingData}`);
+          log(
+            `remoteConnection!.readable is close with hasIncomingData is ${hasIncomingData}`,
+          );
           // safeCloseWebSocket(webSocket); // no need server close websocket frist for some case will casue HTTP ERR_CONTENT_LENGTH_MISMATCH issue, client will send close event anyway.
         },
         abort(reason) {
@@ -623,7 +664,7 @@ function base64ToArrayBuffer(base64Str) {
   }
   try {
     // go use modified Base64 for URL rfc4648 which js atob not support
-    base64Str = base64Str.replace(/-/g, '+').replace(/_/g, '/');
+    base64Str = base64Str.replace(/-/g, "+").replace(/_/g, "/");
     const decode = atob(base64Str);
     const arryBuffer = Uint8Array.from(decode, (c) => c.charCodeAt(0));
     return { earlyData: arryBuffer.buffer, error: null };
@@ -637,7 +678,8 @@ function base64ToArrayBuffer(base64Str) {
  * @param {string} uuid
  */
 function isValidUUID(uuid) {
-  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[4][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+  const uuidRegex =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[4][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
   return uuidRegex.test(uuid);
 }
 
@@ -649,11 +691,14 @@ const WS_READY_STATE_CLOSING = 2;
  */
 function safeCloseWebSocket(socket) {
   try {
-    if (socket.readyState === WS_READY_STATE_OPEN || socket.readyState === WS_READY_STATE_CLOSING) {
+    if (
+      socket.readyState === WS_READY_STATE_OPEN ||
+      socket.readyState === WS_READY_STATE_CLOSING
+    ) {
       socket.close();
     }
   } catch (error) {
-    console.error('safeCloseWebSocket error', error);
+    console.error("safeCloseWebSocket error", error);
   }
 }
 
@@ -667,16 +712,16 @@ function unsafeStringify(arr, offset = 0) {
     byteToHex[arr[offset + 1]] +
     byteToHex[arr[offset + 2]] +
     byteToHex[arr[offset + 3]] +
-    '-' +
+    "-" +
     byteToHex[arr[offset + 4]] +
     byteToHex[arr[offset + 5]] +
-    '-' +
+    "-" +
     byteToHex[arr[offset + 6]] +
     byteToHex[arr[offset + 7]] +
-    '-' +
+    "-" +
     byteToHex[arr[offset + 8]] +
     byteToHex[arr[offset + 9]] +
-    '-' +
+    "-" +
     byteToHex[arr[offset + 10]] +
     byteToHex[arr[offset + 11]] +
     byteToHex[arr[offset + 12]] +
@@ -688,7 +733,7 @@ function unsafeStringify(arr, offset = 0) {
 function stringify(arr, offset = 0) {
   const uuid = unsafeStringify(arr, offset);
   if (!isValidUUID(uuid)) {
-    throw TypeError('Stringified UUID is invalid');
+    throw TypeError("Stringified UUID is invalid");
   }
   return uuid;
 }
@@ -709,7 +754,9 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
       for (let index = 0; index < chunk.byteLength; ) {
         const lengthBuffer = chunk.slice(index, index + 2);
         const udpPakcetLength = new DataView(lengthBuffer).getUint16(0);
-        const udpData = new Uint8Array(chunk.slice(index + 2, index + 2 + udpPakcetLength));
+        const udpData = new Uint8Array(
+          chunk.slice(index + 2, index + 2 + udpPakcetLength),
+        );
         index = index + 2 + udpPakcetLength;
         controller.enqueue(udpData);
       }
@@ -725,9 +772,9 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
           const resp = await fetch(
             dohURL, // dns server url
             {
-              method: 'POST',
+              method: "POST",
               headers: {
-                'content-type': 'application/dns-message',
+                "content-type": "application/dns-message",
               },
               body: chunk,
             },
@@ -735,14 +782,23 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
           const dnsQueryResult = await resp.arrayBuffer();
           const udpSize = dnsQueryResult.byteLength;
           // console.log([...new Uint8Array(dnsQueryResult)].map((x) => x.toString(16)));
-          const udpSizeBuffer = new Uint8Array([(udpSize >> 8) & 0xff, udpSize & 0xff]);
+          const udpSizeBuffer = new Uint8Array([
+            (udpSize >> 8) & 0xff,
+            udpSize & 0xff,
+          ]);
           if (webSocket.readyState === WS_READY_STATE_OPEN) {
             log(`doh success and dns message length is ${udpSize}`);
             if (isVlessHeaderSent) {
-              webSocket.send(await new Blob([udpSizeBuffer, dnsQueryResult]).arrayBuffer());
+              webSocket.send(
+                await new Blob([udpSizeBuffer, dnsQueryResult]).arrayBuffer(),
+              );
             } else {
               webSocket.send(
-                await new Blob([vlessResponseHeader, udpSizeBuffer, dnsQueryResult]).arrayBuffer(),
+                await new Blob([
+                  vlessResponseHeader,
+                  udpSizeBuffer,
+                  dnsQueryResult,
+                ]).arrayBuffer(),
               );
               isVlessHeaderSent = true;
             }
@@ -751,7 +807,7 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
       }),
     )
     .catch((error) => {
-      log('dns udp has error' + error);
+      log("dns udp has error" + error);
     });
 
   const writer = transformStream.writable.getWriter();
@@ -777,7 +833,7 @@ function getVLESSConfig(userID, hostName) {
   const wvlessws = `vless://${userID}@www.speedtest.net:8880?encryption=none&security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`;
   const pvlesswstls = `vless://${userID}@www.speedtest.net:8443?encryption=none&security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2048#${hostName}`;
 
-  if (hostName.includes('pages.dev')) {
+  if (hostName.includes("pages.dev")) {
     return `
 ==========================配置详解==============================
 
@@ -801,7 +857,7 @@ ${pvlesswstls}
 跳过证书验证(allowlnsecure)：false
 ################################################################
 `;
-  } else if (hostName.includes('workers.dev')) {
+  } else if (hostName.includes("workers.dev")) {
     return `
 ==========================配置详解==============================
 
