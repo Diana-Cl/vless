@@ -2,7 +2,7 @@
   "name": "vless",
   "version": "1.0.0",
   "description": "$$\\color{#a5a5a5} \\Huge \\text{\\R $\\sum{\\vil_t = \\mathbb{N108}\\infty}$}$$",
-  "main": ".prettierrc.js",
+  "main": "project-root/.prettierrc.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
