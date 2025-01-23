@@ -10,7 +10,9 @@ import zlib
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 CHANNEL_URL = "https://t.me/s/freewireguard"
@@ -111,14 +113,18 @@ def fetch_wireguard_configs():
             return
 
         # Save WireGuard configs
-        final_wg_configs = [f"{config}#NiREvil{i+1}" for i, config in enumerate(wg_configs)]
+        final_wg_configs = [
+            f"{config}#NiREvil{i+1}" for i, config in enumerate(wg_configs)
+        ]
 
         os.makedirs(os.path.dirname(OUTPUT_FILE_WG), exist_ok=True)
         with open(OUTPUT_FILE_WG, "w", encoding="utf-8") as f:
             f.write("\n\n".join(final_wg_configs))
 
         # Save Nekobox configs
-        final_neko_configs = [f"{config}#NiREvil{i+1}" for i, config in enumerate(neko_configs)]
+        final_neko_configs = [
+            f"{config}#NiREvil{i+1}" for i, config in enumerate(neko_configs)
+        ]
 
         os.makedirs(os.path.dirname(OUTPUT_FILE_NEKO), exist_ok=True)
         with open(OUTPUT_FILE_NEKO, "w", encoding="utf-8") as f:
