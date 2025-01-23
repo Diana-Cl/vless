@@ -7,13 +7,11 @@ build/
 .env.*
 
 # Other files we don't want to format
-.prettierrc
-pyproject.toml
 result.csv
 warp.json
-vless/hiddify/WarpOnWarp.json
+Endpoints.csv
 
 # Specific directories
 .github/
 DNS over HTTPS/
-sub/
+project-root/
