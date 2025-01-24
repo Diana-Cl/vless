@@ -56,7 +56,7 @@ jobs:
         run: |
           cd ./project-root
           if [ ! -f package.json ]; then
-           npm init -y --scope=@vless
+           npm init -y --scope=@vless/project-root
           fi
           npm install prettier@${{ env.PRETTIER_VERSION }} prettier-plugin-toml --save-dev
           npm install --package-lock-only 
