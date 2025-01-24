@@ -54,9 +54,8 @@ jobs:
 
       - name: Initialize npm project
         run: |
-          cd ./project-root
           if [ ! -f package.json ]; then
-           npm init -y --scope=@vless/project-root
+           npm init -y --scope=@vless
           fi
           npm install prettier@${{ env.PRETTIER_VERSION }} prettier-plugin-toml --save-dev
           npm install --package-lock-only 
@@ -66,7 +65,7 @@ jobs:
         with:
           path: |
            ~/.npm
-           ./project-root/node_modules
+           ./node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
            ${{ runner.os }}-node-
@@ -74,14 +73,14 @@ jobs:
      
       - name: Run Black formatter
         run: |
-         black --config ./project-root/pyproject.toml --check . || (black --config ./project-root/pyproject.toml .;exit 0)
+         black --config ./pyproject.toml --check . || (black --config ./pyproject.toml .;exit 0)
         continue-on-error: true
 
 
       - name: Run Prettier
         uses: creyD/prettier_action@v4.3
         with:
-          prettier_options: --write **/*.{js,json,css,html,yml,md} --ignore-unknown --config ./project-root/.prettierrc.js
+          prettier_options: --write **/*.{js,json,css,html,yml,md} --ignore-unknown --config /.prettierrc.js
           commit_message: "style: apply code formatting"
           prettier_version: ${{ env.PRETTIER_VERSION }}
           only_changed: true
@@ -93,7 +92,7 @@ jobs:
           git config --global user.name "Diana-Cl"
           git config --global user.email "135276904+Diana-Cl@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || git commit -m "style: auto-formatting"
+          git diff --cached --quiet || git commit -m "style: apply code-formatting"
           git push
         continue-on-error: true
 
