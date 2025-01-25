@@ -22,15 +22,15 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tcp://185.228.168.9",
-        "address_resolver": "dns-direct",
+        "address": "tls://208.67.222.123",
+        "address_resolver": "local-dns",
         "address_strategy": "prefer_ipv4",
         "strategy": "prefer_ipv4"
       },
       {
         "tag": "dns-direct",
         "address": "tcp://8.8.4.4",
-        "address_resolver": "dns-local",
+        "address_resolver": "local-dns",
         "strategy": "prefer_ipv4",
         "detour": "direct"
       },
@@ -61,10 +61,11 @@
       "domain_strategy": "prefer_ipv4",
       "interface_name": "sing-tun",
       "inet4_address": "172.19.0.1/30",
-      "mtu": 1306,
+      "inet6_address": "fdfe:dcba:9876::1/126",
+      "mtu": 1300,
       "auto_route": true,
       "strict_route": true,
-      "stack": "gvisor",
+      "stack": "system",
       "endpoint_independent_nat": true,
       "sniff": true,
       "sniff_override_destination": false
