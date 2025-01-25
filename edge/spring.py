@@ -133,7 +133,7 @@ def export_SingBox(t_ips):
         print("Failed to generate {BERLIN_TAG} configuration")
 
     with open(main_singbox_path, "w") as f:
-        json.dump(data, f, indent=4)
+        json.dump(data, f, indent=2)
 
 
 def main():
