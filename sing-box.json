@@ -28,7 +28,7 @@
     ],
     "servers": [
       {
-        "address": "https://208.67.222.222/dns-query",
+        "address": "tcp://185.228.168.9",
         "address_resolver": "local-dns",
         "detour": "proxy",
         "tag": "proxy-dns"
@@ -98,7 +98,7 @@
       ],
       "tolerance": 50,
       "type": "urltest",
-      "url": "http://www.gstatic.com/generate_204"
+      "url": "https://www.gstatic.com/generate_204"
     },
     {
       "tag": "\u26aa\ufe0fTehran",
@@ -109,13 +109,13 @@
         "172.16.0.2/32",
         "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
       ],
-      "private_key": "KMYbtV6mVhyMXnJD7HPykGygUAVU0qci/Nq2piLIClU=",
+      "private_key": "QArssbFfxhhJ2EGSuVcuFtqFMUIIEJa3p+qN5h2rSlI=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1300,
       "reserved": [
-        194,
-        160,
-        203
+        46,
+        59,
+        110
       ],
       "detour": "direct",
       "workers": 2
@@ -129,13 +129,13 @@
         "172.16.0.2/32",
         "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
       ],
-      "private_key": "6HRJaMM2+4AzKGX9Ml1AKherfYjh2uZgEF5gvVALfWE=",
+      "private_key": "oN5SM0oOhavJziJSuiJsSW1a1wQS06MgDdpcjt9g508=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1300,
       "reserved": [
-        9,
-        146,
-        183
+        46,
+        204,
+        238
       ],
       "detour": "\u26aa\ufe0fTehran",
       "workers": 2
