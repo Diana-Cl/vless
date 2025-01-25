@@ -1,15 +1,18 @@
-name: "The fallen crown"
+name: "pre-proccessor"
 
 on:
-  workflow_dispatch:
   push:
     branches: [ "main" ]
-  schedule:
+    paths:
+      - 'edge/preprocessor.php'
+      - 'sub/*.json'
+  schedule: 
     - cron: '0 */3 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     defaults:
       run:
         shell: bash -e {0}
@@ -27,13 +30,13 @@ jobs:
           php-version: '8.4'
 
       - name: Lets go sweetheart
-        run: php edge/The-fallen-crown.php
+        run: php edge/preprocessor.php
 
       - name: Configure Git
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
+          
       - name: Commit changes with timestamp
         run: |
           git add -A
