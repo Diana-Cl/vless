@@ -19,8 +19,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 0  # Fetches all history for all branches and tags
-        submodules: 'recursive'  # Fetches submodules if any exist
+        fetch-depth: 0  
+        submodules: 'recursive' 
     
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -39,8 +39,13 @@ jobs:
     
     - name: Commit and push if changed
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+        git config --local user.name "github-actions[bot]"
+        git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
         git add sub/*.txt
         git diff --quiet && git diff --staged --quiet || (git commit -m "SYNCED $(TZ='Asia/Tehran' date '+%H:%M:%S')"
+        commit_message: "Update configs"
+        commit_description: "Applied automatic formatting using Black and Prettier"
+        git_email: "github-actions[bot]@users.noreply.github.com"
+        git_name: "github-actions[bot]"
         git push)
+        
