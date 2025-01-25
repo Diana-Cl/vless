@@ -7,11 +7,11 @@ import base64
 import json
 import shutil
 
-TEHRAN_SYMBOL = "\u26AA\uFE0F"  # IOS white circle
-BERLIN_SYMBOL = "\U0001F7E1"  #    yellow circle
+IRAN_SYMBOL = "⚪️"  # IOS white circle
+GERMANY_SYMBOL = "🟡"  #    yellow circle
 
-TEHRAN_TAG = f"{TEHRAN_SYMBOL}Tehran"
-BERLIN_TAG = f"{BERLIN_SYMBOL}Berlin"
+IR_TAG = f"{IRAN_SYMBOL}Tehran"
+DE_TAG = f"{GERMANY_SYMBOL}Berlin"
 
 
 warp_cidr = [
@@ -68,7 +68,7 @@ def arch_suffix():
 
 # warp ON warp wireguard configurations, Exclusively for hidfify clients
 def export_Hiddify(t_ips):
-    config_prefix = f"warp://{t_ips[0]}?ifp=1-3&ifpm=m4#{TEHRAN_TAG}&&detour=warp://{t_ips[1]}?ifp=1-2&ifpm=m5#{BERLIN_TAG}"
+    config_prefix = f"warp://{t_ips[0]}?ifp=1-3&ifpm=m4#{IR_TAG}&&detour=warp://{t_ips[1]}?ifp=1-2&ifpm=m5#{DE_TAG}"
     formatted_time = datetime.datetime.now().strftime("%A, %d %b %Y, %H:%M")
     return config_prefix, formatted_time
 
@@ -118,19 +118,19 @@ def export_SingBox(t_ips):
     with open(template_path, "r") as f:
         data = json.load(f)
 
-    data["outbounds"][1]["outbounds"].extend([TEHRAN_TAG, BERLIN_TAG])
+    data["outbounds"][1]["outbounds"].extend([IR_TAG, DE_TAG])
 
-    tehran_wg = toSingBox(TEHRAN_TAG, t_ips[0], "direct")
+    tehran_wg = toSingBox(IR_TAG, t_ips[0], "direct")
     if tehran_wg:
         data["outbounds"].insert(2, tehran_wg)
     else:
-        print("Failed to generate {TEHRAN_TAG} configuration")
+        print("Failed to generate {IR_TAG} configuration")
 
-    berlin_wg = toSingBox(BERLIN_TAG, t_ips[1], TEHRAN_TAG)
+    berlin_wg = toSingBox(DE_TAG, t_ips[1], IR_TAG)
     if berlin_wg:
         data["outbounds"].insert(3, berlin_wg)
     else:
-        print("Failed to generate {BERLIN_TAG} configuration")
+        print("Failed to generate {DE_TAG} configuration")
 
     with open(main_singbox_path, "w") as f:
         json.dump(data, f, indent=2)
