@@ -43,17 +43,19 @@ jobs:
         git add *.json
         git diff --cached --quiet || git commit -m "ⅨⅣ $(TZ='Asia/Tehran' date '+%H:%M:%S')"
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - uses: actions/checkout@v4
       with:
-        node-version: '20'
+          ref: ${{ github.head_ref }}
 
-    - name: Install Prettier
-      run: npm install --global prettier
+    - name: Prettier Action
+      uses: creyD/prettier_action@v4.3
+      with:
+        prettier_options: --write **/*.{js,json,yml} --ignore-unknown
+        commit_message: "Apply code formatting"
+      continue-on-error: true
 
-    - name: Run Prettier
+    - name: Commit and push if changed
       run: |
-        prettier --write "**/*.{js,json,yml,css,md}"
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add .
