@@ -6,6 +6,6 @@ module.exports = {
   singleQuote: true,
   trailingComma: 'all',
   bracketSpacing: true,
-  arrowParens: 'always',
+  arrowParens: 'avoid',
   plugins: ['prettier-plugin-toml'],
 };
