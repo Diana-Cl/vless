@@ -72,14 +72,14 @@
   ],
   "outbounds": [
     {
-      "tag": "Proxy",
+      "tag": "proxy",
       "type": "selector",
       "outbounds": ["⚪️Tehran", "🟡Berlin"],
       "default": "🟡Berlin",
       "interrupt_exist_connections": false
     },
     {
-      "tag": "Auto",
+      "tag": "auto",
       "outbounds": [],
       "tolerance": 50,
       "type": "urltest",
