@@ -38,11 +38,23 @@ jobs:
 
     - name: Commit and push if changed
       run: |
-        git config --local user.name "Diana-Cl"
-        git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
-        git add *.json
-        git diff --cached --quiet || git commit -m "ⅨⅣ $(TZ='Asia/Tehran' date '+%H:%M:%S')"
-        git push
-        
+        commit_message: "apply code formatting standards"
+          commit_description: "auto create sb"
+          git_email: "github-actions[bot]@users.noreply.github.com"
+          git_name: "github-actions[bot]"
+          only_changed: true 
+          skip_commit: false 
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        continue-on-error: true
 
-        
+        - name: Commit changes if any
+         if: failure()
+          run: |
+            git config --local user.name "Diana-Cl"
+            git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
+            git add *.json
+            git diff --quiet && git diff --staged --quiet || git commit -m "apply code formatting standards" -m "automatic create sb"
+          continue-on-error: true
+            git push
+          
