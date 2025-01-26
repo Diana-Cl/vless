@@ -7,8 +7,8 @@ import base64
 import json
 import shutil
 
-IRAN_SYMBOL = "⚪️"  # IOS white circle
-GERMANY_SYMBOL = "🟡"  #    yellow circle
+IRAN_SYMBOL = "⚪️"
+GERMANY_SYMBOL = "🟡"
 
 IR_TAG = f"{IRAN_SYMBOL}Tehran"
 DE_TAG = f"{GERMANY_SYMBOL}Berlin"
@@ -43,13 +43,9 @@ def create_ips():
     top_ips = sum(len(list(ipaddress.IPv4Network(cidr))) for cidr in warp_cidr)
 
     with open(edge_bestip_path, "w") as file:
-        for cidr in warp_cidr:
-            ip_addresses = list(ipaddress.IPv4Network(cidr))
-            for addr in ip_addresses:
-                c += 1
-                file.write(str(addr))
-                if c != top_ips:
-                    file.write("\n")
+        all_ips = [str(addr)
+                   for cidr in warp_cidr for addr in ipaddress.IPv4Network(cidr)]
+        file.write("\n".join(all_ips))
 
 
 def arch_suffix():
@@ -63,12 +59,14 @@ def arch_suffix():
     elif machine.startswith("s390x"):
         return "s390x"
     else:
-        raise ValueError("Unsupported CPU architecture")
+        raise ValueError(
+            "Unsupported CPU architecture. Supported architectures are: i386, i686, x86_64, amd64, armv8, arm64, aarch64, s390x")
 
 
 # warp ON warp wireguard configurations, Exclusively for hidfify clients
 def export_Hiddify(t_ips):
-    config_prefix = f"warp://{t_ips[0]}?ifp=1-3&ifpm=m4#{IR_TAG}&&detour=warp://{t_ips[1]}?ifp=1-2&ifpm=m5#{DE_TAG}"
+    config_prefix = f"warp://{t_ips[0]}?ifp=1-3&ifpm=m4#{
+        IR_TAG}&&detour=warp://{t_ips[1]}?ifp=1-2&ifpm=m5#{DE_TAG}"
     formatted_time = datetime.datetime.now().strftime("%A, %d %b %Y, %H:%M")
     return config_prefix, formatted_time
 
@@ -84,7 +82,7 @@ def toSingBox(tag, clean_ip, detour):
         try:
             data = json.loads(output)
             wg = {
-                "tag": f"{tag}",
+                "tag": tag,
                 "type": "wireguard",
                 "server": f"{clean_ip.split(':')[0]}",
                 "server_port": int(clean_ip.split(":")[1]),
@@ -114,7 +112,8 @@ def toSingBox(tag, clean_ip, detour):
 
 
 def export_SingBox(t_ips):
-    template_path = os.path.join(edge_directory, "assets", "singbox-template.json")
+    template_path = os.path.join(
+        edge_directory, "assets", "singbox-template.json")
     with open(template_path, "r") as f:
         data = json.load(f)
 
@@ -124,13 +123,13 @@ def export_SingBox(t_ips):
     if tehran_wg:
         data["outbounds"].insert(2, tehran_wg)
     else:
-        print("Failed to generate {IR_TAG} configuration")
+        print(f"Failed to generate {IR_TAG} configuration")
 
     berlin_wg = toSingBox(DE_TAG, t_ips[1], IR_TAG)
     if berlin_wg:
         data["outbounds"].insert(3, berlin_wg)
     else:
-        print("Failed to generate {DE_TAG} configuration")
+        print(f"Failed to generate {DE_TAG} configuration")
 
     with open(main_singbox_path, "w") as f:
         json.dump(data, f, indent=2)
@@ -151,7 +150,8 @@ def main():
         # Running warp for scan clean ips
         arch = arch_suffix()
         print("Fetching warp program...")
-        url = f"https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-yxip/warp-linux-{arch}"
+        url = f"https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-yxip/warp-linux-{
+            arch}"
 
         warp_executable = os.path.join(edge_directory, "warp")
         subprocess.run(["wget", url, "-O", warp_executable], check=True)
@@ -182,11 +182,12 @@ def main():
         # Hiddify profile shits
         title = (
             "//profile-title: base64:"
-            + base64.b64encode("Freedom to Dream 💛✨".encode("utf-8")).decode("utf-8")
+            + base64.b64encode("Freedom to Dream 💛✨".encode("utf-8")
+                               ).decode("utf-8")
             + "\n"
         )
         update_interval = "//profile-update-interval: 4\n"
-        sub_info = "//subscription-userinfo: upload=805306368000; download=2576980377600; total=6012954214400; expire=1762677732\n"
+        sub_info = "//subscription-userinfo: upload = 805306368000; download = 2576980377600; total = 6012954214400; expire = 1762677732\n"
         profile_web = "//profile-web-page-url: https://github.com/NiREvil\n"
         last_modified = "//last update on: " + formatted_time + "\n"
 
@@ -202,6 +203,7 @@ def main():
 
         export_SingBox(Bestip)
 
+    # Catch errors related to subprocess command execution
     except subprocess.CalledProcessError as e:
         print(f"Error executing command: {e}")
     except Exception as e:
