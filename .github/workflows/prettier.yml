@@ -101,6 +101,11 @@ jobs:
         run: |
           npm install prettier@${{ env.PRETTIER_VERSION }} eslint@${{ env.ESLINT_VERSION }} eslint-config-prettier eslint-plugin-prettier prettier-plugin-toml
 
+      - name: Run ESLint
+        run: |
+          echo "Running ESLint..."
+          npx eslint . --fix --ext .js,.json,.html,.css,.yml,.md
+
       # Validate configuration files
       - name: Validate formatting configs
         run: |
@@ -113,12 +118,7 @@ jobs:
           if [ -f pyproject.toml ]; then
             black --check pyproject.toml || echo "Black config validation failed"
           fi
-
-      # Run ESLint
-      - name: Run ESLint
-        run: |
-          echo "Running ESLint..."
-          eslint . --fix --ext .js,.json,.html,.css,.yml,.md
+          
 
       # Run Prettier formatter
       - name: Run Prettier
