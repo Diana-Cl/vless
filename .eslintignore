@@ -1,6 +1,22 @@
+# Specific directories
 node_modules/
 dist/
 build/
-sub/
+.github/
 boringtun-boringtun-cli-0.5.2/
 DNS over HTTPS/
+project-root/
+sub/
+
+# Specific files
+result.csv
+warp.json
+Endpoints.csv
+LB.js
+unob.js
+WarpOnWarp.json
+DNS.js
+
+
+
+
