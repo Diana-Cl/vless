@@ -1,4 +1,0 @@
-black[d]
-flake8
-isort
-pre-commit
