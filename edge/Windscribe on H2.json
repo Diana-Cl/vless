@@ -1,15 +1,9 @@
-//profile-title: base64:V2luZHNjcmliZSBvbiBIeXN0ZXJpYQ==
-//profile-update-interval: 48
-//subscription-userinfo: upload=2100483648; download=841034815488; total=966367641600; expire=1740774601
-//support-url:  https://t.me/F_NiREvil
-//profile-web-page-url: https://github.com/NiREvil
-
 {
   "dns": {
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "udp://1.1.1.1",
+        "address": "tcp://185.228.168.9",
         "address_resolver": "dns-direct"
       },
       {
