@@ -9,8 +9,14 @@ build/
 result.csv
 warp.json
 Endpoints.csv
+LB.js
+unob.js
+WarpOnWarp.json
+DNS.js
+
 
 # Specific directories
 .github/
 DNS over HTTPS/
 project-root/
+sub/
