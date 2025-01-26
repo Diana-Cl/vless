@@ -5,7 +5,6 @@ on:
     branches: [ "main" ]
     paths:
       - '*.json'
-      - 'edge/spring.py'
       - 'edge/assets/*.json'
   schedule: 
     - cron: '0 */4 * * *'
@@ -42,7 +41,8 @@ jobs:
         git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
         git add *.json
         git diff --cached --quiet || git commit -m "ⅨⅣ $(TZ='Asia/Tehran' date '+%H:%M:%S')"
-
+        git push
+        
     # Cache Python dependencies
     - name: Cache Python packages
       uses: actions/cache@v4
@@ -68,11 +68,4 @@ jobs:
         fi
       continue-on-error: true
 
-    - name: Commit and push if changed
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add .
-        git diff --quiet && git diff --staged --quiet || git commit -m "Apply code formatting"
-        git push
 
