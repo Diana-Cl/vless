@@ -42,17 +42,21 @@ jobs:
         git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
         git add *.json
         git diff --cached --quiet || git commit -m "ⅨⅣ $(TZ='Asia/Tehran' date '+%H:%M:%S')"
-        git push
 
-    - name: Install Black
-      run: pip install black
-      
-    - name: Run Black
-      run: black .
-
-    - name: Prettier Action
-      uses: creyD/prettier_action@v4.3
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
       with:
-        prettier_options: --write **/*.{js,json,yml}
-        commit_message: "Apply code formatting"
+        node-version: '20'
+
+    - name: Install Prettier
+      run: npm install --global prettier
+
+    - name: Run Prettier
+      run: |
+        prettier --write "**/*.{js,json,yml,css,md}"
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git diff --quiet && git diff --staged --quiet || git commit -m "Apply code formatting"
+        git push
 
