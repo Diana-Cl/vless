@@ -81,7 +81,7 @@
   ],
   "outbounds": [
     {
-      "tag": "Proxy",
+      "tag": "proxy",
       "type": "selector",
       "outbounds": [
         "\u26aa\ufe0fTehran",
@@ -91,7 +91,7 @@
       "interrupt_exist_connections": false
     },
     {
-      "tag": "Auto",
+      "tag": "auto",
       "outbounds": [
         "\u26aa\ufe0fTehran",
         "\ud83d\udfe1Berlin"
@@ -109,13 +109,13 @@
         "172.16.0.2/32",
         "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
       ],
-      "private_key": "kNupgxV42sClccHmZB/esGbew/6zISox5lp2F8B7j3k=",
+      "private_key": "KHuNFWRbu+ReOqEeidMQfWC3v3gbbKY9daI6Jg5egV4=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1300,
       "reserved": [
-        204,
-        219,
-        105
+        123,
+        96,
+        223
       ],
       "detour": "direct",
       "workers": 2
@@ -129,13 +129,13 @@
         "172.16.0.2/32",
         "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
       ],
-      "private_key": "SN1Zb8VEO0ktpGLVDY+X0rQbVShq9PgiTuaQTl1Q9Fo=",
+      "private_key": "eHT7+1lKbj08NDi2OeWhlwHcFAqxcgEGirOyBs130nI=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1300,
       "reserved": [
-        96,
-        43,
-        214
+        34,
+        55,
+        230
       ],
       "detour": "\u26aa\ufe0fTehran",
       "workers": 2
