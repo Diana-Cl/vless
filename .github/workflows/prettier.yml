@@ -3,13 +3,13 @@ name: Code Formatting and Linting
 on:
   push:
     paths:
-      - '**/*.js'      # JavaScript files in any directory
-      - '**/*.json'   # JSON ...
-      - '**/*.html'  # HTML
+      - '**/*.js'       # JavaScript files in any directory
+      - '**/*.json'    # JSON ...
+      - '**/*.html'   # HTML
       - '**/*.css'   # CSS 
       - '**/*.yml'  # YML
       - '**/*.md'  # MD
-      - '**/*.py'  # Python
+      - '**/*.py' # Python
     branches:
       - main
   # Trigger on pull requests to catch formatting issues before they reach main
@@ -96,6 +96,14 @@ jobs:
             npm init -y
           fi
 
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+           ${{ runner.os }}-npm-
+
       # Install Prettier and ESLint
       - name: Install Prettier and ESLint
         run: |
@@ -119,7 +127,6 @@ jobs:
             black --check pyproject.toml || echo "Black config validation failed"
           fi
           
-
       # Run Prettier formatter
       - name: Run Prettier
         run: |
