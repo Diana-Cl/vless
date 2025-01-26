@@ -14,6 +14,7 @@ hiddify/
 result.csv
 warp.json
 Endpoints.csv
+loadBalance.js
 LB.js
 newsb.json
 unob.js
