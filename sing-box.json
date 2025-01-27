@@ -1,6 +1,6 @@
 {
   "dns": {
-    "final": "local-dns",
+    "final": "proxy-dns",
     "rules": [
       {
         "clash_mode": "Global",
@@ -34,7 +34,7 @@
         "tag": "proxy-dns"
       },
       {
-        "address": "local",
+        "address": "tcp://8.8.4.4",
         "detour": "direct",
         "tag": "local-dns"
       },
@@ -57,8 +57,8 @@
         "fdfe:dcba:9876::1/126"
       ],
       "auto_route": true,
-      "endpoint_independent_nat": false,
-      "mtu": 1300,
+      "endpoint_independent_nat": true,
+      "mtu": 9000,
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -68,7 +68,7 @@
       },
       "sniff": true,
       "stack": "system",
-      "strict_route": false,
+      "strict_route": true,
       "type": "tun"
     },
     {
@@ -109,13 +109,13 @@
         "172.16.0.2/32",
         "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
       ],
-      "private_key": "UC7FWwojn0dGPTXFpSZsHhdaTHZycsaACGEOA5CYiGo=",
+      "private_key": "mJHjTwLG715kCqJWp6RPXl0e9jjYW+/KV/1H5gNaG2I=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1300,
       "reserved": [
-        179,
-        15,
-        137
+        32,
+        50,
+        252
       ],
       "detour": "direct",
       "workers": 2
@@ -129,13 +129,13 @@
         "172.16.0.2/32",
         "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
       ],
-      "private_key": "oNxyk4QC5M/eMOAQDQDQcWGw+7iQ1AsqXKmWOZJ4UWI=",
+      "private_key": "sALVa+Lw7O1KGzUFd6FUifsHjljxQ4qY+cuRP72LyG8=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1300,
       "reserved": [
-        47,
-        132,
-        50
+        40,
+        142,
+        23
       ],
       "detour": "\u26aa\ufe0fTehran",
       "workers": 2
@@ -155,6 +155,7 @@
   ],
   "route": {
     "auto_detect_interface": true,
+    "override_android_vpn": true,
     "final": "proxy",
     "rule_set": [
       {
