@@ -28,7 +28,7 @@
         "tag": "proxy-dns"
       },
       {
-        "address": "tcp://8.8.4.4",
+        "address": "tcp://8.8.8.8",
         "detour": "direct",
         "tag": "local-dns"
       },
