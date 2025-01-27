@@ -34,7 +34,7 @@
         "tag": "proxy-dns"
       },
       {
-        "address": "tcp://8.8.4.4",
+        "address": "tcp://8.8.8.8",
         "detour": "direct",
         "tag": "local-dns"
       },
@@ -109,13 +109,13 @@
         "172.16.0.2/32",
         "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
       ],
-      "private_key": "QM1cf7BXoZb0O4lMTc6Qwk/bFEaJL7gtzKppqkC9CEg=",
+      "private_key": "IFvRAS80IeA5qYKrN4hyRlpGLdRMRNdrLp0TrgxLUks=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1330,
       "reserved": [
-        19,
-        189,
-        74
+        147,
+        106,
+        184
       ],
       "detour": "direct",
       "workers": 2
@@ -129,13 +129,13 @@
         "172.16.0.2/32",
         "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
       ],
-      "private_key": "sOt/a8UXtEZ9CnPPfg0EJq+hVjTNcrdqiE5p1zcILGI=",
+      "private_key": "SFaHdpW3cLlC/sE1JHK4yaVu1amaOhvngEECsAGD4nA=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1330,
       "reserved": [
-        228,
-        130,
-        107
+        173,
+        202,
+        33
       ],
       "detour": "\u26aa\ufe0fTehran",
       "workers": 2
