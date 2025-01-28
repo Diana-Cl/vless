@@ -6,11 +6,11 @@ on:
     paths:
       - '**/*.js'   # JavaScript files in any directory.
       - '**/*.py'    # Python 
-      - '**/*.md'     # MD 
-      - '**/*.css'     # CSS 
-      - '**/*.yml'    # YAML 
+      - '**/*.md'    # Markdown 
+      - '**/*.css'   # CSS 
+      - '**/*.yml'   # YAML 
       - '**/*.json'  # JSON 
-      - '**/*.html' # HTML 
+      - '**/*.html'  # HTML 
     branches:
       - main
   pull_request:
@@ -49,7 +49,6 @@ jobs:
           submodules: 'recursive'  # Include all submodules
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-
       # Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -57,7 +56,6 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
           architecture: x64
-
 
       # Cache Python dependencies
       - name: Cache Python packages
@@ -67,14 +65,12 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-            
 
       # Install Python formatting tools
       - name: Install Python formatting dependencies
         run: |
           python -m pip install --upgrade pip
           pip install black[d] flake8 isort
-          
           
       # Run Black formatter with error handling
       - name: Run Black formatter
@@ -85,7 +81,6 @@ jobs:
             black .
           fi
         continue-on-error: true
-
 
       # Set up Node.js environment
       - name: Setup Node.js
@@ -104,8 +99,7 @@ jobs:
         run: |
           npm install prettier@${{ env.PRETTIER_VERSION }}
           npm install prettier-plugin-toml
-          
-         
+
       # Validate configuration files
       - name: Validate formatting configs
         run: |
@@ -115,13 +109,13 @@ jobs:
           if [ -f pyproject.toml ]; then
             black --check pyproject.toml || echo "Black config validation failed"
           fi
-          
+
       - name: Initialize npm project
         run: |
           if [ ! -f package.json ]; then
             npm init -y
           fi
-      
+
       # Run Prettier formatter
       - name: Run Prettier
         uses: creyD/prettier_action@v4.3
@@ -130,10 +124,7 @@ jobs:
           commit_message: "style: apply code formatting standards"
           commit_description: "Applied automatic formatting using Black and Prettier"
           prettier_version: ${{ env.PRETTIER_VERSION }}
-          git_email: "github-actions[bot]@users.noreply.github.com"
-          git_name: "github-actions[bot]"
           only_changed: true  # Only format changed files
-          skip_commit: false  # Still create a commit even if no package-lock.json exists
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         continue-on-error: true
@@ -142,8 +133,8 @@ jobs:
       - name: Commit changes if any
         if: failure()
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
+          git config --local user.name "actions-user"
+          git config --local user.email "actions-user@example.com"
           git add -A
           git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
         continue-on-error: true
@@ -166,6 +157,7 @@ jobs:
           else
             echo "⚠️ Some files needed formatting. Check the commits for changes."
           fi
+
       # Add PR comment with formatting results
       - name: Comment on PR
         if: github.event_name == 'pull_request'
@@ -182,4 +174,3 @@ jobs:
               repo: context.repo.repo,
               body: formatting_status
             });
-        
