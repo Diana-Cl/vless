@@ -4,27 +4,22 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - '.github/workflows/spring.yml'
       - 'edge/spring.py'
       - 'edge/assets/*.json'
   schedule: 
     - cron: '0 */3 * * *'
-  # Allow manual triggering of the workflow
   workflow_dispatch:
-
 
 jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-    - name: Checkout Repository
+    - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0  
-        submodules: 'recursive' 
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        fetch-depth: 0
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      
     # Set up Python environment
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -32,7 +27,6 @@ jobs:
         python-version: '3.12'
         cache: pip
         architecture: x64
-        
 
     # Cache Python dependencies
     - name: Cache Python packages
@@ -42,26 +36,29 @@ jobs:
         key: ${{ runner.os }}-pip-${{ hashFiles('edge/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
-          
 
-    # Cache Python dependencies
+    # Install dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install ipaddress
 
-     # Run spring to fetch warp IP's and create 2 type of wg configurations
-    - name: Run python
+    # Run Python script
+    - name: Run Spring Script
       run: python edge/spring.py
 
-    - name: Commit and push if changed
+    # Commit changes
+    - name: Commit and push changes
       run: |
-        git config --local user.name "Diana-Cl"
-        git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
-        git config --local author.name "Diana-Cl"
-        git config --local author.email "135276904+Diana-Cl@users.noreply.github.com"
-        git config --local committer.name "github-actions[bot]"
-        git config --local committer.email "github-actions[bot]@users.noreply.github.com" 
-        git add -A
-        git diff --quiet && git diff --staged --quiet || git commit -m "All done! $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireGuard private keys and IPs have been renewed"
-        git push
+        git add *.json
+        git diff --quiet && git diff --staged --quiet || \
+        commit_description: "Generate successfully"
+        prettier_version: ${{ env.PRETTIER_VERSION }}
+        git_email: "github-actions[bot]@users.noreply.github.com"
+        git_name: "github-actions[bot]"
+        only_changed: true 
+        skip_commit: false  
+        env:
+         GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        continue-on-error: true
+        
