@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      -  '.github/workflows/spring.yml'
+      - '.github/workflows/spring.yml'
       - 'edge/spring.py'
       - 'edge/assets/*.json'
   schedule: 
@@ -61,5 +61,9 @@ jobs:
         git add *.json
         git diff --quiet && git diff --staged --quiet || (
           git commit -m "Task done $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireuard private keys and IPs have been renewed"
-          git -c author.name="Diana-Cl" -c author.email="135276904+Diana-Cl@users.noreply.github.com" commit --amend --no-edit)
+          git -c author.name="Diana-Cl" -c author.email="135276904+Diana-Cl@users.noreply.github.com" \
+              -c committer.name="github-actions[bot]" -c committer.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit --amend --no-edit
+        )
         git push
+        
