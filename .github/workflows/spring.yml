@@ -60,8 +60,7 @@ jobs:
         git config --local user.email "actions-user@example.com"
         git add *.json
         git diff --quiet && git diff --staged --quiet || (
-          git commit -m "Task done $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireGuard private keys and IPs have been renewed"
-          git -c author.name="Diana-Cl" -c author.email="135276904+Diana-Cl@users.noreply.github.com" \
-              -c committer.name="actions-user" -c committer.email="actions-user@example.com" \
+          git commit -m "Task done $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireuard private keys and IPs have been renewed"
+          git -c author.name="Diana-Cl" -c author.email="135276904+Diana-Cl@users.noreply.github.com"
               commit --amend --no-edit)
           git push
