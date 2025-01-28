@@ -22,13 +22,13 @@
     ],
     "servers": [
       {
-        "address": "tcp://185.228.168.9",
+        "address": "udp://1.1.1.1",
         "address_resolver": "local-dns",
         "detour": "proxy",
         "tag": "proxy-dns"
       },
       {
-        "address": "tcp://8.8.8.8",
+        "address": "1.1.1.1",
         "detour": "direct",
         "tag": "local-dns"
       },
@@ -48,8 +48,8 @@
     {
       "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route": true,
-      "endpoint_independent_nat": true,
-      "mtu": 9000,
+      "endpoint_independent_nat": false,
+      "mtu": 1500,
       "platform": {
         "http_proxy": {
           "enabled": true,
