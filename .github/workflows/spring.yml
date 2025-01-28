@@ -51,6 +51,6 @@ jobs:
         git config --local user.email "135276904+Diana-Cl@users.noreply.github.com" 
         git add *.json
         if [ -n "$(git status -s)" ]; then
-          git commit -m "Updated $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "All the WireGuard private keys and IPs have been renewed" -m "Co-authored-by: actions-user <noreply@github.com>"
+          git commit -m "All done! $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "WireGuard private keys and IPs have been renewed" -m "Co-authored-by: actions-user <github-actions[bot]@users.noreply.github.com>"
           git push
         fi
