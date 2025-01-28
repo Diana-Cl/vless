@@ -4,6 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
+      - '.github/workflows/spring.yml'
       - 'edge/spring.py'
       - 'edge/assets/*.json'
   schedule: 
