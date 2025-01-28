@@ -92,7 +92,7 @@ def toSingBox(tag, clean_ip, detour):
                 ],
                 "private_key": f"{data['private_key']}",
                 "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-                "mtu": 1330,
+                "mtu": 1300,
                 "reserved": data["config"]["reserved"],
                 "detour": f"{detour}",
                 "workers": 2,
