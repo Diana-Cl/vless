@@ -20,7 +20,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-       token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        fetch-depth: 0           
+        submodules: 'recursive' 
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       
     # Set up Python environment
@@ -54,13 +56,12 @@ jobs:
 
     - name: Commit and push if changed
       run: |
-        git config --local user.name "Diana-Cl"
-        git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
+        git config --local user.name "actions-user"
+        git config --local user.email "actions-user@example.com"
         git add *.json
         git diff --quiet && git diff --staged --quiet || (
-          git commit -m "all done✔️ $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireGuard private keys and IPs have been renewed"
+          git commit -m "Task done $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireGuard private keys and IPs have been renewed"
           git -c author.name="Diana-Cl" -c author.email="135276904+Diana-Cl@users.noreply.github.com" \
-              -c committer.name="github-actions[bot]" -c committer.email="41898282+github-actions[bot]@users.noreply.github.com" \
-              commit --amend --no-edit
-        )
-        git push
+              -c committer.name="actions-user" -c committer.email="actions-user@example.com" \
+              commit --amend --no-edit)
+          git push
