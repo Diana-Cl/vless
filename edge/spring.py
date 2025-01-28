@@ -43,8 +43,7 @@ def create_ips():
     top_ips = sum(len(list(ipaddress.IPv4Network(cidr))) for cidr in warp_cidr)
 
     with open(edge_bestip_path, "w") as file:
-        all_ips = [str(addr)
-                   for cidr in warp_cidr for addr in ipaddress.IPv4Network(cidr)]
+        all_ips = [str(addr) for cidr in warp_cidr for addr in ipaddress.IPv4Network(cidr)]
         file.write("\n".join(all_ips))
 
 
@@ -60,7 +59,8 @@ def arch_suffix():
         return "s390x"
     else:
         raise ValueError(
-            "Unsupported CPU architecture. Supported architectures are: i386, i686, x86_64, amd64, armv8, arm64, aarch64, s390x")
+            "Unsupported CPU architecture. Supported architectures are: i386, i686, x86_64, amd64, armv8, arm64, aarch64, s390x"
+        )
 
 
 # warp ON warp wireguard configurations, Exclusively for hidfify clients
@@ -112,8 +112,7 @@ def toSingBox(tag, clean_ip, detour):
 
 
 def export_SingBox(t_ips):
-    template_path = os.path.join(
-        edge_directory, "assets", "singbox-template.json")
+    template_path = os.path.join(edge_directory, "assets", "singbox-template.json")
     with open(template_path, "r") as f:
         data = json.load(f)
 
@@ -182,8 +181,7 @@ def main():
         # Hiddify profile shits
         title = (
             "//profile-title: base64:"
-            + base64.b64encode("Freedom to Dream 💛✨".encode("utf-8")
-                               ).decode("utf-8")
+            + base64.b64encode("Freedom to Dream 💛✨".encode("utf-8")).decode("utf-8")
             + "\n"
         )
         update_interval = "//profile-update-interval: 4\n"
@@ -193,12 +191,7 @@ def main():
 
         with open(main_warp_path, "w") as op:
             op.write(
-                title
-                + update_interval
-                + sub_info
-                + profile_web
-                + last_modified
-                + config_prefix
+                title + update_interval + sub_info + profile_web + last_modified + config_prefix
             )
 
         export_SingBox(Bestip)
