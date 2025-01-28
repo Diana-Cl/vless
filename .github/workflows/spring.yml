@@ -1,19 +1,16 @@
 name: Spring
 
 on:
-  # Trigger on push events to specific file types and directory
   push:
     branches: [ "main" ]
     paths:
-    - 'edge/spring.py'
-    - 'edge/assets/*.json'
+      - 'edge/spring.py'
+      - 'edge/assets/*.json'
   schedule: 
     - cron: '0 */3 * * *'
   # Allow manual triggering of the workflow
   workflow_dispatch:
 
-
-# Define the jobs to run
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -21,7 +18,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-      
     # Set up Python environment
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -29,7 +25,6 @@ jobs:
         python-version: '3.12'
         cache: pip
         architecture: x64
-        
 
     # Cache Python dependencies
     - name: Cache Python packages
@@ -39,23 +34,23 @@ jobs:
         key: ${{ runner.os }}-pip-${{ hashFiles('edge/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
-          
 
-    # Cache Python dependencies
+    # Install dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install ipaddress
 
-     # Run spring to fetch warp IP's and create 2 type of wg configurations
-    - name: Lets go sweetheart
+    # Run spring to fetch warp IP's and create 2 type of wg configurations
+    - name: Run python
       run: python edge/spring.py
 
     - name: Commit and push if changed
       run: |
-        git config --local user.name "github-actions[bot]"
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "DianaCl"
+        git config --local user.email "135276904+Diana-Cl@users.noreply.github.com" 
         git add *.json
-        git diff --quiet && git diff --staged --quiet || \
-        git commit --author="DianaCl <135276904+Diana-Cl@users.noreply.github.com>" -m "All done! $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireGuard private keys and IPs have been renewed"
-        git push
+        if [ -n "$(git status -s)" ]; then
+          git commit -m "Updated $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "All the WireGuard private keys and IPs have been renewed" -m "Co-authored-by: actions-user <noreply@github.com>"
+          git push
+        fi
