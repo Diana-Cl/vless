@@ -49,8 +49,8 @@ jobs:
       run: python edge/spring.py
     - name: Commit and push if changed
       run: |
-        git config --local user.name "DianaCl"
-        git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
+        git config --local user.name "ImgBotApp"
+        git config --local user.email "ImgBotHelp@gmail.com"
         git add *.json
         git diff --quiet && git diff --staged --quiet || git commit -m "All done! $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireGuard private keys and IPs have been renewed"
         git push https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
