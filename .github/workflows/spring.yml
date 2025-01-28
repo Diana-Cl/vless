@@ -62,34 +62,6 @@ jobs:
         git config --local author.email "135276904+Diana-Cl@users.noreply.github.com"
         git config --local committer.name "github-actions[bot]"
         git config --local committer.email "github-actions[bot]@users.noreply.github.com" 
-        git add *.json
+        git add -A
         git diff --quiet && git diff --staged --quiet || git commit -m "All done! $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireGuard private keys and IPs have been renewed"
         git push
-
-
-        # Optional: Set up pre-commit hooks for local development
-    - name: Setup pre-commit hooks
-      run: |
-        pip install pre-commit
-        pre-commit install
-      continue-on-error: true
-
-
-      # Add PR comment with formatting results
-    - name: Comment on PR
-      if: github.event_name == 'pull_request'
-      uses: actions/github-script@v7
-      with:
-        script: |
-         const formatting_status = '${{ job.status }}' === 'success' 
-            ? '✅ Code formatting checks passed!'
-            : '⚠️ Some files needed formatting. Please check the commits for changes.';
-            
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: formatting_status
-           });
-
-        
