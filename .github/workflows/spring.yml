@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 0  # Fetch full history
           submodules: 'recursive'  # Include submodules
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Use PAT for authentication
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use PAT for authentication
 
       # Step 2: Set up Python
       - name: Set up Python
@@ -49,7 +49,7 @@ jobs:
           pip install -r edge/requirements.txt || exit 1
 
       # Step 5: Run the spring.py script
-      - name: Run spring.py to fetch Warp IPs and create WireGuard configurations
+      - name: Run spring.py to fetch Warp IPs
         run: |
           python edge/spring.py || exit 1
 
