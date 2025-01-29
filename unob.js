@@ -4899,10 +4899,10 @@ async function updateDataset(request, env) {
     VLConfigs: validateField('VLConfigs') ?? currentSettings?.VLConfigs ?? true,
     TRConfigs: validateField('TRConfigs') ?? currentSettings?.TRConfigs ?? false,
     ports: validateField('ports')?.split(',') ?? currentSettings?.ports ?? ['443'],
-    lengthMin: validateField('fragmentLengthMin') ?? currentSettings?.lengthMin ?? '100',
-    lengthMax: validateField('fragmentLengthMax') ?? currentSettings?.lengthMax ?? '200',
+    lengthMin: validateField('fragmentLengthMin') ?? currentSettings?.lengthMin ?? '10',
+    lengthMax: validateField('fragmentLengthMax') ?? currentSettings?.lengthMax ?? '30',
     intervalMin: validateField('fragmentIntervalMin') ?? currentSettings?.intervalMin ?? '1',
-    intervalMax: validateField('fragmentIntervalMax') ?? currentSettings?.intervalMax ?? '1',
+    intervalMax: validateField('fragmentIntervalMax') ?? currentSettings?.intervalMax ?? '2',
     fragmentPackets:
       validateField('fragmentPackets') ?? currentSettings?.fragmentPackets ?? 'tlshello',
     bypassLAN: validateField('bypass-lan') ?? currentSettings?.bypassLAN ?? false,
