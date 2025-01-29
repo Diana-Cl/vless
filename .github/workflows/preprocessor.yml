@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 0  # Fetch full history
           submodules: 'recursive'  # Include submodules
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Use PAT for authentication
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
       # Step 2: Set up PHP
       - name: Setup PHP
@@ -56,4 +56,4 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
