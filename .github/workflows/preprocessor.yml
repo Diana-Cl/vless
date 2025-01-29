@@ -1,10 +1,10 @@
-name: "pre-proccessor"
+name: "preproccessor"
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - 'edge/preprocessor.php'
+      - '**/preprocessor.*'
       - 'sub/*.json'
   schedule: 
     - cron: '0 */3 * * *'
@@ -20,7 +20,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+         fetch-depth: 0           
+         submodules: 'recursive' 
+         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         env:
           NODE_VERSION: '20'
 
@@ -34,15 +36,15 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --local user.name "github-actions[bot]"
+          git config --local user.name "Diana-Cl"
           git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
           
       - name: Commit changes with timestamp
         run: |
           git add -A
-          git diff --cached --quiet || git commit -m "ⅣⅭ $(TZ='Asia/Tehran' date '+%H:%M:%S')"
+          git diff --cached --quiet || git commit -m "ⅣⅭ Updated $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "The list of cloudflare IPs has been updated"
           
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
