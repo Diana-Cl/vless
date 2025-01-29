@@ -23,8 +23,8 @@ jobs:
       with:
         fetch-depth: 0  # Fetch full history
         submodules: 'recursive' # Include submodules
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # Use PAT for authentication
-        # Ensure the PERSONAL_ACCESS_TOKEN secret is configured in your repository settings with the repo scope.
+        token: ${{ secrets.GITHUB_TOKEN }} # Use PAT for authentication
+    
 
     # Step 2: Set up Python
     - name: Set up Python
