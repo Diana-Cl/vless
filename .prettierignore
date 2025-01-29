@@ -1,4 +1,3 @@
-# The files  we don't want to format
 ## Specific directories
 dist/
 build/
@@ -9,20 +8,15 @@ build/
 .env.*
 node_modules/
 DNS over HTTPS/
-project-root/
-sub/
-edge/
-hiddify/
+sub/ProxyIP.md
 boringtun-boringtun-cli-0.5.2/
+Hiddify/
 
-# Specific files
+## The files  we don't want to format
 result.csv
 warp.json
 Endpoints.csv
-LB.js
 WarpOnWarp.json
 package.json
 package-lock.json
-sing-box.json
-DNS.js
 README.md
