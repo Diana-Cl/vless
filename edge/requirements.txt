@@ -1,10 +1,5 @@
 requests==2.32.2
 beautifulsoup4==4.12.2
 urllib3>=2.2.2 
-
-black[d]
-flake8
-isort
-pre-commit
-black>=24.3.0 # not directly required, pinned by Snyk to avoid a vulnerability
-zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
+black>=24.3.0 
+zipp>=3.19.1 
