@@ -1,28 +1,27 @@
 name: warp_REvil
- 
-on:  
+
+on:
   push:
     branches: [ "main" ]
     paths:
-      - 'warpREvil.py'  
+      - 'warpREvil.py'
       - '**/*.json'
-  schedule: 
-    - cron: '0 */12 * * *'  
+  schedule:
+    - cron: '0 */12 * * *'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 25 
-    
-    steps:
-       - name: Checkout Repository
-         uses: actions/checkout@v4
-         with:
-           fetch-depth: 0           
-           submodules: 'recursive'  # Include all submodules
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    timeout-minutes: 25
 
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: 'recursive' 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -31,35 +30,30 @@ jobs:
         cache: pip
         architecture: x64
 
-        
     - name: Cache Python packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-          
-          
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip || exit 1
         pip install -r assets/requirements.txt || exit 1
-    
-    
+
     - name: Run script
       run: |
         python warpREvil.py || exit 1
 
-
     - name: Commit and push if changes are detected
       run: |
-        git config --local user.name "arshiacomplua"
+        git config --local user.name "arshiacomplus"
         git config --local user.email "163334604+arshiacomplus@users.noreply.github.com"
         git add -A
-
         # Check if there are changes to commit
-        if ! git diff --quiet || ! git diff --staged --quiet; then
+        if [ -n "$(git status --porcelain)" ]; then
           git commit -m "Automatic update $(TZ='Asia/Tehran' date '+%H:%M:%S')" \
                      -m "Warp private key, addresses, reserved and all IP's have been renewed"
           git -c author.name="arshiacomplus" -c author.email="163334604+arshiacomplus@users.noreply.github.com" \
@@ -69,3 +63,4 @@ jobs:
         else
           echo "No changes detected. Skipping commit and push."
         fi
+        
