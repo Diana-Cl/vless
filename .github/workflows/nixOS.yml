@@ -4,12 +4,12 @@ on:
 #  pull_request_target:
 #  types: [opened, ready_for_review, synchronize, reopened, edited]
 
-permissions: {}
+# permissions: {}
 
 env:
   OWNERS_FILE: ci/OWNERS
   # Don't do anything on draft PRs
-  DRY_MODE: ${{ github.event.pull_request.draft && '1' || '' }}
+ # DRY_MODE: ${{ github.event.pull_request.draft && '1' || '' }}
 
 jobs:
   get-merge-commit:
