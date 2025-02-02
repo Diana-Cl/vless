@@ -72,5 +72,9 @@
         "prettier": "^3.4.2"
       }
     }
+  },
+  "dependencies": {
+    "prettier": "^3.4.2",
+    "prettier-plugin-toml": "^2.0.1"
   }
 }

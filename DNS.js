@@ -23,7 +23,8 @@ async function handleRequest(request) {
   }
 
   // Security headers
-  const csp = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';";
+  const csp =
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';";
   const securityHeaders = {
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
@@ -55,29 +56,41 @@ async function handleRequest(request) {
         ...securityHeaders,
       },
     });
-
   } else if (url.pathname === '/set-doh-address' && request.method === 'POST') {
     try {
       const { dohaddress } = await request.json();
       if (!isValidUrl(dohaddress)) {
-        return new Response('Invalid DNS over HTTPS Address', { status: 400, headers: securityHeaders });
+        return new Response('Invalid DNS over HTTPS Address', {
+          status: 400,
+          headers: securityHeaders,
+        });
       }
       // @ts-ignore
       await SETTINGS.put('dohaddress', dohaddress);
-      return new Response('DNS over HTTPS Address saved!', { status: 200, headers: securityHeaders });
+      return new Response('DNS over HTTPS Address saved!', {
+        status: 200,
+        headers: securityHeaders,
+      });
     } catch (error) {
-      return new Response('Failed to save DNS over HTTPS Address', { status: 500, headers: securityHeaders });
+      return new Response('Failed to save DNS over HTTPS Address', {
+        status: 500,
+        headers: securityHeaders,
+      });
     }
-
   } else if (url.pathname === '/reset-doh-address' && request.method === 'POST') {
     try {
       // @ts-ignore
       await SETTINGS.put('dohaddress', defaultdoh);
-      return new Response('DNS over HTTPS Address reset to default!', { status: 200, headers: securityHeaders });
+      return new Response('DNS over HTTPS Address reset to default!', {
+        status: 200,
+        headers: securityHeaders,
+      });
     } catch (error) {
-      return new Response('Failed to reset DNS over HTTPS Address', { status: 500, headers: securityHeaders });
+      return new Response('Failed to reset DNS over HTTPS Address', {
+        status: 500,
+        headers: securityHeaders,
+      });
     }
-
   } else if (url.pathname === '/set-password' && request.method === 'GET') {
     const storedPassword = await SETTINGS.get('password');
     if (storedPassword) {
@@ -90,7 +103,6 @@ async function handleRequest(request) {
         ...securityHeaders,
       },
     });
-
   } else if (url.pathname === '/set-password' && request.method === 'POST') {
     const storedPassword = await SETTINGS.get('password');
     if (storedPassword) {
@@ -107,7 +119,6 @@ async function handleRequest(request) {
     } catch (error) {
       return new Response('Failed to set password', { status: 500, headers: securityHeaders });
     }
-
   } else if (url.pathname === '/change-password' && request.method === 'GET') {
     if (!sessionToken || sessionToken !== storedSessionToken) {
       const origin = `${url.protocol}//${url.host}`;
@@ -119,7 +130,6 @@ async function handleRequest(request) {
         ...securityHeaders,
       },
     });
-
   } else if (url.pathname === '/change-password' && request.method === 'POST') {
     if (!sessionToken || sessionToken !== storedSessionToken) {
       const origin = `${url.protocol}//${url.host}`;
@@ -129,10 +139,16 @@ async function handleRequest(request) {
       const { currentPassword, newPassword, confirmNewPassword } = await request.json();
       const storedPassword = await SETTINGS.get('password');
       if (currentPassword !== storedPassword) {
-        return new Response('Current password is incorrect', { status: 400, headers: securityHeaders });
+        return new Response('Current password is incorrect', {
+          status: 400,
+          headers: securityHeaders,
+        });
       }
       if (newPassword !== confirmNewPassword) {
-        return new Response('New passwords do not match', { status: 400, headers: securityHeaders });
+        return new Response('New passwords do not match', {
+          status: 400,
+          headers: securityHeaders,
+        });
       }
       // @ts-ignore
       await SETTINGS.put('password', newPassword);
@@ -140,7 +156,6 @@ async function handleRequest(request) {
     } catch (error) {
       return new Response('Failed to change password', { status: 500, headers: securityHeaders });
     }
-
   } else if (url.pathname === '/login' && request.method === 'GET') {
     const sessionToken = request.headers.get('cookie')?.match(/sessionToken=([^;]+)/)?.[1];
     const storedPassword = await SETTINGS.get('password');
@@ -157,7 +172,6 @@ async function handleRequest(request) {
         ...securityHeaders,
       },
     });
-
   } else if (url.pathname === '/login' && request.method === 'POST') {
     const sessionToken = request.headers.get('cookie')?.match(/sessionToken=([^;]+)/)?.[1];
     if (sessionToken && sessionToken === storedSessionToken) {
@@ -185,7 +199,6 @@ async function handleRequest(request) {
     } catch (error) {
       return new Response('Failed to login', { status: 500, headers: securityHeaders });
     }
-
   } else if (url.pathname === '/logout' && request.method === 'POST') {
     try {
       // @ts-ignore
@@ -200,7 +213,6 @@ async function handleRequest(request) {
     } catch (error) {
       return new Response('Failed to logout', { status: 500, headers: securityHeaders });
     }
-
   } else if (url.pathname === '/') {
     const sessionToken = request.headers.get('cookie')?.match(/sessionToken=([^;]+)/)?.[1];
     const storedPassword = await SETTINGS.get('password');
@@ -217,14 +229,15 @@ async function handleRequest(request) {
     }
     const currentdohaddress = await getdohaddress();
     const origin = `${url.protocol}//${url.host}`;
-    const htmlContent = html.replace('{{dohaddress}}', currentdohaddress).replace('{{origin}}', origin);
+    const htmlContent = html
+      .replace('{{dohaddress}}', currentdohaddress)
+      .replace('{{origin}}', origin);
     return new Response(htmlContent, {
       headers: {
         'Content-Type': 'text/html',
         ...securityHeaders,
       },
     });
-
   } else {
     return new Response(notFoundHtml, {
       headers: {

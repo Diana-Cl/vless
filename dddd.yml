@@ -3,12 +3,12 @@ name: Format Code
 on:
   push:
     paths:
-      - "*.js"
-      - "*.json"
-      - "*.html"
-      - "*.css"
-      - "*.yml"
-      - "hiddify/*"
+      - '*.js'
+      - '*.json'
+      - '*.html'
+      - '*.css'
+      - '*.yml'
+      - 'hiddify/*'
     branches:
       - main
   pull_request:
@@ -39,5 +39,5 @@ jobs:
         uses: creyD/prettier_action@v4.3
         with:
           prettier_options: --write **/*.{js,json,html,css,yml} --ignore-unknown
-          commit_message: "Apply code formatting"
+          commit_message: 'Apply code formatting'
         continue-on-error: true
