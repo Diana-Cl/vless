@@ -1,0 +1,81 @@
+name: Codeowner
+
+on:
+#  pull_request_target:
+#    types: [opened, ready_for_review, synchronize, reopened, edited]
+
+permissions: {}
+
+env:
+  OWNERS_FILE: ci/OWNERS
+  # Don't do anything on draft PRs
+  DRY_MODE: ${{ github.event.pull_request.draft && '1' || '' }}
+
+jobs:
+  get-merge-commit:
+    if: github.repository_owner == 'NiREvil'
+    uses: ./.github/workflows/get-nixOS.yml
+
+  # Check that code owners is valid
+  check:
+    name: Check
+    runs-on: ubuntu-24.04
+    needs: get-merge-commit
+    if: github.repository_owner == 'NiREvil' && needs.get-merge-commit.outputs.mergedSha
+    steps:
+      - uses: cachix/install-nix-action@08dcb3a5e62fa31e2da3d490afc4176ef55ecd72 
+
+      - uses: cachix/cachix-action@ad2ddac53f961de1989924296a1f236fcfbaa4fc 
+        with:
+          name: nixpkgs-ci
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 
+        with:
+          path: base
+
+      - name: Build codeowners validator
+        run: nix-build base/ci -A codeownersValidator
+
+      - uses: actions/create-github-app-token@c1a285145b9d317df6ced56c09f525b5c2b6f755 
+        id: app-token
+        with:
+          app-id: ${{ vars.OWNER_RO_APP_ID }}
+          private-key: ${{ secrets.OWNER_RO_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 
+        with:
+          ref: ${{ needs.get-merge-commit.outputs.mergedSha }}
+          path: pr
+
+      - name: Validate codeowners
+        run: result/bin/codeowners-validator
+        env:
+          OWNERS_FILE: pr/${{ env.OWNERS_FILE }}
+          GITHUB_ACCESS_TOKEN: ${{ steps.app-token.outputs.token }}
+          REPOSITORY_PATH: pr
+          OWNER_CHECKER_REPOSITORY: ${{ github.repository }}
+          EXPERIMENTAL_CHECKS: "avoid-shadowing"
+
+  request:
+    name: Request
+    runs-on: ubuntu-24.04
+    if: github.repository_owner == 'NiREvil'
+    steps:
+      - uses: cachix/install-nix-action@08dcb3a5e62fa31e2da3d490afc4176ef55ecd72 
+
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 
+
+      - uses: actions/create-github-app-token@c1a285145b9d317df6ced56c09f525b5c2b6f755 
+        id: app-token
+        with:
+          app-id: ${{ vars.OWNER_APP_ID }}
+          private-key: ${{ secrets.OWNER_APP_PRIVATE_KEY }}
+
+      - name: Build review request package
+        run: nix-build ci -A requestReviews
+
+      - name: Request reviews
+        run: result/bin/request-code-owner-reviews.sh ${{ github.repository }} ${{ github.event.number }} "$OWNERS_FILE"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
