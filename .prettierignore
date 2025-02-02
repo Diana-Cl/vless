@@ -1,19 +1,25 @@
+# The files we don't want to format
 ## Specific directories
+
 *.lock
 *.log
 .env
 .env.*
-.github/workflows/prettier.yml
 dist/
 build/
 Hiddify/
 node_modules/
 DNS over HTTPS/
 boringtun-boringtun-cli-0.5.2/
+.github/workflows/prettier.yml
 
-## The files we don't want to format
+
 warp.json
 result.csv
+.eslintignore
+.prettierrc.js
+.eslintrc.js
+.eslintrc.js
 package.json
 pyproject.toml
 package-lock.json
