@@ -1,73 +1,66 @@
 name: Spring
 
 on:
-  # Trigger on push events to specific file types
   push:
-    branches: [ "main" ]
+    branches: ['main']
     paths:
-      - '**/spring.*'  # 'spring' in any directory and all types
+      - '**/spring.*'
       - 'edge/assets/*.json'
   schedule:
-    - cron: '0 */3 * * *'  # Runs every 3 hours
-  # Allow manual triggering of the workflow
+    - cron: '0 */4 * * *'
   workflow_dispatch:
 
-# Define the jobs to run
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch full history
-          submodules: 'recursive'  # Include submodules
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use PAT for authentication
+          fetch-depth: 0
+          submodules: 'recursive'
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 2: Set up Python
+      # Set up Python environments
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'  # Use Python 3.12
-          cache: pip  # Enable pip caching
-          architecture: x64  # Use 64-bit architecture
+          python-version: '3.13'
+          cache: pip
+          architecture: x64
 
-      # Step 3: Cache Python dependencies
+      # Cache Python shits
       - name: Cache Python packages
         uses: actions/cache@v4
         with:
-          path: ~/.cache/pip  # Cache directory
-          key: ${{ runner.os }}-pip-${{ hashFiles('edge/requirements.txt') }}  # Cache key
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
-            ${{ runner.os }}-pip-  # Fallback cache keys
+            ${{ runner.os }}-pip-
 
-      # Step 4: Install Python dependencies
+      # install Python ip tools
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip || exit 1
           pip install -r edge/requirements.txt || exit 1
 
-      # Step 5: Run the spring.py script
-      - name: Run spring.py to fetch Warp IPs
-        run: |
-          python edge/spring.py || exit 1
+      # Run spring to fetch warp IP's and create wireguard configurations
+      - name: Run python
+        run: python edge/spring.py
 
-      # Step 6: Commit and push changes if there are any
-      - name: Commit and push if changes are detected
+      # Commit and push if chanes
+      - name: Commit and push if changed
         run: |
           git config --local user.name "Diana-Cl"
           git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
           git add *.json
-
-          # Check if there are changes to commit
-          if ! git diff --quiet || ! git diff --staged --quiet; then
-            git commit -m "Task done $(TZ='Asia/Tehran' date '+%H:%M:%S')" \
-                       -m "WireGuard private key, addresses, reserved, and all IPs have been renewed."
+          git diff --quiet && git diff --staged --quiet || (
+            git commit -m "Task done $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireuard private key, addresses, reserved and all IPs have been renewed"
             git -c author.name="Diana-Cl" -c author.email="135276904+Diana-Cl@users.noreply.github.com" \
                 -c committer.name="github-actions[bot]" -c committer.email="41898282+github-actions[bot]@users.noreply.github.com" \
                 commit --amend --no-edit
-            git push || exit 1
-          else
-            echo "No changes detected. Skipping commit and push."
-          fi
+          )
+          git push
+          
