@@ -22,52 +22,45 @@
     ],
     "servers": [
       {
-        "address": "udp://1.1.1.1",
-        "address_resolver": "local-dns",
-        "detour": "proxy",
-        "tag": "proxy-dns"
+        "type": "tcp",
+        "tag": "proxy-dns",
+        "server": "185.228.168.9",
+        "domain_resolver": "local-dns",
+        "detour": "proxy"
       },
       {
-        "address": "8.8.8.8",
-        "detour": "direct",
-        "tag": "local-dns"
+        "type": "tcp",
+        "tag": "local-dns",
+        "server": "8.8.4.4",
+        "detour": "direct"
       },
       {
-        "address": "rcode://success",
-        "tag": "block"
-      },
-      {
-        "address": "local",
-        "detour": "direct",
-        "tag": "direct-dns"
+        "type": "local",
+        "tag": "direct-dns",
+        "detour": "direct"
       }
     ],
     "strategy": "prefer_ipv4"
   },
-  "inbounds": [
+   "inbounds": [
     {
-      "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
-      "auto_route": true,
-      "endpoint_independent_nat": false,
-      "mtu": 1480,
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 2080
-        }
-      },
-      "sniff": true,
-      "stack": "system",
+      "type": "tun",
+      "tag": "tun-in",
+      "address": [
+        "172.19.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "mtu": 1500,
+      "stack": "mixed",
       "strict_route": true,
-      "type": "tun"
+      "auto_route": true,
+      "endpoint_independent_nat": false
     },
     {
-      "listen": "127.0.0.1",
-      "listen_port": 2080,
-      "sniff": true,
       "type": "mixed",
-      "users": []
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2080
     }
   ],
   "outbounds": [
@@ -80,22 +73,14 @@
     },
     {
       "tag": "auto",
+      "type": "urltest",
       "outbounds": [],
       "tolerance": 50,
-      "type": "urltest",
       "url": "https://www.gstatic.com/generate_204"
     },
     {
       "tag": "direct",
       "type": "direct"
-    },
-    {
-      "tag": "dns-out",
-      "type": "dns"
-    },
-    {
-      "tag": "block",
-      "type": "block"
     }
   ],
   "route": {
@@ -104,61 +89,68 @@
     "final": "proxy",
     "rule_set": [
       {
-        "download_detour": "direct",
-        "format": "binary",
         "tag": "geosite-ads",
         "type": "remote",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs"
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
+        "download_detour": "direct"
       },
       {
-        "download_detour": "direct",
-        "format": "binary",
         "tag": "geosite-private",
         "type": "remote",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs"
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
+        "download_detour": "direct"
       },
       {
-        "download_detour": "direct",
-        "format": "binary",
         "tag": "geosite-ir",
         "type": "remote",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ir.srs"
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ir.srs",
+        "download_detour": "direct"
       },
       {
-        "download_detour": "direct",
-        "format": "binary",
         "tag": "geoip-private",
         "type": "remote",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs"
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs",
+        "download_detour": "direct"
       },
       {
-        "download_detour": "direct",
-        "format": "binary",
         "tag": "geoip-ir",
         "type": "remote",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/ir.srs"
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/ir.srs",
+        "download_detour": "direct"
       }
     ],
     "rules": [
       {
+        "action": "sniff",
+        "timeout": "1s"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
         "clash_mode": "Direct",
-        "outbound": "direct"
+        "action": "resolve",
+        "strategy": "prefer_ipv4"
       },
       {
         "clash_mode": "Global",
-        "outbound": "proxy"
+        "action": "route-options",
+        "override_address": "1.1.1.1",
+        "override_port": 443
       },
       {
-        "outbound": "dns-out",
-        "protocol": "dns"
+        "rule_set": ["geoip-private", "geosite-private", "geosite-ir", "geoip-ir"],
+        "action": "direct"
       },
       {
-        "outbound": "direct",
-        "rule_set": ["geoip-private", "geosite-private", "geosite-ir", "geoip-ir"]
-      },
-      {
-        "outbound": "block",
-        "rule_set": ["geosite-ads"]
+        "rule_set": ["geosite-ads"],
+        "action": "reject"
       }
     ]
   }
