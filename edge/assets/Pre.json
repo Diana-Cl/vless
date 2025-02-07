@@ -115,14 +115,14 @@
     {
       "tag": "proxy",
       "type": "selector",
-      "outbounds": ["⚪️Tehran", "🟡Berlin"],
-      "default": "🟡Berlin",
+      "outbounds": ["wg-tehran", "wg-berlin"],
+      "default": "wg-berlin",
       "interrupt_exist_connections": false
     },
     {
       "tag": "auto",
       "type": "urltest",
-      "outbounds": ["⚪️Tehran", "🟡Berlin"],
+      "outbounds": ["wg-tehran", "wg-berlin"],
       "tolerance": 50,
       "url": "https://www.gstatic.com/generate_204"
     },
