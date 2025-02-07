@@ -48,6 +48,7 @@
     ],
     "strategy": "prefer_ipv4"
   },
+  "endpoints": [],
   "inbounds": [
     {
       "type": "tun",
@@ -74,16 +75,18 @@
       "tag": "proxy",
       "type": "selector",
       "outbounds": [
-        "\u26aa\ufe0fTehran",
-        "\ud83d\udfe1Berlin"
+        "wg-tehran",
+        "wg-berlin"
       ],
-      "default": "\ud83d\udfe1Berlin",
+      "default": "wg-berlin",
       "interrupt_exist_connections": false
     },
     {
       "tag": "auto",
       "type": "urltest",
       "outbounds": [
+        "wg-tehran",
+        "wg-berlin",
         "\u26aa\ufe0fTehran",
         "\ud83d\udfe1Berlin"
       ],
@@ -99,13 +102,13 @@
         "172.16.0.2/32",
         "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
       ],
-      "private_key": "OKWwpINDh7xbORrQ/45yIdi8Q3gCdBYj6BN3ofUgfHM=",
+      "private_key": "ODpMX0c+ZkiG1Ts1pNDAm8kbEgsXQNdJBxIItA5nfGg=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1300,
       "reserved": [
-        15,
-        36,
-        70
+        45,
+        197,
+        143
       ],
       "detour": "direct",
       "workers": 2
@@ -119,13 +122,13 @@
         "172.16.0.2/32",
         "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
       ],
-      "private_key": "QCz7cAzWfxNsRcfC5Xbr0+3nmf7XJzZ9rS7rzZZkZVQ=",
+      "private_key": "KPEz4KmtofhMNQtSfsMQVNZmx3wrqO6p++lXhqM9UGE=",
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "mtu": 1300,
       "reserved": [
-        126,
-        228,
-        148
+        57,
+        210,
+        215
       ],
       "detour": "\u26aa\ufe0fTehran",
       "workers": 2
