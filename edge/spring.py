@@ -97,10 +97,10 @@ def toSingBox(tag, clean_ip, detour):
                       "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
                       "reserved": data["config"]["reserved"],
                       "allowed_ips": ["0.0.0.0/0", "::/0"],
-                      "detour": f"{detour}",
-                      "workers": 2,
                     }
-                  ]
+                  ],
+                  "detour": f"{detour}",
+                  "workers": 2,
                 }
 
             if os.path.exists("api.sh"):
@@ -123,15 +123,15 @@ def export_SingBox(t_ips):
 
     data["endpoints"][1]["endpoints"].extend([IR_TAG, DE_TAG])
 
-    tehran_wg = toSingBox(IR_TAG, t_ips[0], "direct")
-    if tehran_wg:
-        data["endpoints"].insert(2, tehran_wg)
+    wg_tehran = toSingBox(IR_TAG, t_ips[0], "direct")
+    if wg_tehran:
+        data["endpoints"].insert(2, wg_tehran)
     else:
         print(f"Failed to generate {IR_TAG} configuration")
 
-    berlin_wg = toSingBox(DE_TAG, t_ips[1], IR_TAG)
+    wg_berlin = toSingBox(DE_TAG, t_ips[1], IR_TAG)
     if berlin_wg:
-        data["endpoints"].insert(3, berlin_wg)
+        data["endpoints"].insert(3, wg_berlin)
     else:
         print(f"Failed to generate {DE_TAG} configuration")
 
