@@ -84,24 +84,21 @@ def toSingBox(tag, clean_ip, detour):
             wg = {
                 "tag": tag,
                 "type": "wireguard",
-                "address": [
-                    "172.16.0.2/32",
-                    "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
-                  ],
-                  "private_key": f"{data['private_key']}",
-                  "mtu": 1300,
-                  "peers": [
+                "address": ["172.16.0.2/32", "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"],
+                "private_key": f"{data['private_key']}",
+                "mtu": 1300,
+                "peers": [
                     {
-                      "address": f"{clean_ip.split(':')[0]}",
-                      "port": int(clean_ip.split(":")[1]),
-                      "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-                      "reserved": data["config"]["reserved"],
-                      "allowed_ips": ["0.0.0.0/0", "::/0"],
+                        "address": f"{clean_ip.split(':')[0]}",
+                        "port": int(clean_ip.split(":")[1]),
+                        "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                        "reserved": data["config"]["reserved"],
+                        "allowed_ips": ["0.0.0.0/0", "::/0"],
                     }
-                  ],
-                  "detour": f"{detour}",
-                  "workers": 2,
-                }
+                ],
+                "detour": f"{detour}",
+                "workers": 2,
+            }
 
             if os.path.exists("api.sh"):
                 os.remove("api.sh")

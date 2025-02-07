@@ -44,33 +44,30 @@
   },
   "endpoints": [],
   "inbounds": [
-      {
+    {
       "type": "direct",
       "tag": "dns-in",
       "listen": "0.0.0.0",
       "listen_port": 6450,
       "override_address": "1.1.1.1",
       "override_port": 53
-      },
-      {
+    },
+    {
       "type": "tun",
       "tag": "tun-in",
-      "address": [
-          "172.18.0.1/28",
-          "fdfe:dcba:9876::1/126"
-      ],
+      "address": ["172.18.0.1/28", "fdfe:dcba:9876::1/126"],
       "mtu": 1500,
       "auto_route": true,
       "endpoint_independent_nat": true,
       "stack": "mixed"
-      },
-      {
+    },
+    {
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "0.0.0.0",
       "listen_port": 2080
-      }
-    ],
+    }
+  ],
   "outbounds": [
     {
       "tag": "proxy",
