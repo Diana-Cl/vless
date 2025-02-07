@@ -26,16 +26,16 @@
     ],
     "servers": [
       {
-        "type": "https",
+        "type": "tcp",
         "tag": "proxy-dns",
-        "server": "208.67.222.222",
+        "server": "185.228.168.9",
         "domain_resolver": "local-dns",
         "detour": "proxy"
       },
       {
-        "type": "udp",
+        "type": "tcp",
         "tag": "local-dns",
-        "server": "8.8.8.8",
+        "server": "8.8.4.4",
         "detour": "direct"
       },
       {
@@ -98,7 +98,7 @@
         "172.19.0.1/30",
         "fdfe:dcba:9876::1/126"
       ],
-      "mtu": 1480,
+      "mtu": 1500,
       "stack": "gvisor",
       "strict_route": true,
       "auto_route": true,
