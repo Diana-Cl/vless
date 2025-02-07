@@ -84,19 +84,24 @@ def toSingBox(tag, clean_ip, detour):
             wg = {
                 "tag": tag,
                 "type": "wireguard",
-                "server": f"{clean_ip.split(':')[0]}",
-                "server_port": int(clean_ip.split(":")[1]),
-                "local_address": [
+                "address": [
                     "172.16.0.2/32",
-                    "2606:4700:110:8735:bb29:91bc:1c82:aa73/128",
-                ],
-                "private_key": f"{data['private_key']}",
-                "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-                "mtu": 1300,
-                "reserved": data["config"]["reserved"],
-                "detour": f"{detour}",
-                "workers": 2,
-            }
+                    "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
+                  ],
+                  "private_key": f"{data['private_key']}",
+                  "mtu": 1300,
+                  "peers": [
+                    {
+                      "address": f"{clean_ip.split(':')[0]}",
+                      "port": int(clean_ip.split(":")[1]),
+                      "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                      "reserved": data["config"]["reserved"],
+                      "allowed_ips": ["0.0.0.0/0", "::/0"],
+                      "detour": f"{detour}",
+                      "workers": 2,
+                    }
+                  ]
+                }
 
             if os.path.exists("api.sh"):
                 os.remove("api.sh")
@@ -116,17 +121,17 @@ def export_SingBox(t_ips):
     with open(template_path, "r") as f:
         data = json.load(f)
 
-    data["outbounds"][1]["outbounds"].extend([IR_TAG, DE_TAG])
+    data["endpoints"][1]["endpoints"].extend([IR_TAG, DE_TAG])
 
     tehran_wg = toSingBox(IR_TAG, t_ips[0], "direct")
     if tehran_wg:
-        data["outbounds"].insert(2, tehran_wg)
+        data["endpoints"].insert(2, tehran_wg)
     else:
         print(f"Failed to generate {IR_TAG} configuration")
 
     berlin_wg = toSingBox(DE_TAG, t_ips[1], IR_TAG)
     if berlin_wg:
-        data["outbounds"].insert(3, berlin_wg)
+        data["endpoints"].insert(3, berlin_wg)
     else:
         print(f"Failed to generate {DE_TAG} configuration")
 
