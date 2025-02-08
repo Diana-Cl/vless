@@ -14,10 +14,10 @@
         "server_port": 0
       },
       {
-        "type": "udp",
+        "type": "tcp",
         "tag": "local-dns",
         "detour": "direct",
-        "server": "1.1.1.1",
+        "server": "8.8.4.4",
         "server_port": 0
       },
       {
