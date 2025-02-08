@@ -80,18 +80,20 @@ def toSingBox(tag, clean_ip, detour):
         try:
             data = json.loads(output)
             wg = {
-                "tag": tag,
                 "type": "wireguard",
+                "tag": tag,
+                "name": "wg0",
+                "mtu": 1280,
                 "address": ["172.16.0.2/32", "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"],
                 "private_key": f"{data['private_key']}",
-                "mtu": 1300,
                 "peers": [
                     {
-                    "address": f"{clean_ip.split(':')[0]}",
-                    "port": int(clean_ip.split(":")[1]),
-                    "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-                    "reserved": data["config"]["reserved"],
-                    "allowed_ips": ["0.0.0.0/0", "::/0"],
+                        "address": f"{clean_ip.split(':')[0]}",
+                        "port": int(clean_ip.split(":")[1]),
+                        "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                        "allowed_ips": ["0.0.0.0/0", "::/0"],
+                        "persistent_keepalive_interval": 30,
+                        "reserved": data["config"]["reserved"],
                     }
                 ],
                 "detour": f"{detour}",
@@ -181,7 +183,7 @@ def main():
         # Hiddify profile shits
         title = (
             "//profile-title: base64:"
-            + base64.b64encode("Freedom to Dream 💛✨".encode("utf-8")).decode("utf-8")
+            + base64.b64encode("Freedom to Dream 🤍".encode("utf-8")).decode("utf-8")
             + "\n"
         )
         update_interval = "//profile-update-interval: 4\n"
@@ -211,3 +213,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
