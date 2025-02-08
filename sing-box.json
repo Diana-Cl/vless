@@ -5,18 +5,24 @@
       {
         "clash_mode": "Global",
         "server": "proxy-dns",
-        "source_ip_cidr": ["172.19.0.0/30"]
+        "source_ip_cidr": [
+          "172.19.0.0/30"
+        ]
       },
       {
         "server": "proxy-dns",
-        "source_ip_cidr": ["172.19.0.0/30"]
+        "source_ip_cidr": [
+          "172.19.0.0/30"
+        ]
       },
       {
         "clash_mode": "Direct",
         "server": "direct-dns"
       },
       {
-        "rule_set": ["geosite-ir"],
+        "rule_set": [
+          "geosite-ir"
+        ],
         "server": "direct-dns"
       }
     ],
@@ -42,22 +48,89 @@
     ],
     "strategy": "prefer_ipv4"
   },
-  "endpoints": [],
+  "endpoints": [
+    {
+      "tag": "\u26aa\ufe0fTehran",
+      "type": "wireguard",
+      "address": [
+        "172.16.0.2/32",
+        "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
+      ],
+      "private_key": "iHEMDbR1Ak7Iziusf4HCuLqFX5RufEtwQ1+wJR6UjnQ=",
+      "mtu": 1300,
+      "peers": [
+        {
+          "address": "188.114.96.214",
+          "port": 8854,
+          "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+          "reserved": [
+            86,
+            81,
+            173
+          ],
+          "allowed_ips": [
+            "0.0.0.0/0",
+            "::/0"
+          ]
+        }
+      ],
+      "detour": "direct",
+      "workers": 2
+    },
+    {
+      "tag": "\ud83d\udfe1Berlin",
+      "type": "wireguard",
+      "address": [
+        "172.16.0.2/32",
+        "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"
+      ],
+      "private_key": "QLWhrWRo+6qjJ5XPv4sXLXViwFXjvwR/l+vuDjGrJ2I=",
+      "mtu": 1300,
+      "peers": [
+        {
+          "address": "188.114.99.22",
+          "port": 4233,
+          "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+          "reserved": [
+            117,
+            80,
+            194
+          ],
+          "allowed_ips": [
+            "0.0.0.0/0",
+            "::/0"
+          ]
+        }
+      ],
+      "detour": "\u26aa\ufe0fTehran",
+      "workers": 2
+    }
+  ],
   "inbounds": [
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "0.0.0.0",
+      "listen_port": 6450,
+      "override_address": "1.1.1.1",
+      "override_port": 53
+    },
     {
       "type": "tun",
       "tag": "tun-in",
-      "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
+      "address": [
+        "172.18.0.1/28",
+        "fdfe:dcba:9876::1/126"
+      ],
       "mtu": 1500,
-      "stack": "mixed",
-      "strict_route": true,
       "auto_route": true,
-      "endpoint_independent_nat": false
+      "endpoint_independent_nat": true,
+      "stack": "mixed"
     },
     {
       "type": "mixed",
       "tag": "mixed-in",
-      "listen": "127.0.0.1",
+      "listen": "0.0.0.0",
       "listen_port": 2080
     }
   ],
@@ -65,45 +138,30 @@
     {
       "tag": "proxy",
       "type": "selector",
-      "outbounds": ["wg-tehran", "wg-berlin"],
-      "default": "wg-berlin",
+      "outbounds": [
+        "wg_tehran",
+        "wg_berlin",
+        "\u26aa\ufe0fTehran",
+        "\ud83d\udfe1Berlin"
+      ],
+      "default": "wg_berlin",
       "interrupt_exist_connections": false
     },
     {
       "tag": "auto",
       "type": "urltest",
-      "outbounds": ["wg-tehran", "wg-berlin", "\u26aa\ufe0fTehran", "\ud83d\udfe1Berlin"],
+      "outbounds": [
+        "wg_tehran",
+        "wg_berlin",
+        "\u26aa\ufe0fTehran",
+        "\ud83d\udfe1Berlin"
+      ],
       "tolerance": 50,
       "url": "https://www.gstatic.com/generate_204"
     },
     {
-      "tag": "\u26aa\ufe0fTehran",
-      "type": "wireguard",
-      "server": "188.114.96.214",
-      "server_port": 8854,
-      "local_address": ["172.16.0.2/32", "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"],
-      "private_key": "ODpMX0c+ZkiG1Ts1pNDAm8kbEgsXQNdJBxIItA5nfGg=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1300,
-      "reserved": [45, 197, 143],
-      "detour": "direct",
-      "workers": 2
-    },
-    {
-      "tag": "\ud83d\udfe1Berlin",
-      "type": "wireguard",
-      "server": "188.114.99.22",
-      "server_port": 4233,
-      "local_address": ["172.16.0.2/32", "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"],
-      "private_key": "KPEz4KmtofhMNQtSfsMQVNZmx3wrqO6p++lXhqM9UGE=",
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1300,
-      "reserved": [57, 210, 215],
-      "detour": "\u26aa\ufe0fTehran",
-      "workers": 2
-    },
-    {
       "tag": "direct",
+      "domain_strategy": "prefer_ipv4",
       "type": "direct"
     }
   ],
@@ -169,11 +227,18 @@
         "override_port": 443
       },
       {
-        "rule_set": ["geoip-private", "geosite-private", "geosite-ir", "geoip-ir"],
+        "rule_set": [
+          "geoip-private",
+          "geosite-private",
+          "geosite-ir",
+          "geoip-ir"
+        ],
         "action": "direct"
       },
       {
-        "rule_set": ["geosite-ads"],
+        "rule_set": [
+          "geosite-ads"
+        ],
         "action": "reject"
       }
     ]
