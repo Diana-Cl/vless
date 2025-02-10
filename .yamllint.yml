@@ -12,6 +12,7 @@ ignore: |
   node_modules/
   .github/
   .git/
+  sub/
   dist/
   edge/
   boringtun-boringtun-cli-0.5.2/
