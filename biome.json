@@ -4,12 +4,29 @@
     "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineWidth": 120
+    "lineWidth": 100
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true
     }
+  },
+  "files": {
+    "ignore": [
+      "node_modules",
+      "dist",
+      "build",
+      ".git",
+      "warp.json",
+      "sub/",
+      "DNS over HTTPS/",
+      "boringtun-boringtun-cli-0.5.2/",
+      "Hiddify/",
+      "packag.json",
+      "package-lock.json",
+      "*.min.js",
+      "coverage"
+    ]
   }
 }
