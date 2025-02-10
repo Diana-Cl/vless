@@ -16,3 +16,6 @@ ignore: |
   real address generator/
   DNS over HTTPS/
   edge/
+  .github/workflows/nixOS.yml
+  .github/workflows/prettier.yml
+  .github/workflows/Preprocessor.yml
