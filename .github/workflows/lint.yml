@@ -8,18 +8,44 @@ on:
   workflow_dispatch:
 
 jobs:
-  format-lint:
-    name: Format & Lint Code
+  formatting:
+    name: Code Formatting
     runs-on: ubuntu-24.04
+    timeout-minutes: 25
+
+    # Define required permissions
+    permissions:
+      contents: write
+      pull-requests: write
+
+    strategy:
+      fail-fast: false
 
     steps:
-      - name: Checkout repository
+      # Check out the repository code
+      - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: 'recursive' # Include all submodules
+          token: ${{ secrets.GITHUB_TOKEN }}
 
+      # Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          architecture: x64
+
+      # Cache Python dependencies
+      - name: Cache Python packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
