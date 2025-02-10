@@ -1,24 +1,24 @@
 {
   "name": "@vless/vless",
   "version": "1.0.0",
-  "description": "$$\\color{#a5a5a5} \\Huge \\text{\\R $\\sum{\\vil_t = \\mathbb{N108}\\infty}$}$$",
-  "main": ".prettierrc.js",
+  "description": "VLESS project",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NiREvil/vless.git"
+    "url": "git+https://github.com/Diana-Cl/vless.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NiREvil/vless/issues"
+    "url": "https://github.com/Diana-Cl/vless/issues"
   },
-  "homepage": "https://github.com/NiREvil/vless#readme",
+  "homepage": "https://github.com/Diana-Cl/vless#readme",
   "dependencies": {
-    "package-lock.json": "^1.0.0",
     "prettier": "^3.4.2"
   },
   "devDependencies": {
