@@ -29,6 +29,9 @@ jobs:
       - name: Install formatters & linters
         run: |
           npm install -g prettier eslint stylelint
+
+      - name: Install formatters 2
+          python -m pip install --upgrade pip
           pip install black flake8 yamllint
 
       - name: Run Prettier (JavaScript, JSON, Markdown)
