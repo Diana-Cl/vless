@@ -1,0 +1,14 @@
+{
+  "name": "@vless/vless",
+  "version": "1.0.0",
+  "description": "VLESS project",
+  "main": "index.js",
+  "scripts": {
+    "format": "biome format .",
+    "lint": "biome lint .",
+    "check": "biome check --apply ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.3"
+  }
+}
