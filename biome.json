@@ -24,7 +24,7 @@
       "DNS over HTTPS/",
       "boringtun-boringtun-cli-0.5.2/",
       "real address generator/",
-      "Hiddify/",
+      "hiddify/",
       "packag.json",
       "package-lock.json",
       "*.min.js",
