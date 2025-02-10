@@ -2,8 +2,8 @@ name: Code Formatting and Style
 
 on:
   # Trigger on push events to specific file types
-  push:
-    paths:
+#  push:
+#    paths:
       - '**/*.js' # JavaScript files in any directory.
       - '**/*.py' # Python
       - '**/*.md' # Markdown
@@ -11,13 +11,13 @@ on:
       - '**/*.yml' # YAML
       - '**/*.json' # JSON
       - '**/*.html' # HTML
-    branches:
+#    branches:
       - main
-  pull_request:
-    branches:
+#  pull_request:
+#    branches:
       - main
   # Allow manual triggering of the workflow
-  workflow_dispatch:
+#  workflow_dispatch:
 
 # Environment variables used across jobs
 env:
