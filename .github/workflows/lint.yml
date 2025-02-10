@@ -47,7 +47,8 @@ jobs:
         run: flake8 . || true
 
       - name: Run Stylelint
-        run: stylelint "**/*.{css,scss}" --fix || true
+        run: npx stylelint "**/*.{css,scss}" --fix || true
+
 
       - name: Run yamllint
         run: yamllint -c .yamllint.yml .
