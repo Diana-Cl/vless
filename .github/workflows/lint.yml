@@ -33,17 +33,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci
+          npm install
           pip install black flake8 yamllint
 
       - name: Run Prettier
         run: npx prettier --write "**/*.{js,json,md,toml}"
 
-      - name: Run Black
-        run: black .
-
       - name: Run ESLint
         run: npx eslint . --fix || true
+
 
       - name: Run Flake8
         run: flake8 . || true
