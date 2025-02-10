@@ -10,12 +10,10 @@ rules:
 
 ignore: |
   node_modules/
+  .github/
   .git/
   dist/
+  edge/
   boringtun-boringtun-cli-0.5.2/
   real address generator/
   DNS over HTTPS/
-  edge/
-  .github/workflows/nixOS.yml
-  .github/workflows/prettier.yml
-  .github/workflows/Preprocessor.yml
