@@ -5,10 +5,9 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  workflow_dispatch:
 
 permissions:
-  contents: write  # Add permissions for pushing changes
+  contents: write
 
 jobs:
   format-lint:
@@ -19,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for git operations
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -33,11 +32,11 @@ jobs:
 
       - name: Install formatters & linters
         run: |
-          npm install -g prettier eslint stylelint
+          npm install -g prettier prettier-plugin-toml eslint stylelint
           pip install black flake8 yamllint
 
       - name: Run Prettier
-        run: prettier --write "**/*.{js,json,md}"
+        run: prettier --write "**/*.{js,json,md,toml}"
 
       - name: Run Black
         run: black .
