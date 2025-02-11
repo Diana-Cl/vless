@@ -49,31 +49,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install black[d] flake8 isort
 
-
-      - name: Cache Node.js and Python dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm ~/.cache/pip
-          key: ${{ runner.os }}-node-python-${{ hashFiles('**/package-lock.json', '**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-node-python-
-
-      - name: Install Prettier and pre-commit hooks
+      - name: Install Prettier
         run: |
           npm install prettier@${{ env.PRETTIER_VERSION }}
-          npm install prettier-plugin-toml
-          pip install pre-commit
-          pre-commit install
 
       - name: Run Black and Prettier formatters
         run: |
           black --check . || black .
-          prettier --check . || prettier --write .
+          npx prettier --check . || npx prettier --write .
 
       - name: Validate configuration files
         run: |
-          prettier --check .prettierrc* || echo "Prettier config validation failed"
-          black --check pyproject.toml || echo "Black config validation failed"
+          if [ -f .prettierrc ]; then
+            npx prettier --check .prettierrc* || echo "Prettier config validation failed"
+          fi
+          if [ -f pyproject.toml ]; then
+            black --check pyproject.toml || echo "Black config validation failed"
+          fi
 
       - name: Commit changes if any
         run: |
@@ -88,9 +80,9 @@ jobs:
           echo "Formatting Status Report"
           echo "======================="
           if [ ${{ job.status }} == 'success' ]; then
-            echo "✅ All files are properly formatted!"
+            echo " All files are properly formatted!"
           else
-            echo "⚠️ Some files needed formatting. Check the commits for changes."
+            echo " Some files needed formatting. Check the commits for changes."
           fi
 
       - name: Comment on PR
@@ -99,8 +91,8 @@ jobs:
         with:
           script: |
             const formatting_status = '${{ job.status }}' === 'success' 
-              ? '✅ Code formatting checks passed!'
-              : '⚠️ Some files needed formatting. Please check the commits for changes.';
+              ? ' Code formatting checks passed!'
+              : ' Some files needed formatting. Please check the commits for changes.';
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -108,3 +100,4 @@ jobs:
               repo: context.repo.repo,
               body: formatting_status
             });
+            
