@@ -1,6 +1,8 @@
 extends: default
 
 rules:
+  indentation: 2
+  empty-lines: 1
   line-length:
     max: 120
     level: warning
@@ -18,3 +20,5 @@ ignore: |
   boringtun-boringtun-cli-0.5.2/
   real address generator/
   DNS over HTTPS/
+
+  extends: default
