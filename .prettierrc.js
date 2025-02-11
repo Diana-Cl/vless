@@ -1,11 +1,15 @@
 module.exports = {
-  printWidth: 100,
+  printWidth: 120,
   tabWidth: 2,
   useTabs: false,
   semi: true,
   singleQuote: true,
-  trailingComma: "all",
+  trailingComma: 'all',
   bracketSpacing: true,
-  arrowParens: "avoid",
+  arrowParens: 'avoid',
   plugins: ["prettier-plugin-toml"],
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+  },
 };
