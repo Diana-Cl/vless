@@ -39,12 +39,16 @@ jobs:
           submodules: 'recursive'
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
       - name: Set up Node.js and Python
         run: |
-          nvm install ${{ env.NODE_VERSION }}
-          nvm use ${{ env.NODE_VERSION }}
           python -m pip install --upgrade pip
           pip install black[d] flake8 isort
+
 
       - name: Cache Node.js and Python dependencies
         uses: actions/cache@v4
