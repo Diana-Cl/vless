@@ -1,0 +1,10 @@
+[tool.black]
+line_length = 100
+preview = True
+exclude = '''
+    /(
+        \.git
+        |__pycache__
+        |venv
+    )/
+'''
