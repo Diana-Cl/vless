@@ -1,72 +1,106 @@
-name: Code Quality Assurance
+name: Code Formatting and Style
 
 on:
   push:
     paths:
-      - '**/*.{js,py,md,css,yml,json,html}'
-    branches: [main]
+      - '**/*.js'
+      - '**/*.py'
+      - '**/*.md'
+      - '**/*.css'
+      - '**/*.yml'
+      - '**/*.json'
+      - '**/*.html'
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 env:
   NODE_VERSION: '20'
   PYTHON_VERSION: '3.12'
   PRETTIER_VERSION: '3.4.2'
-  BLACK_VERSION: '24.4.2'
 
 jobs:
-  code-quality:
-    name: Lint & Format
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+  formatting:
+    name: Code Formatting
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
     permissions:
       contents: write
-      statuses: write
       pull-requests: write
-      checks: write
 
     steps:
-      # ... other steps remain the same ...
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: 'recursive'
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Quality Report
+      - name: Set up Node.js and Python
+        run: |
+          nvm install ${{ env.NODE_VERSION }}
+          nvm use ${{ env.NODE_VERSION }}
+          python -m pip install --upgrade pip
+          pip install black[d] flake8 isort
+
+      - name: Cache Node.js and Python dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm ~/.cache/pip
+          key: ${{ runner.os }}-node-python-${{ hashFiles('**/package-lock.json', '**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-node-python-
+
+      - name: Install Prettier and pre-commit hooks
+        run: |
+          npm install prettier@${{ env.PRETTIER_VERSION }}
+          npm install prettier-plugin-toml
+          pip install pre-commit
+          pre-commit install
+
+      - name: Run Black and Prettier formatters
+        run: |
+          black --check . || black .
+          prettier --check . || prettier --write .
+
+      - name: Validate configuration files
+        run: |
+          prettier --check .prettierrc* || echo "Prettier config validation failed"
+          black --check pyproject.toml || echo "Black config validation failed"
+
+      - name: Commit changes if any
+        run: |
+          git config --local user.name "actions-user"
+          git config --local user.email "actions-user@example.com"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
+
+      - name: Report formatting status
         if: always()
+        run: |
+          echo "Formatting Status Report"
+          echo "======================="
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "✅ All files are properly formatted!"
+          else
+            echo "⚠️ Some files needed formatting. Check the commits for changes."
+          fi
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
-        env:
-          BLACK_VER: ${{ env.BLACK_VERSION }}
-          PRETTIER_VER: ${{ env.PRETTIER_VERSION }}
         with:
           script: |
-            const { BLACK_VER, PRETTIER_VER } = process.env;
-            const reportDetails = [
-              `• Python formatted with Black ${BLACK_VER}`,
-              `• JavaScript/HTML/CSS formatted with Prettier ${PRETTIER_VER}`,
-              '• Linting performed with Flake8 & ESLint'
-            ].join('\n');
+            const formatting_status = '${{ job.status }}' === 'success' 
+              ? '✅ Code formatting checks passed!'
+              : '⚠️ Some files needed formatting. Please check the commits for changes.';
 
-            try {
-              await github.rest.repos.createCommitStatus({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                sha: context.sha,
-                state: '${{ job.status }}',
-                description: 'Code quality checks completed',
-                context: 'code-quality'
-              });
-            } catch (error) {
-              core.warning(`Failed to create commit status: ${error.message}`);
-            }
-
-            if (context.payload.pull_request) {
-              try {
-                await github.rest.issues.createComment({
-                  issue_number: context.issue.number,
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  body: `### Code Quality Report\n${reportDetails}`
-                });
-              } catch (error) {
-                core.warning(`Failed to create PR comment: ${error.message}`);
-              }
-            }
-            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: formatting_status
+            });
