@@ -1,4 +1,4 @@
-name: Code Formatting and Style
+name: DEV
 
 on:
   push:
