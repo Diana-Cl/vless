@@ -4,8 +4,8 @@ module.exports = {
   useTabs: false,
   semi: true,
   singleQuote: true,
-  trailingComma: "all",
+  trailingComma: 'all',
   bracketSpacing: true,
-  arrowParens: "avoid",
-  plugins: ["prettier-plugin-toml"],
+  arrowParens: 'avoid',
+  plugins: ['prettier-plugin-toml'],
 };
