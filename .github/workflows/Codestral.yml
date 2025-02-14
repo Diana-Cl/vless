@@ -68,6 +68,17 @@ jobs:
           fi
         continue-on-error: true
 
+
+        # Commit changes if any
+      - name: Commit changes if any
+        if: failure()
+        run: |
+          git config --local user.name "actions-user"
+          git config --local user.email "actions-user@example.com"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
+        continue-on-error: true
+
       # Validate configuration files
       - name: Validate formatting configs
         run: |
@@ -104,11 +115,18 @@ jobs:
         uses: creyD/prettier_action@v4.3
         with:
           prettier_options: --write **/*.{js,json,html,css,yml,md} --ignore-unknown
-          commit_message: 'style: apply code formatting standards'
-          commit_description: 'Applied automatic formatting using Black and Prettier'
           prettier_version: ${{ env.PRETTIER_VERSION }}
-          only_changed: true
         env:
           token: ${{ secrets.GITHUB_TOKEN }}
+
+
+        # Commit changes if any
+      - name: Commit changes if any
+        if: failure()
+        run: |
+          git config --local user.name "actions-user"
+          git config --local user.email "actions-user@example.com"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
         continue-on-error: true
         
