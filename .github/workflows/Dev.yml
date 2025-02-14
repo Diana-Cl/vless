@@ -1,8 +1,8 @@
 name: DEV
 
-on:
-  push:
-    paths:
+#on:
+#  push:
+#    paths:
       - '**/*.js'
       - '**/*.py'
       - '**/*.md'
@@ -10,12 +10,12 @@ on:
       - '**/*.yml'
       - '**/*.json'
       - '**/*.html'
-    branches:
+#    branches:
       - main
-  pull_request:
-    branches:
+#  pull_request:
+#    branches:
       - main
-  workflow_dispatch:
+#  workflow_dispatch:
 
 env:
   NODE_VERSION: '20'
