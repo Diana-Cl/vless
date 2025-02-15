@@ -3,18 +3,17 @@
 *.log
 .env
 .env.*
-.github/
 dist/
 build/
 Hiddify/
 node_modules/
-DNS over HTTPS/
-boringtun-boringtun-cli-0.5.2/
-
-## The files we don't want to format
 warp.json
-README.md
 result.csv
 package.json
 pyproject.toml
 package-lock.json
+DNS over HTTPS/
+boringtun-boringtun-cli-0.5.2/
+
+## The files we don't want to format
+
