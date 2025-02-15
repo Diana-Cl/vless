@@ -1,4 +1,4 @@
-name: Cpr
+name: CPR
 
 on:
   push:
@@ -17,15 +17,18 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 env:
   NODE_VERSION: '20'
-  PYTHON_VERSION: '3.12'
-  PRETTIER_VERSION: '3.4.2'
+  PYTHON_VERSION: 'latest'
+  PRETTIER_VERSION: 'latest'
 
 jobs:
   formatting-py:
     name: Code Formatting for Python
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
