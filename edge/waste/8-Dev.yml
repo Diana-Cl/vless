@@ -1,21 +1,21 @@
 name: DEV
 
-#on:
+ on:
 #  push:
 #    paths:
-      - '**/*.js'
-      - '**/*.py'
-      - '**/*.md'
-      - '**/*.css'
-      - '**/*.yml'
-      - '**/*.json'
-      - '**/*.html'
+#      - '**/*.js'
+#      - '**/*.py'
+#      - '**/*.md'
+#      - '**/*.css'
+#      - '**/*.yml'
+#      - '**/*.json'
+#      - '**/*.html'
 #    branches:
-      - main
+#      - main
 #  pull_request:
 #    branches:
-      - main
-#  workflow_dispatch:
+#      - main
+  workflow_dispatch:
 
 env:
   NODE_VERSION: '20'
