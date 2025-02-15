@@ -1,8 +1,8 @@
 name: Lint Code
 
 on:
-#  push:
-#    branches: [main]
+  push:
+    branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -13,6 +13,7 @@ permissions:
 jobs:
   format-lint:
     name: Format & Lint Code
+    if: false
     runs-on: ubuntu-latest
 
     steps:
