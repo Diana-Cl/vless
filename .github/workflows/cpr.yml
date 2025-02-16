@@ -31,16 +31,15 @@ jobs:
 
       # Formatting with Black/isort
       - name: Run Black formatter
+        run: black --check . || black .
+
+      - name: Push changes (if any)
         run: |
-          black --check . || black .
           git config user.name "CI Bot"
           git config user.email "ci@example.com"
           git add -A
           git diff --quiet || (git add . && git commit -m "style: auto-format with Black")
-
-
-      - name: Push changes (if any)
-        run: git push
+          git push
 
       - name: Sort imports with isort
         run: |
