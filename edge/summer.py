@@ -1,9 +1,10 @@
-import re
-import os
 import logging
+import os
+import re
+from datetime import datetime
+
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -15,10 +16,10 @@ CHANNELS = {
 
 OUTPUT_DIR = "sub"
 OUTPUT_FILES = {
-    "neko": "nekobox-wg.txt",
     "husi": "husi-wg.txt",
-    "exclave": "exclave-wg.txt",
+    "neko": "nekobox-wg.txt",
     "v2ray": "v2rayng-wg.txt",
+    "exclave": "exclave-wg.txt",
 }
 
 def read_existing_configs(file_path):
