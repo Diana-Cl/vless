@@ -1,132 +1,95 @@
 name: CPR
 
-on:
-  push:
-    paths:
-      - '**/*.js'
-      - '**/*.py'
-      - '**/*.md'
-      - '**/*.css'
-      - '**/*.yml'
-      - '**/*.json'
-      - '**/*.html'
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+on: [push, pull_request, workflow_dispatch] 
 
 env:
-  NODE_VERSION: '20'
-  PYTHON_VERSION: '3.13'
-  PRETTIER_VERSION: '3.4.2'
+  NODE_VERSION: "20"
+  PYTHON_VERSION: "3.12"  # Recommended stable version
+  PRETTIER_VERSION: "3.4.2"
 
 jobs:
   formatting-py:
-    name: Code Formatting for Python
+    name: Python Formatting & Linting
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    strategy:
-      fail-fast: false
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          submodules: 'recursive'
+          submodules: "recursive"
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      # Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: pip
-          architecture: x64
 
-      # Cache Python dependencies
-      - name: Cache Python packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      # Install Python formatting tools
-      - name: Install Python formatting dependencies
+      - name: Install Python tools
         run: |
-          python -m pip install --upgrade pip
-          pip install black[d] flake8 isort
+          pip install black flake8 isort pylint
 
-      # Run Black formatter with error handling
+      # Formatting with Black/isort
       - name: Run Black formatter
         run: |
-          echo "Running Black formatter check..."
-          if ! black --check .; then
-            echo "Formatting required. Applying changes..."
-            black .
-          fi
-        continue-on-error: true
+          black --check . || (black . && exit 1)  # Force fail after formatting
 
-        # Commit changes if any
-      - name: Commit changes if any
-        if: failure()
+      - name: Sort imports with isort
         run: |
-          git config --local user.name "actions-user"
-          git config --local user.email "actions-user@example.com"
+          isort --check . || (isort . && exit 1)
+
+      # Linting
+      - name: Run Flake8
+        run: flake8 . --max-line-length=88 --ignore=E203,W503
+
+      - name: Run Pylint
+        run: pylint **/*.py --fail-under=7.0
+
+      # Commit changes (if any formatting fixes)
+      - name: Commit Python changes
+        if: failure()  # Triggered by formatting fixes
+        run: |
+          git config user.name "CI Bot"
+          git config user.email "ci@example.com"
           git add -A
-          git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
+          git commit -m "style(python): auto-formatting fixes" || true
         continue-on-error: true
-
-      # Validate configuration files
-      - name: Validate formatting configs
-        run: |
-          if [ -f pyproject.toml ]; then
-            black --check pyproject.toml || echo "Black config validation failed"
-          fi
 
   formatting-js:
-    name: Code Formatting for JavaScript
+    name: JavaScript/JSON Formatting & Linting
     runs-on: ubuntu-24.04
     steps:
-      # Check out the repository code
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          submodules: 'recursive' # Include all submodules
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      # Set up Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
 
-          # Install Prettier formatting tools
-      - name: Install Prettier
+      - name: Install Prettier/ESLint
         run: |
-          npm install prettier@${{ env.PRETTIER_VERSION }}
-          npm install prettier-plugin-toml
+          npm install -g prettier@${{ env.PRETTIER_VERSION}} eslint eslint-plugin-json
 
-      # Run Prettier formatter
+      # Formatting
       - name: Run Prettier
-        uses: creyD/prettier_action@v4.3
-        with:
-          prettier_options: --write **/*.{js,json,html,css,yml,md} --ignore-unknown
-          prettier_version: ${{ env.PRETTIER_VERSION }}
-        env:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          prettier --write "**/*.{js,json}" --ignore-unknown
 
-        # Commit changes if any
-      - name: Commit changes if any
+      # Linting
+      - name: Lint JavaScript
+        run: eslint . --ext .js,.json --fix
+
+      - name: Validate JSON syntax
+        run: find . -name "*.json" -exec jsonlint -q {} \;
+
+      # Commit changes
+      - name: Commit JS changes
         if: failure()
         run: |
-          git config --local user.name "actions-user"
-          git config --local user.email "actions-user@example.com"
+          git config user.name "CI Bot"
+          git config user.email "ci@example.com"
           git add -A
-          git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
+          git commit -m "style(js): auto-formatting fixes" || true
         continue-on-error: true
