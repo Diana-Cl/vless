@@ -24,6 +24,7 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+      # Install different tools for different reasons
       - name: Install Python tools
         run: |
           pip install black ruff isort pylint
@@ -37,18 +38,20 @@ jobs:
           git add -A
           git diff --quiet || (git add . && git commit -m "style: auto-format with Black")
 
+
       - name: Push changes (if any)
         if: success()
         run: git push
 
+
+      # Sorts and organizes import statements alphabetically.
       - name: Sort imports with isort
         run: |
           isort --check . || isort . 
 
       # Linting
       - name: Run Ruff (Linter + Auto-Fixer)
-        run: ruff check --fix .
-
+        run: ruff check --fix --unsafe-fixes .
 
       - name: Run Pylint
         run: pylint **/*.py --fail-under=7.0
