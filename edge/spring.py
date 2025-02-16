@@ -1,11 +1,11 @@
-import ipaddress
-import platform
-import subprocess
-import os
-import datetime
 import base64
+import datetime
+import ipaddress
 import json
+import os
+import platform
 import shutil
+import subprocess
 
 IRAN_SYMBOL = "⚪️"
 GERMANY_SYMBOL = "🟡"
@@ -87,14 +87,14 @@ def toSingBox(tag, clean_ip, detour):
                 "address": ["172.16.0.2/32", "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"],
                 "private_key": f"{data['private_key']}",
                 "peers": [
-                    {
-                        "address": f"{clean_ip.split(':')[0]}",
-                        "port": int(clean_ip.split(":")[1]),
-                        "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-                        "allowed_ips": ["0.0.0.0/0", "::/0"],
-                        "persistent_keepalive_interval": 30,
-                        "reserved": data["config"]["reserved"],
-                    }
+                  {
+                    "address": f"{clean_ip.split(':')[0]}",
+                    "port": int(clean_ip.split(":")[1]),
+                    "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                    "allowed_ips": ["0.0.0.0/0", "::/0"],
+                    "persistent_keepalive_interval": 30,
+                    "reserved": data["config"]["reserved"],
+                  }
                 ],
                 "detour": f"{detour}",
                 "workers": 2,
@@ -187,7 +187,7 @@ def main():
             + "\n"
         )
         update_interval = "//profile-update-interval: 4\n"
-        sub_info = "//subscription-userinfo: upload = 805306368000; download = 2576980377600; total = 6012954214400; expire = 1762677732\n"
+        sub_info = "//subscription-userinfo: upload = 800306368000; download = 2576980377600; total = 6012954214400; expire = 1794182399\n"
         profile_web = "//profile-web-page-url: https://github.com/NiREvil\n"
         last_modified = "//last update on: " + formatted_time + "\n"
 
