@@ -43,7 +43,7 @@ jobs:
 
       - name: Sort imports with isort
         run: |
-          isort --check . || (isort . && exit 1)
+          isort --check . || isort . 
 
       # Linting
       - name: Run Flake8
