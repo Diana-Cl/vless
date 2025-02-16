@@ -27,16 +27,16 @@ known_third_party = ["numpy", "pandas"]
 known_first_party = ["my_package"]
 default_section = "THIRDPARTY"
 skip = [
-    "*.lock"
-    "*.log"
-    ".env"
-    ".env.*"
-    ".html"
-    "dist/"
-    "build/"
-    "Hiddify/"
-    "node_modules/"
-    "edge/waste/"
-    "pyproject.toml"
-    "boringtun-boringtun-cli-0.5.2/"
+    "*.lock",
+    "*.log",
+    ".env",
+    ".env.*",
+    ".html",
+    "dist/",
+    "build/",
+    "Hiddify/",
+    "node_modules/",
+    "edge/waste/",
+    "pyproject.toml",
+    "boringtun-boringtun-cli-0.5.2/",
 ]
