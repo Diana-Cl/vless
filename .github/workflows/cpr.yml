@@ -54,8 +54,8 @@ jobs:
       - name: Commit Python changes
         if: failure()  # Triggered by formatting fixes
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
+          git config --global user.name "Diana-Cl"
+          git config --global user.email "135276904+Diana-Cl@users.noreply.github.com"
           git add -A
           git commit -m "style(python): auto-formatting fixes" || true
         continue-on-error: true
