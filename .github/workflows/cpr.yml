@@ -26,7 +26,7 @@ jobs:
 
       - name: Install Python tools
         run: |
-          pip install black flake8 isort pylint
+          pip install black ruff isort pylint
 
       # Formatting with Black/isort
       - name: Run Black formatter
@@ -46,9 +46,8 @@ jobs:
           isort --check . || isort . 
 
       # Linting
-      - name: Run Flake8
-        run: |
-          flake8 . --check . || flake8 . 
+      - name: Run Ruff (Linter + Auto-Fixer)
+        run: ruff check --fix .
 
 
       - name: Run Pylint
