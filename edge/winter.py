@@ -20,7 +20,7 @@ def generate_config(ip_port, index, ip_version):
     return base
 
 def update_config_file():
-    with open('edge/assets/wow_template.json', 'r', encoding='utf-8') as f:
+    with open('edge/assets/wow-template.json', 'r', encoding='utf-8') as f:
         template = f.read()
 
     ips = fetch_ips()
