@@ -2,8 +2,8 @@ name: Code Formatting and Style
 
 on:
   # Trigger on push events to specific file types
-#  push:
-#    paths:
+  push:
+    paths:
       - '**/*.js' # JavaScript files in any directory.
       - '**/*.py' # Python
       - '**/*.md' # Markdown
@@ -11,13 +11,13 @@ on:
       - '**/*.yml' # YAML
       - '**/*.json' # JSON
       - '**/*.html' # HTML
-#    branches:
+    branches:
       - main
-#  pull_request:
-#    branches:
+  pull_request:
+    branches:
       - main
   # Allow manual triggering of the workflow
-#  workflow_dispatch:
+  workflow_dispatch:
 
 # Environment variables used across jobs
 env:
@@ -29,6 +29,7 @@ env:
 jobs:
   formatting:
     name: Code Formatting
+    if: false  # Temporary disabled workflow
     runs-on: ubuntu-24.04
     timeout-minutes: 25
 
@@ -111,7 +112,7 @@ jobs:
           fi
 
       - name: Initialize npm project
-        run: |
+        run: 
           if [ ! -f package.json ]; then
             npm init -y
           fi
