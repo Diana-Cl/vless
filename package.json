@@ -22,10 +22,12 @@
   },
   "homepage": "https://github.com/Diana-Cl/vless#readme",
   "dependencies": {
+    "eslint-plugin-json": "^4.0.1",
+    "jsonlint": "^1.6.3",
     "prettier": "^3.4.2"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "prettier-plugin-toml": "^2.0.1",
     "stylelint": "^16.2.1",
     "stylelint-config-standard": "^36.0.0",
