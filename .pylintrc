@@ -1,0 +1,75 @@
+[MASTER]
+# Disable all checks by default and enable only what we want
+disable=all
+
+# Enable specific checks
+enable=
+    missing-docstring,
+    invalid-name,
+    unused-import,
+    import-error,
+    wrong-import-order,
+    inconsistent-return-statements,
+    too-many-arguments,
+    too-many-locals,
+    too-many-branches,
+    too-many-statements,
+    too-many-instance-attributes,
+    too-few-public-methods,
+    too-many-public-methods,
+    too-many-lines,
+    too-many-nested-blocks,
+    too-many-boolean-expressions,
+    too-many-return-statements,
+    too-many-function-args,
+    too-many-locals,
+    too-many-branches,
+    too-many-statements,
+    too-many-instance-attributes,
+    too-few-public-methods,
+    too-many-public-methods,
+    too-many-lines,
+    too-many-nested-blocks,
+    too-many-boolean-expressions,
+    too-many-return-statements,
+    too-many-function-args
+
+[MESSAGES CONTROL]
+# Disable specific checks
+disable=
+    missing-docstring,
+    invalid-name,
+    unused-import,
+    import-error,
+    wrong-import-order,
+    inconsistent-return-statements,
+    too-many-arguments,
+    too-many-locals,
+    too-many-branches,
+    too-many-statements,
+    too-many-instance-attributes,
+    too-few-public-methods,
+    too-many-public-methods,
+    too-many-lines,
+    too-many-nested-blocks,
+    too-many-boolean-expressions,
+    too-many-return-statements,
+    too-many-function-args
+
+[FORMAT]
+max-line-length = 88
+
+[DESIGN]
+max-args = 5
+max-locals = 15
+max-returns = 6
+max-branches = 12
+max-statements = 50
+max-parents = 7
+max-attributes = 7
+min-public-methods = 1
+max-public-methods = 20
+
+[IMPORTS]
+# Ignore these modules when checking for unused imports
+ignored-modules = ["numpy", "pandas"]
