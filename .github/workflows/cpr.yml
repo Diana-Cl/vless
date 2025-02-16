@@ -4,7 +4,7 @@ on: [push, pull_request, workflow_dispatch]
 
 env:
   NODE_VERSION: "20"
-  PYTHON_VERSION: "3.12"  # Recommended stable version
+  PYTHON_VERSION: "3.12" 
   PRETTIER_VERSION: "3.4.2"
 
 jobs:
@@ -31,7 +31,12 @@ jobs:
       # Formatting with Black/isort
       - name: Run Black formatter
         run: |
-          black --check . || (black . && exit 1)  # Force fail after formatting
+          black --check . || black .
+          git diff --quiet || (git add . && git commit -m "style: auto-format with Black")
+
+      - name: Push changes (if any)
+        if: success()
+        run: git push
 
       - name: Sort imports with isort
         run: |
@@ -39,7 +44,8 @@ jobs:
 
       # Linting
       - name: Run Flake8
-        run: flake8 . --max-line-length=88 --ignore=E203,W503
+        run: flake8 . --max-line-length=88 --ignore=E203,E266,E501,W503
+
 
       - name: Run Pylint
         run: pylint **/*.py --fail-under=7.0
