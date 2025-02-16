@@ -1,0 +1,90 @@
+name: CPR
+
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  NODE_VERSION: "20"
+  PYTHON_VERSION: "3.12"
+  PRETTIER_VERSION: "3.4.2"
+
+jobs:
+  formatting-py:
+    name: Python Formatting & Linting
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: "recursive"
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache Python dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install Python tools
+        run: |
+          pip install black ruff isort pylint
+
+      - name: Run Python formatters and linters
+        run: |
+          black .
+          isort .
+          ruff check --fix --unsafe-fixes .
+          pylint **/*.py --fail-under=7.0
+
+      - name: Commit and push Python changes
+        run: |
+          git config user.name "CI Bot"
+          git config user.email "ci@example.com"
+          git add -A
+          git diff --quiet || (git commit -m "style(python): auto-formatting fixes" && git push)
+
+  formatting-js:
+    name: JavaScript/JSON Formatting & Linting
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Prettier/ESLint
+        run: |
+          npm install -g prettier@${{ env.PRETTIER_VERSION}} eslint eslint-plugin-json
+
+      - name: Run JavaScript formatters and linters
+        run: |
+          prettier --write "**/*.{js,json}" --ignore-unknown
+          eslint . --ext .js,.json --fix
+          find . -name "*.json" -exec jsonlint -q {} \;
+
+      - name: Commit and push JS changes
+        run: |
+          git config user.name "CI Bot"
+          git config user.email "ci@example.com"
+          git add -A
+          git diff --quiet || (git commit -m "style(js): auto-formatting fixes" && git push)
