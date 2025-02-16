@@ -8,44 +8,42 @@
 Pluggable Back-ends for Container Server
 """
 import errno
-
 import os
+import sqlite3
 from uuid import uuid4
 
 import six
+from eventlet import tpool
 from six.moves import range
 from six.moves.urllib.parse import unquote
-import sqlite3
-from eventlet import tpool
-
 from swift.common.constraints import CONTAINER_LISTING_LIMIT
-from swift.common.exceptions import LockTimeout
-from swift.common.utils import (
-    Timestamp,
-    encode_timestamps,
-    decode_timestamps,
-    extract_swift_bytes,
-    storage_directory,
-    hash_path,
-    ShardRange,
-    renamer,
-    MD5_OF_EMPTY_STRING,
-    mkdirs,
-    get_db_files,
-    parse_db_filename,
-    make_db_file_path,
-    split_path,
-    RESERVED_BYTE,
-    filter_shard_ranges,
-    ShardRangeList,
-)
 from swift.common.db import (
+    BROKER_TIMEOUT,
+    SQLITE_ARG_LIMIT,
+    DatabaseAlreadyExists,
     DatabaseBroker,
     utf8encode,
-    BROKER_TIMEOUT,
     zero_like,
-    DatabaseAlreadyExists,
-    SQLITE_ARG_LIMIT,
+)
+from swift.common.exceptions import LockTimeout
+from swift.common.utils import (
+    MD5_OF_EMPTY_STRING,
+    RESERVED_BYTE,
+    ShardRange,
+    ShardRangeList,
+    Timestamp,
+    decode_timestamps,
+    encode_timestamps,
+    extract_swift_bytes,
+    filter_shard_ranges,
+    get_db_files,
+    hash_path,
+    make_db_file_path,
+    mkdirs,
+    parse_db_filename,
+    renamer,
+    split_path,
+    storage_directory,
 )
 
 DATADIR = "containers"

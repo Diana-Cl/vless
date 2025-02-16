@@ -22,12 +22,14 @@ OUTPUT_FILES = {
     "exclave": "exclave-wg.txt",
 }
 
+
 def read_existing_configs(file_path):
     logger.info(f"Reading existing configs from {file_path}")
     if os.path.exists(file_path):
         with open(file_path, "r", encoding="utf-8") as f:
             return set(f.read().strip().split("\n"))
     return set()
+
 
 def fetch_configs():
     try:
@@ -92,6 +94,7 @@ def fetch_configs():
 
     except Exception as e:
         logger.error(f"Error occurred: {str(e)}")
+
 
 if __name__ == "__main__":
     logger.info("Starting the configuration fetch process")

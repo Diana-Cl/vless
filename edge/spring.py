@@ -4,7 +4,6 @@ import ipaddress
 import json
 import os
 import platform
-import shutil
 import subprocess
 
 IRAN_SYMBOL = "⚪️"
@@ -38,8 +37,7 @@ main_warp_path = os.path.join(main_directory, "warp.json")
 
 # Create a list of cloudflare wireguard endpoints
 def create_ips():
-    c = 0
-    top_ips = sum(len(list(ipaddress.IPv4Network(cidr))) for cidr in warp_cidr)
+    sum(len(list(ipaddress.IPv4Network(cidr))) for cidr in warp_cidr)
 
     with open(edge_bestip_path, "w") as file:
         all_ips = [str(addr) for cidr in warp_cidr for addr in ipaddress.IPv4Network(cidr)]
@@ -87,14 +85,14 @@ def toSingBox(tag, clean_ip, detour):
                 "address": ["172.16.0.2/32", "2606:4700:110:8735:bb29:91bc:1c82:aa73/128"],
                 "private_key": f"{data['private_key']}",
                 "peers": [
-                  {
-                    "address": f"{clean_ip.split(':')[0]}",
-                    "port": int(clean_ip.split(":")[1]),
-                    "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-                    "allowed_ips": ["0.0.0.0/0", "::/0"],
-                    "persistent_keepalive_interval": 30,
-                    "reserved": data["config"]["reserved"],
-                  }
+                    {
+                        "address": f"{clean_ip.split(':')[0]}",
+                        "port": int(clean_ip.split(":")[1]),
+                        "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                        "allowed_ips": ["0.0.0.0/0", "::/0"],
+                        "persistent_keepalive_interval": 30,
+                        "reserved": data["config"]["reserved"],
+                    }
                 ],
                 "detour": f"{detour}",
                 "workers": 2,
