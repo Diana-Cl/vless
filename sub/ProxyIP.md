@@ -1062,20 +1062,20 @@ How to find ProxyIPs for VLESS/VMESS/TROJAN CF Workers & Pages using Cyberspace 
 
 ~~Austria, vienna-AWYZone~~
 
-~~-     const proxyIPs = ['94.177.8.51'];~~
+~~- const proxyIPs = ['94.177.8.51'];~~
 
 ---
 
 ~~Nuremberg, Germany Hetzner~~
 
-~~-     const proxyIPs = ['3.28.118.156'];~~
-~~-     const proxyIPs = ['5.9.106.85'];~~
+~~- const proxyIPs = ['3.28.118.156'];~~
+~~- const proxyIPs = ['5.9.106.85'];~~
 
 ---
 
 ~~Stockholm, Sweden 3NT Solutions L.L.C~~
 
-~~-     const proxyIPs = ['176.97.77.32'];~~
+~~- const proxyIPs = ['176.97.77.32'];~~
 
 ---
 
@@ -1087,34 +1087,32 @@ How to find ProxyIPs for VLESS/VMESS/TROJAN CF Workers & Pages using Cyberspace 
 
 ~~Virginia, USA Amazon Technologies Inc.~~
 
-~~-     const proxyIPs = ['3.216.234.194'];~~
-~~-     const proxyIPs = ['4.4.234.181'];~~
+~~- const proxyIPs = ['3.216.234.194'];~~
+~~- const proxyIPs = ['4.4.234.181'];~~
 
 ---
 
 ~~Tokyo, Japan Amazon Tech Inc.~~
 
-~~-     const proxyIPs = ['3.112.21.102'];~~
+~~- const proxyIPs = ['3.112.21.102'];~~
 
 ---
 
 ~~Australia, Sydney Amazon Tech Inc.~~
 
-~~-     const proxyIPs = ['3.105.5.84'];~~
+~~- const proxyIPs = ['3.105.5.84'];~~
 
 ---
 
 ~~Amsterdam, The Infrastructure Gp~~
 
-~~-     const proxyIPs = ['5.2.77.100'];~~
+~~- const proxyIPs = ['5.2.77.100'];~~
 
 ~~Tallinn, Estonia PAGM network~~
 
-~~-     const proxyIPs = ['5.101.180.145'];~~
+~~- const proxyIPs = ['5.101.180.145'];~~
 
 and more shit's - [Rentry.co/CF-proxyIP]
-
-
 
 [Rentry.co/CF-proxyIP]: https://rentry.co/CF-proxyIP
 [Telegra.ph]: https://telegra.ph/How-to-find-proxy-ip-for-VLESS-CF-WORKER-01-06
