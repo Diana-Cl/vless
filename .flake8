@@ -1,3 +1,18 @@
 [flake8]
 max-line-length = 88
 extend-ignore = E203, E266, E501, W503
+exclude =
+    tests/
+    *.html
+    *.lock
+    *.log
+    .env
+    .env.*
+    dist/
+    build/
+    Hiddify/
+    node_modules/
+    edge/waste/
+    pyproject.toml
+    DNS over HTTPS/
+    boringtun-boringtun-cli-0.5.2/
