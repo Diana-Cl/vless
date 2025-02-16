@@ -40,14 +40,16 @@ jobs:
 
 
       - name: Push changes (if any)
-        if: success()
         run: git push
 
-
-      # Sorts and organizes import statements alphabetically.
       - name: Sort imports with isort
         run: |
-          isort --check . || isort . 
+          isort --check . || isort .
+          git add -A
+          git diff --quiet || (git add . && git commit -m "style: auto-format with isort")
+
+      - name: Push changes (if any)
+        run: git push
 
       # Linting
       - name: Run Ruff (Linter + Auto-Fixer)
@@ -63,8 +65,11 @@ jobs:
           git config --global user.name "Diana-Cl"
           git config --global user.email "135276904+Diana-Cl@users.noreply.github.com"
           git add -A
-          git commit -m "style(python): auto-formatting fixes" || true
+          git diff --quiet || (git commit -m "style(python): auto-formatting fixes")
         continue-on-error: true
+
+      - name: Push changes (if any)
+        run: git push
 
   formatting-js:
     name: JavaScript/JSON Formatting & Linting
