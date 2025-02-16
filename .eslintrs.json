@@ -1,0 +1,13 @@
+{
+  "extends": ["eslint:recommended"],
+  "plugins": ["json"],
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"]
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  }
+}
