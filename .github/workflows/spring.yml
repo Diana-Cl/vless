@@ -56,12 +56,12 @@ jobs:
           git status
           git add -A
           git diff --quiet && git diff --staged --quiet || git commit -m "Task done"
-        
+
       - name: Commit and push files
         uses: EndBug/add-and-commit@v7
         with:
-          author_name: "Github Actions"
-          author_email: "actions@github.com"
-          push: "https://github.com/Diana-Cl/vless.git"
+          author_name: 'Github Actions'
+          author_email: 'actions@github.com'
+          push: 'https://github.com/Diana-Cl/vless.git'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

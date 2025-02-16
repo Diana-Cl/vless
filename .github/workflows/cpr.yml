@@ -3,20 +3,19 @@ name: CPR
 on:
   push:
     paths:
-      - '**/*.js' 
-      - '**/*.py' 
-      - '**/*.md' 
+      - '**/*.js'
+      - '**/*.py'
+      - '**/*.md'
       - '**/*.css'
-      - '**/*.yml' 
-      - '**/*.json' 
-      - '**/*.html' 
+      - '**/*.yml'
+      - '**/*.json'
+      - '**/*.html'
     branches:
       - main
   pull_request:
     branches:
       - main
   workflow_dispatch:
-
 
 env:
   NODE_VERSION: '20'
@@ -27,13 +26,13 @@ jobs:
   formatting-py:
     name: Code Formatting for Python
     runs-on: ubuntu-24.04
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          submodules: 'recursive' 
+          submodules: 'recursive'
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       # Set up Python environment
@@ -44,7 +43,6 @@ jobs:
           cache: pip
           architecture: x64
 
-
       # Cache Python dependencies
       - name: Cache Python packages
         uses: actions/cache@v4
@@ -54,13 +52,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-
       # Install Python formatting tools
       - name: Install Python formatting dependencies
         run: |
-         python -m pip install --upgrade pip
-         pip install black[d] flake8 isort
-         
+          python -m pip install --upgrade pip
+          pip install black[d] flake8 isort
 
       # Run Black formatter with error handling
       - name: Run Black formatter
@@ -71,7 +67,6 @@ jobs:
             black .
           fi
         continue-on-error: true
-
 
         # Commit changes if any
       - name: Commit changes if any
@@ -89,7 +84,6 @@ jobs:
           if [ -f pyproject.toml ]; then
             black --check pyproject.toml || echo "Black config validation failed"
           fi
-
 
   formatting-js:
     name: Code Formatting for JavaScript
@@ -112,8 +106,8 @@ jobs:
           # Install Prettier formatting tools
       - name: Install Prettier
         run: |
-         npm install prettier@${{ env.PRETTIER_VERSION }}
-         npm install prettier-plugin-toml
+          npm install prettier@${{ env.PRETTIER_VERSION }}
+          npm install prettier-plugin-toml
 
       # Run Prettier formatter
       - name: Run Prettier
@@ -124,7 +118,6 @@ jobs:
         env:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-
         # Commit changes if any
       - name: Commit changes if any
         if: failure()
@@ -134,5 +127,3 @@ jobs:
           git add -A
           git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
         continue-on-error: true
-
-        
