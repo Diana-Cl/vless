@@ -1,5 +1,4 @@
 [MASTER]
-
 # Minimum Python version required to run this file
 py-version = 3.12
 
@@ -8,41 +7,6 @@ py-version = 3.12
 # run arbitrary code.
 extension-pkg-allow-list=
 
-# Disable all checks by default and enable only what we want
-disable=all
-
-# Enable specific checks
-enable=
-    missing-docstring,
-    invalid-name,
-    unused-import,
-    import-error,
-    wrong-import-order,
-    c-extension-no-member,
-    inconsistent-return-statements,
-    too-many-arguments,
-    too-many-locals,
-    too-many-branches,
-    too-many-statements,
-    too-many-instance-attributes,
-    too-few-public-methods,
-    too-many-public-methods,
-    too-many-lines,
-    too-many-nested-blocks,
-    too-many-boolean-expressions,
-    too-many-return-statements,
-    too-many-function-args,
-    too-many-locals,
-    too-many-branches,
-    too-many-statements,
-    too-many-instance-attributes,
-    too-few-public-methods,
-    too-many-public-methods,
-    too-many-lines,
-    too-many-nested-blocks,
-    too-many-boolean-expressions,
-    too-many-return-statements,
-    too-many-function-args
 
 # Ignore specific directories and files (only Python-related)
 ignore=
@@ -246,7 +210,7 @@ deprecated-modules=regsub,TERMIOS,Bastion,rexec
 [EXCEPTIONS]
 # Exceptions that will emit a warning when caught. Defaults to
 # Exception.
-overgeneral-exceptions=Exception
+overgeneral-exceptions=builtins.Exception
 
 
 # [CLASSES]
