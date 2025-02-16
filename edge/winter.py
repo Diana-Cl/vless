@@ -1,8 +1,10 @@
 import json
-import random
-import requests
 import os
+import random
 from datetime import datetime
+
+import requests
+
 
 def fetch_ips():
     try:
