@@ -1,5 +1,6 @@
 name: CPR #cla
-on: [push, pull_request, workflow_dispatch]
+
+# on: [push, pull_request, workflow_dispatch]
 env:
   NODE_VERSION: "20"
   PYTHON_VERSION: "3.12"
