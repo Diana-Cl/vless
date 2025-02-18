@@ -1,80 +1,80 @@
-import globals from 'globals';
-import markdown from '@eslint/markdown';
-import json from '@eslint/json';
-import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import tsParser from '@typescript-eslint/parser';
+import markdown from "@eslint/markdown";
+import json from "@eslint/json";
+import pluginJs from "@eslint/js";
+import tseslint from "typescript-eslint";
+import tsParser from "@typescript-eslint/parser";
 
 export default [
-  // Base configuration for JavaScript
-  {
-    languageOptions: {
-      parser: js,
-      parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: 'module',
-      },
+    // Base configuration for JavaScript
+    {
+        languageOptions: {
+            parser: js,
+            parserOptions: {
+                ecmaVersion: 2020,
+                sourceType: "module",
+            },
+        },
+        rules: {
+            "semi": ["error", "always"],
+            "quotes": ["error", "single"],
+            "eqeqeq": "warn",
+            "prefer-const": "error",
+        },
     },
-    rules: {
-      semi: ['error', 'always'],
-      quotes: ['error', 'single'],
-      eqeqeq: 'warn',
-      'prefer-const': 'error',
-    },
-  },
 
-  // Configuration for TypeScript
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        project: './tsconfig.json',
-      },
+    // Configuration for TypeScript
+    {
+        files: ["**/*.ts", "**/*.tsx"],
+        languageOptions: {
+            parser: tsParser,
+            parserOptions: {
+                project: "./tsconfig.json",
+            },
+        },
+        plugins: {
+            "@typescript-eslint": ts,
+        },
+        rules: {
+            "@typescript-eslint/interface-name-prefix": "off",
+            "@typescript-eslint/explicit-function-return-type": "off",
+        },
     },
-    plugins: {
-      '@typescript-eslint': ts,
-    },
-    rules: {
-      '@typescript-eslint/interface-name-prefix': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-    },
-  },
 
-  // Configuration for JSON
-  {
-    files: ['**/*.json'],
-    languageOptions: {
-      parser: json,
+    // Configuration for JSON
+    {
+        files: ["**/*.json"],
+        languageOptions: {
+            parser: json,
+        },
     },
-  },
 
-  // Configuration for Markdown
-  {
-    files: ['**/*.md'],
-    plugins: {
-      markdown: markdown,
+    // Configuration for Markdown
+    {
+        files: ["**/*.md"],
+        plugins: {
+            markdown: markdown,
+        },
+        processor: "markdown/markdown",
     },
-    processor: 'markdown/markdown',
-  },
 
-  // Ignore patterns
-  {
-    ignores: [
-      'dist/**',
-      'build/**',
-      'warp.json',
-      'result.csv',
-      'hiddify/**',
-      'package.json',
-      'edge/waste/**',
-      'package-lock.json',
-      '**/node_modules/**',
-      '!edge/assets/xxx.js',
-      '!edge/assets/xxx.json',
-      'boringtun-boringtun-cli-0.5.2/**',
-    ],
-  },
+    // Ignore patterns
+    {
+        ignores: [
+            "dist/**",
+            "build/**",
+            "warp.json",
+            "hiddify/**",
+            "package.json",
+            "edge/waste/**",
+            ".prettierrc.js",
+            "eslint.config.js",
+            "package-lock.json",
+            "**/node_modules/**",
+            "!edge/assets/xxx.js",
+            "!edge/assets/xxx.json",
+            "boringtun-boringtun-cli-0.5.2/**",
+        ],
+    },
 ];
 
 //If you’d like to ignore a directory except for specific files or subdirectories, then the ignore pattern directory/**/* must be used instead of directory/**.
