@@ -31,7 +31,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          # Remove the cache setting since we don't have a lock file yet
+          # cache: 'npm
 
       - name: Install Python tools
         if: matrix.language == 'python'
@@ -40,7 +41,9 @@ jobs:
       - name: Install JavaScript tools
         if: matrix.language == 'javascript'
         run: |
-          npm ci || npm install
+          npm install
+          git commit -m "chore: add package-lock.json" || true
+          git push || true
 
       - name: Run Formatting and Linting for Python
         if: matrix.language == 'python'
