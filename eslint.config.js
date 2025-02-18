@@ -1,3 +1,4 @@
+import globals from "globals";
 import markdown from "@eslint/markdown";
 import json from "@eslint/json";
 import pluginJs from "@eslint/js";
@@ -52,10 +53,10 @@ export default [
     {
         files: ["**/*.md"],
         plugins: {
-            markdown: markdown,
+            markdown
         },
-        processor: "markdown/markdown",
-    },
+        processor: "markdown/markdown"
+    }
 
     // Ignore patterns
     {
