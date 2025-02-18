@@ -37,11 +37,11 @@
     "natural-compare": "^1.4.0"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",  
-    "@eslint/js": "^8.57.0",
-    "@typescript-eslint/parser": "^7.0.0",  
-    "@typescript-eslint/eslint-plugin": "^7.0.0", 
-    "@eslint/markdown": "^8.57.0",
-    "@eslint/json": "^8.57.0"
+    "eslint": "^8.57.0",
+    "@eslint/js": "^0.10.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@eslint/markdown": "^0.10.0",
+    "@eslint/json": "^0.10.0"
   }
 }
