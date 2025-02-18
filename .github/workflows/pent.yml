@@ -3,7 +3,6 @@ on: [push, pull_request, workflow_dispatch]
 env:
   NODE_VERSION: "20"
   PYTHON_VERSION: "3.12"
-  PRETTIER_VERSION: "3.4.2"
 
 jobs:
   formatting:
@@ -41,9 +40,7 @@ jobs:
       - name: Install JavaScript tools
         if: matrix.language == 'javascript'
         run: |
-          npm install
-          npm init -y
-          npm install prettier@${{ env.PRETTIER_VERSION}} npx eslint . 
+          npm ci || npm install
 
       - name: Run Formatting and Linting for Python
         if: matrix.language == 'python'
@@ -61,9 +58,8 @@ jobs:
         if: matrix.language == 'javascript'
         id: formatting-js
         run: |
-          ./node_modules/.bin/prettier --write "**/*.{js,json}" --ignore-unknown
-          ./node_modules/.bin/eslint . --ext .js,.json --fix || true
-          find . -name "*.json" -exec ./node_modules/.bin/jsonlint -q {} \; || true
+          npm run format
+          npm run lint || true
           if [[ -n $(git status --porcelain) ]]; then
             echo "changes=true" >> $GITHUB_OUTPUT
           fi
@@ -76,3 +72,11 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "style: auto-formatting and lint fixes"
           git push
+
+      - name: Cleanup node_modules
+        if: matrix.language == 'javascript'
+        run: |
+          rm -rf node_modules
+          git add -A
+          git commit -m "chore: remove node_modules" || true
+          git push || true
