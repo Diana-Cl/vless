@@ -41,9 +41,9 @@ jobs:
       - name: Install JavaScript tools
         if: matrix.language == 'javascript'
         run: |
+          npm install
           npm init -y
-          npm install prettier@${{ env.PRETTIER_VERSION}}
-          npx eslint . 
+          npm install prettier@${{ env.PRETTIER_VERSION}} npx eslint . 
 
       - name: Run Formatting and Linting for Python
         if: matrix.language == 'python'
