@@ -42,7 +42,8 @@ jobs:
         if: matrix.language == 'javascript'
         run: |
           npm init -y
-          npm install prettier@${{ env.PRETTIER_VERSION}} eslint eslint-plugin-json jsonlint
+          npm install prettier@${{ env.PRETTIER_VERSION}}
+          npx eslint . 
 
       - name: Run Formatting and Linting for Python
         if: matrix.language == 'python'
@@ -70,8 +71,8 @@ jobs:
       - name: Commit changes
         if: steps.formatting-py.outputs.changes == 'true' || steps.formatting-js.outputs.changes == 'true'
         run: |
-          git config user.name "CI Bot"
-          git config user.email "ci@example.com"
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<eslint@googlegroups.com>"
           git add -A
           git diff --cached --quiet || git commit -m "style: auto-formatting and lint fixes"
           git push
