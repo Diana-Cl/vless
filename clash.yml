@@ -1,0 +1,69 @@
+{
+    "mixed-port": 7890,
+    "ipv6": true,
+    "allow-lan": true,
+    "mode": "rule",
+    "log-level": "warning",
+    "dns": {
+        "enable": true,
+        "listen": "0.0.0.0:1053",
+        "ipv6": true,
+        "respect-rules": true,
+        "use-system-hosts": false,
+        "nameserver": ["https://8.8.8.8/dns-query"],
+        "proxy-server-nameserver": ["8.8.8.8#DIRECT"],
+        "nameserver-policy": {
+            "raw.githubusercontent.com": "8.8.8.8#DIRECT",
+            "time.apple.com": "8.8.8.8#DIRECT",
+            "rule-set:ir": ["8.8.8.8#DIRECT"],
+            "+.github.com": ["8.8.8.8#DIRECT"]
+        }
+    },
+    "tun": {
+        "enable": true,
+        "stack": "mixed",
+        "auto-route": true,
+        "strict-route": true,
+        "auto-detect-interface": true,
+        "dns-hijack": ["any:53"],
+        "mtu": 9000
+    },
+    "proxy-groups": [
+        {
+            "name": "🔴 Selector",
+            "type": "select",
+            "proxies": ["Best Ping", "Load Balance"]
+        },
+        {
+            "name": "Best Ping",
+            "type": "url-test",
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": 30,
+            "tolerance": 50,
+            "proxies": []
+        },
+        {
+            "name": "Load Balance",
+            "type": "load-balance",
+            "proxies": [],
+            "strategy": "round-robin"
+        }
+    ],
+    "rules": [
+        "RULE-SET,ir,DIRECT",
+        "DOMAIN-SUFFIX,github.com,DIRECT",
+        "RULE-SET,ir-cidr,DIRECT",
+        "RULE-SET,malware,REJECT",
+        "RULE-SET,phishing,REJECT",
+        "RULE-SET,cryptominers,REJECT",
+        "RULE-SET,ads,REJECT",
+        "AND,((NETWORK,udp),(DST-PORT,443)),REJECT",
+        "MATCH,🔴 Selector"
+    ],
+    "ntp": {
+        "enable": true,
+        "server": "time.apple.com",
+        "port": 123,
+        "interval": 30
+    }
+}
