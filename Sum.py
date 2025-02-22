@@ -68,9 +68,10 @@ def fetch_configs():
         response = requests.get(CHANNELS["freewireguard"], headers=headers)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
-
-  for message in soup.find_all("div", class_="tgme_widget_message_text"):
-      if not message.text:
+        
+        
+        for message in soup.find_all("div", class_="tgme_widget_message_text"):
+            if not message.text:
                 continue
 
             for match in re.finditer(r"wireguard://[^\s]+", message.text):
