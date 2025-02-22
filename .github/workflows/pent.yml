@@ -40,8 +40,12 @@ jobs:
 
       - name: Install JavaScript tools
         if: matrix.language == 'javascript'
+        run: npm install
+      
+      - name: Commit package-lock.json if generated
+        if: matrix.language == 'javascript'
         run: |
-          npm install
+          git add package-lock.json || true
           git commit -m "chore: add package-lock.json" || true
           git push || true
 
@@ -66,6 +70,13 @@ jobs:
           if [[ -n $(git status --porcelain) ]]; then
             echo "changes=true" >> $GITHUB_OUTPUT
           fi
+
+      - name: Update JavaScript dependencies
+        if: matrix.language == 'javascript'
+        run: |
+          npm install -g npm-check-updates
+          ncu -u
+          npm install    
 
       - name: Commit changes
         if: steps.formatting-py.outputs.changes == 'true' || steps.formatting-js.outputs.changes == 'true'
