@@ -84,17 +84,13 @@
     {
       "type": "selector",
       "tag": "proxy",
-      "outbounds": [
-        "ss-out"
-      ],
+      "outbounds": ["ss-out"],
       "default": "ss-out"
     },
     {
       "type": "urltest",
       "tag": "auto",
-      "outbounds": [
-        "ss-out"
-      ],
+      "outbounds": ["ss-out"],
       "url": "https://www.gstatic.com/generate_204",
       "tolerance": 50
     },
@@ -126,12 +122,7 @@
         "override_port": 443
       },
       {
-        "rule_set": [
-          "geoip-private",
-          "geosite-private",
-          "geosite-ir",
-          "geoip-ir"
-        ],
+        "rule_set": ["geoip-private", "geosite-private", "geosite-ir", "geoip-ir"],
         "action": "direct"
       },
       {

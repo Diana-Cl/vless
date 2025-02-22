@@ -2,9 +2,9 @@ name: CPR #cla
 
 # on: [push, pull_request, workflow_dispatch]
 env:
-  NODE_VERSION: "20"
-  PYTHON_VERSION: "3.12"
-  PRETTIER_VERSION: "3.4.2"
+  NODE_VERSION: '20'
+  PYTHON_VERSION: '3.12'
+  PRETTIER_VERSION: '3.4.2'
 
 jobs:
   formatting-py:
@@ -15,18 +15,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          submodules: "recursive"
+          submodules: 'recursive'
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
-          
+
       - name: Install Python tools
         run: pip install black ruff isort pylint
-      
+
       # Formatting with Black/isort
       - name: Run Black formatter and isort
         id: formatting
@@ -36,14 +36,14 @@ jobs:
           if [[ -n $(git status --porcelain) ]]; then
             echo "changes=true" >> $GITHUB_OUTPUT
           fi
-      
+
       # Linting
       - name: Run Ruff (Linter + Auto-Fixer)
         run: ruff check --fix --unsafe-fixes .
-      
+
       - name: Run Pylint
         run: pylint **/*.py --fail-under=7.0 || true
-      
+
       # Commit all Python changes at once
       - name: Commit Python changes
         if: steps.formatting.outputs.changes == 'true' || failure()
@@ -62,18 +62,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          
+
       - name: Install Prettier/ESLint
         run: |
           npm init -y
           npm install prettier@${{ env.PRETTIER_VERSION}} eslint eslint-plugin-json jsonlint
-          
+
       - name: Run Prettier and ESLint
         id: js-formatting
         run: |
@@ -82,10 +82,10 @@ jobs:
           if [[ -n $(git status --porcelain) ]]; then
             echo "changes=true" >> $GITHUB_OUTPUT
           fi
-          
+
       - name: Validate JSON syntax
         run: find . -name "*.json" -exec ./node_modules/.bin/jsonlint -q {} \; || true
-        
+
       # Commit changes
       - name: Commit JS changes
         if: steps.js-formatting.outputs.changes == 'true'
