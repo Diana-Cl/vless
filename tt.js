@@ -1,9 +1,4 @@
-# - this function handles HTTP requests by fetching data from specified repositories,
-# - processing the data, and returning a JSON response,
-# - it filters and collects unique IPv4/IPv6 addresses from the cloudflare ip source's,
-# - along with associated domain and protocol version information.
-# - exclusively for use in Harmony 3rd ip sources "https://github.com/NiREvil/Harmony".
-  
+
   async function handleRequest(request) {
     const repositories = [
       {
