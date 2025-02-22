@@ -7,5 +7,4 @@ export default {
   trailingComma: 'all',
   bracketSpacing: true,
   arrowParens: 'avoid',
-  plugins: ['prettier-plugin-toml'],
 };
