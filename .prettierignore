@@ -13,6 +13,7 @@ warp.json
 result.csv
 package.json
 pyproject.toml
+eslint.config.js
 package-lock.json
 edge/assets/wow-template.json
 boringtun-boringtun-cli-0.5.2/
