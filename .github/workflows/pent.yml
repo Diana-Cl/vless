@@ -24,14 +24,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: 'pip'
+         # cache: 'pip'
 
       - name: Set up Node.js
         if: matrix.language == 'javascript'
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+         # cache: 'npm'
 
       - name: Install Python tools
         if: matrix.language == 'python'
