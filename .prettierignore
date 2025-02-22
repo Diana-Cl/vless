@@ -3,6 +3,7 @@ The specific files and directories we don't want to format
 *.log
 .env
 .env.*
+.git/
 dist/
 build/
 Hiddify/
