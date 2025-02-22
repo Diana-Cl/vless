@@ -1,0 +1,14 @@
+dist/
+*.min.js
+build/**
+warp.json
+hiddify/
+package.json
+edge/waste/
+node_modules/
+.prettierrc.js
+eslint.config.js
+package-lock.json
+!edge/assets/xxx.js
+!edge/assets/xxx.json
+boringtun-boringtun-cli-0.5.2/
