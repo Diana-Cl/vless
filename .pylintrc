@@ -1,6 +1,6 @@
 [MASTER]
 # Minimum Python version required to run this file
-py-version = 3.12
+py-version = 3.8
 
 # A comma-separated list of package or module names from where C extensions may
 # be loaded. Extensions are loading into the active Python interpreter and may
@@ -15,7 +15,14 @@ ignore=
     sub,
     dist,
     build,
-    node_modules,
+    __pycache__/,
+    *.pyc,
+    *.pyo,
+    *.pyd,
+    .Python,
+    env/,
+    venv/,
+    *.env,
 
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
