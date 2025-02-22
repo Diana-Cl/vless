@@ -14,85 +14,83 @@
 # limitations under the License.
 
 import json
+import math
 import os
 import time
 import traceback
-import math
-
-from eventlet import Timeout
 
 import six
-from six.moves.urllib.parse import quote
-
 import swift.common.db
-from swift.container.sync_store import ContainerSyncStore
-from swift.container.backend import (
-    ContainerBroker,
-    DATADIR,
-    RECORD_TYPE_SHARD,
-    UNSHARDED,
-    SHARDING,
-    SHARDED,
-    SHARD_UPDATE_STATES,
-)
-from swift.container.replicator import ContainerReplicatorRpc
-from swift.common.db import DatabaseAlreadyExists
-from swift.common.container_sync_realms import ContainerSyncRealms
-from swift.common.request_helpers import (
-    split_and_validate_path,
-    is_sys_or_user_meta,
-    validate_internal_container,
-    validate_internal_obj,
-    validate_container_params,
-)
-from swift.common.utils import (
-    get_logger,
-    hash_path,
-    public,
-    Timestamp,
-    storage_directory,
-    validate_sync_to,
-    config_true_value,
-    timing_stats,
-    replication,
-    override_bytes_from_content_type,
-    get_log_line,
-    config_fallocate_value,
-    fs_has_free_space,
-    list_from_csv,
-    ShardRange,
-)
-from swift.common.constraints import (
-    valid_timestamp,
-    check_utf8,
-    check_drive,
-    AUTO_CREATE_ACCOUNT_PREFIX,
-)
+from eventlet import Timeout
+from six.moves.urllib.parse import quote
+from swift.common.base_storage_server import BaseStorageServer
 from swift.common.bufferedhttp import http_connect
+from swift.common.constraints import (
+    AUTO_CREATE_ACCOUNT_PREFIX,
+    check_drive,
+    check_utf8,
+    valid_timestamp,
+)
+from swift.common.container_sync_realms import ContainerSyncRealms
+from swift.common.db import DatabaseAlreadyExists
 from swift.common.exceptions import ConnectionTimeout
+from swift.common.header_key_dict import HeaderKeyDict
 from swift.common.http import HTTP_NO_CONTENT, HTTP_NOT_FOUND, is_success
 from swift.common.middleware import listing_formats
+from swift.common.request_helpers import (
+    is_sys_or_user_meta,
+    split_and_validate_path,
+    validate_container_params,
+    validate_internal_container,
+    validate_internal_obj,
+)
 from swift.common.storage_policy import POLICIES
-from swift.common.base_storage_server import BaseStorageServer
-from swift.common.header_key_dict import HeaderKeyDict
 from swift.common.swob import (
     HTTPAccepted,
     HTTPBadRequest,
     HTTPConflict,
     HTTPCreated,
+    HTTPException,
+    HTTPInsufficientStorage,
     HTTPInternalServerError,
+    HTTPMethodNotAllowed,
+    HTTPMovedPermanently,
     HTTPNoContent,
     HTTPNotFound,
     HTTPPreconditionFailed,
-    HTTPMethodNotAllowed,
     Request,
     Response,
-    HTTPInsufficientStorage,
-    HTTPException,
-    HTTPMovedPermanently,
-    wsgi_to_str,
     str_to_wsgi,
+    wsgi_to_str,
 )
+from swift.common.utils import (
+    ShardRange,
+    Timestamp,
+    config_fallocate_value,
+    config_true_value,
+    fs_has_free_space,
+    get_log_line,
+    get_logger,
+    hash_path,
+    list_from_csv,
+    override_bytes_from_content_type,
+    public,
+    replication,
+    storage_directory,
+    timing_stats,
+    validate_sync_to,
+)
+from swift.container.backend import (
+    DATADIR,
+    RECORD_TYPE_SHARD,
+    SHARD_UPDATE_STATES,
+    SHARDED,
+    SHARDING,
+    UNSHARDED,
+    ContainerBroker,
+)
+from swift.container.replicator import ContainerReplicatorRpc
+from swift.container.sync_store import ContainerSyncStore
 
 
 def gen_resp_headers(info, is_deleted=False):
