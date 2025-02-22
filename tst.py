@@ -55,7 +55,7 @@ def fetch_configs():
                     "neko": r"sn://[^\s]+",
                     "husi": r"husi://[^\s]+",
                     "exclave": r"exclave://[^\s]+",
-            }
+                }
 
                 for config_type, pattern in patterns.items():
                     for match in re.finditer(pattern, message.text):
@@ -94,8 +94,6 @@ def fetch_configs():
 
     except Exception as e:
         logger.error(f"Error occurred: {str(e)}")
-
-    
 
     if __name__ == "__main__":
         logger.info("Starting the configuration fetch process")
