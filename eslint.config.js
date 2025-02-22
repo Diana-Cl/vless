@@ -1,9 +1,3 @@
-import globals from "globals";
-import markdown from "@eslint/markdown";
-import json from "@eslint/json";
-import js from "@eslint/js";
-import * as tseslint from "typescript-eslint";
-
 export default [
     js.configs.recommended,
     {
@@ -26,14 +20,8 @@ export default [
             "@typescript-eslint/explicit-function-return-type": "off",
         },
     },
-    {
-        files: ["**/*.json"],
-        ...json.configs.recommended
-    },
-    {
-        files: ["**/*.md"],
-        ...markdown.configs.recommended
-    },
+    { files: ["**/*.json"], ...json.configs.recommended },
+    { files: ["**/*.md"], ...markdown.configs.recommended },
     {
         ignores: [
             "dist/**",
