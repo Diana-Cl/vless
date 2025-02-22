@@ -2,7 +2,6 @@ import globals from "globals";
 import markdown from "@eslint/markdown";
 import json from "@eslint/json";
 import js from "@eslint/js";
-import * as tseslint from "typescript-eslint";
 
 export default [
   {
@@ -34,14 +33,6 @@ export default [
       "quotes": ["error", "single"],
       "eqeqeq": "warn",
       "prefer-const": "error",
-    },
-  },
-  ...tseslint.configs.recommended,
-  {
-    files: ["**/*.ts", "**/*.tsx"],
-    rules: {
-      "@typescript-eslint/interface-name-prefix": "off",
-      "@typescript-eslint/explicit-function-return-type": "off",
     },
   },
   {
