@@ -24,21 +24,22 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: 'pip'
+          #cache: 'pip'
 
       - name: Set up Node.js
         if: matrix.language == 'javascript'
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          #cache: 'npm'
+
+      - name: Clear npm cache
+        run: npm cache clean --force
 
       - name: Install Python tools
         if: matrix.language == 'python'
         run: pip install black ruff isort pylint 
 
-      - name: Clear npm cache
-        run: npm cache clean --force
       - name: Install JavaScript tools
         if: matrix.language == 'javascript'
         run: npm install
