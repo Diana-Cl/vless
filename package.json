@@ -13,8 +13,8 @@
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "echo \"*** Welcome to Omnilint ***\""
-    "test:coverage": "c8 npm test",
+    "postinstall": "echo \"*** Welcome to Omnilint ***\"",
+    "test:coverage": "c8 npm test"
   },
   "lint-staged": {
     "*.js": [
@@ -71,6 +71,6 @@
     "@typescript-eslint/eslint-plugin": "^8.24.1"
   },
   "engines": {
-    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+    "node": "^18.18.0 || ^20.9.0 || ^21.1.0 || >=24.04.1"
   }
 }
