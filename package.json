@@ -2,7 +2,7 @@
   "name": "@vless/vless",
   "version": "1.0.0",
   "description": "VLESS project",
-  "author": "Diana",
+  "author": "Diana-Cl",
   "main": "README.md",
   "type": "module",
   "scripts": {
@@ -33,24 +33,23 @@
     "json",
     "linting"
   ],
-  "author": "Diana-Cl",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Diana-Cl/vless/issues"
   },
   "homepage": "https://github.com/Diana-Cl/vless#readme",
   "devDependencies": {
-    "@types/eslint": "^8.56.10",
-    "eslint-config-eslint": "^11.0.0",
-    "lint-staged": "^15.2.7",
-    "typescript": "^5.4.5",
-    "eslint": "^9.11.1",
-    "prettier": "^3.5.1",
     "@eslint/js": "^9.21.0",
     "@eslint/json": "^0.10.0",
     "@eslint/markdown": "^6.2.2",
+    "@types/eslint": "^8.56.10",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
     "@typescript-eslint/parser": "^8.24.1",
-    "@typescript-eslint/eslint-plugin": "^8.24.1"
+    "eslint": "^9.21.0",
+    "eslint-config-eslint": "^11.0.0",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.5.2",
+    "typescript": "^5.4.5"
   },
   "engines": {
     "node": "^20.18.2 || >=10.8.2"
