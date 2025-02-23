@@ -12,19 +12,7 @@ jobs:
     strategy:
       matrix:
         language: [python, javascript]
-<<<<<<< HEAD
 
-    permissions:
-          contents: write
-          pull-requests: write
-
-=======
-        
-    permissions:
-      contents: write
-      pull-requests: write
-        
->>>>>>> 119dbfd075b2a3599c3938d428d3db40d3897ab0
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -44,14 +32,8 @@ jobs:
         if: matrix.language == 'javascript'
         uses: actions/setup-node@v4
         with:
-          commit_message: 'style: apply code formatting standards'
-          commit_description: 'Applied automatic formatting using Black and Prettier'
-          prettier_version: ${{ env.PRETTIER_VERSION }}
-        env:
-          token: ${{ secrets.GITHUB_TOKEN }}
           node-version: ${{ env.NODE_VERSION }}
-        continue-on-error: true 
-        #cache: 'npm'
+         # cache: 'npm'
         
       - name: Install Python tools
         if: matrix.language == 'python'
@@ -72,7 +54,25 @@ jobs:
           if [[ -n $(git status --porcelain) ]]; then
             echo "changes=true" >> $GITHUB_OUTPUT
           fi
+          
+# ----------------------------------------------------------------------------
 
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+           ~/.npm
+           ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+           ${{ runner.os }}-node-
+          commit_message: 'style: apply code formatting standards'
+          commit_description: 'Applied automatic formatting using Black and Prettier'
+        env:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ----------------------------------------------------------------------------
+      
       - name: Run Formatting and Linting for JavaScript
         if: matrix.language == 'javascript'
         id: formatting-js
@@ -88,10 +88,5 @@ jobs:
           git config user.name "actions-user"
           git config user.email "actions-user@example.com"
           git add -A
-<<<<<<< HEAD
-          git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier" && git push
-
-=======
           git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
           git push
->>>>>>> 119dbfd075b2a3599c3938d428d3db40d3897ab0
