@@ -11,6 +11,11 @@ jobs:
     strategy:
       matrix:
         language: [python, javascript]
+
+    permissions:
+          contents: write
+          pull-requests: write
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -71,5 +76,5 @@ jobs:
           git config user.name "actions-user"
           git config user.email "actions-user@example.com"
           git add -A
-          git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
-        continue-on-error: true
+          git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier" && git push
+
