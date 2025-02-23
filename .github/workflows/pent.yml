@@ -11,6 +11,11 @@ jobs:
     strategy:
       matrix:
         language: [python, javascript]
+        
+    permissions:
+      contents: write
+      pull-requests: write
+        
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -24,14 +29,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          #cache: 'pip'
+          cache: 'pip'
 
       - name: Set up Node.js
         if: matrix.language == 'javascript'
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          #cache: 'npm'
+          cache: 'npm'
 
       - name: Clear npm cache
         run: npm cache clean --force
@@ -72,4 +77,4 @@ jobs:
           git config user.email "actions-user@example.com"
           git add -A
           git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
-        continue-on-error: true
+          git push
