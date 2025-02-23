@@ -70,6 +70,6 @@
     "@typescript-eslint/eslint-plugin": "^8.24.1"
   },
   "engines": {
-    "node": "^18.20.7 || ^22.14.0 || >=23.8.0"
+    "node": "^20.18.2 || >=10.8.2"
   }
 }
