@@ -24,19 +24,21 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-         # cache: 'pip'
+          cache: 'pip'
 
       - name: Set up Node.js
         if: matrix.language == 'javascript'
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-         # cache: 'npm'
+          cache: 'npm'
 
       - name: Install Python tools
         if: matrix.language == 'python'
         run: pip install black ruff isort pylint 
 
+      - name: Clear npm cache
+        run: npm cache clean --force
       - name: Install JavaScript tools
         if: matrix.language == 'javascript'
         run: npm install
@@ -59,12 +61,13 @@ jobs:
         run: |
           npm run format
           npm run lint || true
+          npm run eslint --ext .json .
+          npm run eslint --ext .md .
           if [[ -n $(git status --porcelain) ]]; then
             echo "changes=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Commit changes if any
-        if: failure()
         run: |
           git config user.name "actions-user"
           git config user.email "actions-user@example.com"
