@@ -2,14 +2,26 @@
   "name": "@vless/vless",
   "version": "1.0.0",
   "description": "VLESS project",
+  "author": "Diana",
   "main": "README.md",
   "type": "module",
   "scripts": {
     "format": "prettier --write **/*.{js,json,html,css,yml,md} --ignore-unknown",
-    "lint": "eslint . --fix",
+    "lint": "eslint --fix",
     "lint:json": "eslint --ext .json .",
     "lint:md": "eslint --ext .md .",
-    "test": "echo \" are you ok? \" && exit 1"
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "echo \"*** Welcome to Omnilint ***\""
+    "test:coverage": "c8 npm test",
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "!(*.js)": "prettier --write --ignore-unknown"
   },
   "repository": {
     "type": "git",
@@ -17,7 +29,8 @@
   },
   "keywords": [
     "eslint",
-    "vless",
+    "eslint-plugin",
+    "eslintplugin",
     "json",
     "linting"
   ],
@@ -27,13 +40,37 @@
     "url": "https://github.com/Diana-Cl/vless/issues"
   },
   "homepage": "https://github.com/Diana-Cl/vless#readme",
+  "dependencies": {
+    "@eslint/core": "^0.10.0",
+    "@dprint/formatter": "^0.3.0",
+    "@dprint/markdown": "^0.17.8",
+    "@eslint/plugin-kit": "^0.2.5",
+    "@humanwhocodes/momoa": "^3.3.4",
+    "eslint-formatting-reporter": "^0.0.0",
+    "natural-compare": "^1.4.0"
+  },
   "devDependencies": {
-    "eslint": "^9.21.0",
-    "prettier": "^3.5.2",
+    "@types/eslint": "^8.56.10",
+    "c8": "^9.1.0",
+    "dedent": "^1.5.3",
+    "eslint": "^9.11.1",
+    "eslint-config-eslint": "^11.0.0",
+    "eslint-plugin-eslint-plugin": "^6.3.2",
+    "got": "^14.4.2",
+    "lint-staged": "^15.2.7",
+    "mocha": "^10.4.0",
+    "prettier": "^3.5.1",
+    "rollup": "^4.16.2",
+    "rollup-plugin-copy": "^3.5.0",
+    "typescript": "^5.4.5",
+    "yorkie": "^2.0.0",
     "@eslint/js": "^9.21.0",
     "@eslint/json": "^0.10.0",
     "@eslint/markdown": "^6.2.2",
     "@typescript-eslint/parser": "^8.24.1",
     "@typescript-eslint/eslint-plugin": "^8.24.1"
+  },
+  "engines": {
+    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
   }
 }
