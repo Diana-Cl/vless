@@ -18,15 +18,17 @@ export default [
       "**/node_modules/**",
       "!edge/assets/xxx.js",
       "!edge/assets/xxx.json",
-      "boringtun-boringtun-cli-0.5.2/**"
+      "boringtun-boringtun-cli-0.5.2/**",
     ],
   },
-  js.configs.recommended,
   {
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: "module",
-      globals: { ...globals.browser, myCustomGlobal: "readonly" }
+      globals: { ...globals.browser, myCustomGlobal: "readonly" }, 
+    },
+    plugins: {
+      "@typescript-eslint": tseslint.plugin, 
     },
     rules: {
       "semi": ["error", "always"],
@@ -35,10 +37,20 @@ export default [
       "prefer-const": "error",
     },
   },
+  ...js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    files: ["**/*.json"],
-    ...json.configs.recommended
+    files: ["**/*.ts", "**/*.tsx"],
+    rules: {
+      "@typescript-eslint/interface-name-prefix": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+    },
   },
+  {
+		files: ["**/*.json"],
+		language: "json/json",
+		...json.configs.recommended,
+	},
   {
     files: ["**/*.md"],
     ...markdown.configs.recommended
