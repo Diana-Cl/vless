@@ -24,7 +24,7 @@ export default [
   js.configs.recommended, 
   {
     files: ["**/*.js", "**/*.mjs"],
-		ignores: ["node_modules/**"و "**/node_modules/**"],
+		ignores: ["node_modules/**", "**/node_modules/**"],
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: "module",
@@ -54,7 +54,6 @@ export default [
   },
   {
     files: ["**/*.json"],
-    ignores: ["package-lock.json", "package.json", "warp.json"],
     processor: json.processors.json,
     rules: {
       ...json.configs.recommended.rules,
