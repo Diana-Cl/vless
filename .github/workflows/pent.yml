@@ -41,7 +41,10 @@ jobs:
 
       - name: Install JavaScript tools
         if: matrix.language == 'javascript'
-        run: npm install
+        run: |
+          npm update --save-dev
+          npm install prettier@latest --save-dev 
+          npm install eslint@latest --save-dev
 
       - name: Run Formatting and Linting for Python
         if: matrix.language == 'python'
@@ -58,12 +61,6 @@ jobs:
       - name: Cache npm dependencies
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.npm
-            ./node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
           commit_message: 'style: apply code formatting standards'
           commit_description: 'Applied automatic formatting using Black and Prettier'
           prettier_version: ${{ env.PRETTIER_VERSION }}
@@ -85,5 +82,5 @@ jobs:
           git config --local user.name "actions-user"
           git config --local user.email "actions-user@example.com"
           git add -A
-          git diff --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
-          git push
+          git diff --cached --quiet && git diff --staged --quiet || git commit -m "style: apply code formatting standards" -m "Applied automatic formatting using Black and Prettier"
+          
