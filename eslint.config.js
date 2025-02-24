@@ -53,12 +53,13 @@ export default [
     },
   },
   {
-    files: ["**/*.json"],
-    processor: json.processors.json,
-    rules: {
-      ...json.configs.recommended.rules,
-    },
+  files: ["**/*.json"],
+  ignores: ["package-lock.json", "package.json", "warp.json"],
+  processor: json.processors.json,
+  rules: {
+    ...json.configs.recommended.rules,
   },
+},
   {
     files: ["**/*.md"],
     ...markdown.configs.recommended,
