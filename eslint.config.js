@@ -2,8 +2,8 @@ import globals from "globals";
 import markdown from "@eslint/markdown";
 import json from "@eslint/json";
 import js from "@eslint/js";
-import tseslint from "@typescript-eslint/eslint-plugin"; // اضافه کردن پلاگین TypeScript
-import parser from "@typescript-eslint/parser"; // اضافه کردن parser برای TypeScript
+import tseslint from "@typescript-eslint/eslint-plugin"; 
+import parser from "@typescript-eslint/parser"; 
 
 export default [
   {
@@ -12,20 +12,19 @@ export default [
       "build/**",
       "warp.json",
       "hiddify/**",
-      "package.json",
       "edge/waste/**",
       ".prettierrc.js",
       "eslint.config.js",
-      "package-lock.json",
+			"node_modules/**",
       "**/node_modules/**",
       "!edge/assets/xxx.js",
-      "!edge/assets/xxx.json",
       "boringtun-boringtun-cli-0.5.2/**",
     ],
   },
   js.configs.recommended,
   {
     files: ["**/*.js", "**/*.mjs"],
+		ignores: ["node_modules/**"و "**/node_modules/**"],
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: "module",
