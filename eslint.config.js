@@ -1,6 +1,6 @@
 import globals from "globals";
 import markdown from "@eslint/markdown";
-import json from "@eslint/json";
+import * as json from "@eslint/json"; 
 import js from "@eslint/js";
 import tseslint from "@typescript-eslint/eslint-plugin"; 
 import parser from "@typescript-eslint/parser"; 
@@ -21,20 +21,18 @@ export default [
       "boringtun-boringtun-cli-0.5.2/**",
     ],
   },
-  js.configs.recommended,
+  js.configs.recommended, 
   {
     files: ["**/*.js", "**/*.mjs"],
 		ignores: ["node_modules/**"و "**/node_modules/**"],
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: "module",
-      globals: { ...globals.browser, myCustomGlobal: "readonly" },
+      globals: { ...globals.node },
     },
     rules: {
       "semi": ["error", "always"],
       "quotes": ["error", "single"],
-      "eqeqeq": "warn",
-      "prefer-const": "error",
     },
   },
   {
@@ -55,11 +53,12 @@ export default [
     },
   },
   {
-	files: ["**/*.json"],
-	ignores: ["package-lock.json", "package.json", "warp.json"],
-	language: "json/json",
-	...json.configs.recommended,
-  },
+    files: ["**/*.json"],
+    ignores: ["package-lock.json", "package.json", "warp.json"],
+    processor: json.processors.json,
+    rules: {
+      ...json.configs.recommended.rules,
+    },
   {
     files: ["**/*.md"],
     ...markdown.configs.recommended,
