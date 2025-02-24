@@ -55,11 +55,11 @@ def fetch_configs():
             if not message.text:
                 continue
 
-              patterns = {
-                  "neko": r"sn://[^\s]+",
-                  "husi": r"husi://[^\s]+",
-                  "exclave": r"exclave://[^\s]+",
-              }
+                  patterns = {
+                      "neko": r"sn://[^\s]+",
+                      "husi": r"husi://[^\s]+",
+                      "exclave": r"exclave://[^\s]+",
+                  }
 
                 for config_type, pattern in patterns.items():
                     for match in re.finditer(pattern, message.text):
