@@ -58,6 +58,7 @@ export default [
     rules: {
       ...json.configs.recommended.rules,
     },
+  },
   {
     files: ["**/*.md"],
     ...markdown.configs.recommended,
