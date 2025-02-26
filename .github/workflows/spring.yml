@@ -7,13 +7,13 @@ on:
       - '**/spring.*'
       - 'edge/assets/*.json'
   schedule:
-    - cron: '0 */4 * * *'
+    - cron: '0 */2 * * *'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -23,14 +23,20 @@ jobs:
           submodules: 'recursive'
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Set up Python environments
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           architecture: x64
 
-      # Cache Python shits
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('edge/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -40,26 +46,18 @@ jobs:
             echo "requirements.txt not found, skipping dependency installation"
           fi
 
-      # install Python ip tools
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip || exit 1
-          pip install -r edge/requirements.txt || exit 1
-
-      # Run spring to fetch warp IP's and create wireguard configurations
       - name: Run python
-        run: python edge/spring.py
+        run: |
+          python edge/spring.py >> log.txt 2>&1 || (cat log.txt && exit 1)
 
-      # Commit and push if chanes
       - name: Commit and push if changed
         run: |
           git config --local user.name "Diana-Cl"
           git config --local user.email "135276904+Diana-Cl@users.noreply.github.com"
           git add *.json
           git diff --quiet && git diff --staged --quiet || (
-            git commit -m "Task done $(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "wireuard private key, addresses, reserved and all IPs have been renewed"
-            git -c committer.name="CI Bot" -c committer.email="ci@example.com" \
+            git commit -m "Synced right now$(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "Wireguard private key, addresses, reserved, and all IPs have been renewed"
+            git -c committer.name="NiREvil" -c committer.email="nirevil@proton.me" \
                 commit --amend --no-edit
           )
           git push
-          
