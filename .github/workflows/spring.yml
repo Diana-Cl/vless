@@ -57,7 +57,7 @@ jobs:
           git add *.json
           git diff --quiet && git diff --staged --quiet || (
             git commit -m "Synced right now$(TZ='Asia/Tehran' date '+%H:%M:%S')" -m "Wireguard private key, addresses, reserved, and all IPs have been renewed"
-            git -c committer.name="NiREvil" -c committer.email="nirevil@proton.me" \
+            git -c committer.name="NiREvil" -c committer.email="126243832+NiREvil@users.noreply.github.com" \
                 commit --amend --no-edit
           )
           git push
