@@ -73,7 +73,7 @@
     {
       "type": "selector",
       "tag": "proxy",
-      "outbounds": ["auto", "direct", "⚪️Tehran", "🟡Berlin"],
+      "outbounds": [],
       "default": "🟡Berlin"
     },
     {
