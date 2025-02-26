@@ -116,7 +116,7 @@ def export_SingBox(t_ips):
     with open(template_path, "r") as f:
         data = json.load(f)
 
-    data["outbounds"][0]["outbounds"].extend([auto, direct, IR_TAG, DE_TAG])
+    data["outbounds"][0]["outbounds"].extend([IR_TAG, DE_TAG])
     data["outbounds"][1]["outbounds"].extend([IR_TAG, DE_TAG])
 
     tehran_wg = toSingBox(IR_TAG, t_ips[0], "direct")
