@@ -29,7 +29,7 @@ env:
 jobs:
   formatting:
     name: Code Formatting
-    if: false  # Temporary disabled workflow
+    if: false # Temporary disabled workflow
     runs-on: ubuntu-24.04
     timeout-minutes: 25
 
@@ -112,9 +112,8 @@ jobs:
           fi
 
       - name: Initialize npm project
-        run: 
-          if [ ! -f package.json ]; then
-            npm init -y
+        run: if [ ! -f package.json ]; then
+          npm init -y
           fi
 
       # Run Prettier formatter
