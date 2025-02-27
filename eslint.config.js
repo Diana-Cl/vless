@@ -11,7 +11,7 @@ export default [
       'edge/waste/**',
       'node_modules/**',
       '**/node_modules/**',
-      '**/package-lock.json'
+      '**/package-lock.json',
       'boringtun-boringtun-cli-0.5.2/**',
     ],
   },
