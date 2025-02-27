@@ -4,7 +4,7 @@
   "description": "A clean repository ",
   "type": "module",
   "scripts": {
-    "format:js": "prettier --write **/*.{js,json,html,css,yml}",
+    "format:js": "prettier --write **/*.{js,json,md,yml,html,css}",
     "lint:js": "eslint --fix **/*.js",
     "format:py": "black .",
     "lint:py": "ruff check --fix .",
