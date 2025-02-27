@@ -1,5 +1,10 @@
 name: Format and Lint
 
+permissions:
+  pull-requests: write
+  contents: write
+  actions: write
+
 on:
   push:
     branches: [main]
