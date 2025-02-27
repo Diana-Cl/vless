@@ -112,7 +112,9 @@ last_modified = "//last update on: " + formatted_time + "\n"
 
 config_prefix, _ = export_Hiddify(Bestip)
 with open("warp.json", "w") as op:
-    op.write(title + update_interval + sub_info + profile_web + last_modified + config_prefix)
+    op.write(
+        title + update_interval + sub_info + profile_web + last_modified + config_prefix
+    )
 
 
 os.remove(Bestip_path)
@@ -195,7 +197,9 @@ def main(script_dir):
         subprocess.run(["wget", url, "-O", "warp"], check=True)
         os.chmod("warp", 0o755)
         print("Scanning IPs...")
-        subprocess.run(["./warp"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(
+            ["./warp"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+        )
         print("Warp executed successfully.")
 
         result_path = os.path.join(script_dir, "result.csv")
