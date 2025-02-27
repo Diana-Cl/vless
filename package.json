@@ -1,0 +1,22 @@
+{
+  "name": "vless",
+  "version": "1.0.0",
+  "description": "A clean repository ",
+  "type": "module",
+  "scripts": {
+    "format:js": "prettier --write **/*.{js,json,html,css,yml}",
+    "lint:js": "eslint --fix **/*.js",
+    "format:py": "black .",
+    "lint:py": "ruff check --fix .",
+    "format": "npm run format:js && npm run format:py",
+    "lint": "npm run lint:js && npm run lint:py"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "eslint-config-prettier": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
