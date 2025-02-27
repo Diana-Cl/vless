@@ -142,10 +142,10 @@ async function vlessOverWSHandler(request) {
           );
         },
         close() {
-          log(`readableWebSocketStream is close`);
+          log('readableWebSocketStream is close');
         },
         abort(reason) {
-          log(`readableWebSocketStream is abort`, JSON.stringify(reason));
+          log('readableWebSocketStream is abort', JSON.stringify(reason));
         },
       }),
     )
@@ -448,12 +448,12 @@ async function remoteSocketToWS(remoteSocket, webSocket, vlessResponseHeader, re
           // safeCloseWebSocket(webSocket); // no need server close websocket frist for some case will casue HTTP ERR_CONTENT_LENGTH_MISMATCH issue, client will send close event anyway.
         },
         abort(reason) {
-          console.error(`remoteConnection!.readable abort`, reason);
+          console.error('remoteConnection!.readable abort', reason);
         },
       }),
     )
     .catch(error => {
-      console.error(`remoteSocketToWS has exception `, error.stack || error);
+      console.error('remoteSocketToWS has exception ', error.stack || error);
       safeCloseWebSocket(webSocket);
     });
 
@@ -461,7 +461,7 @@ async function remoteSocketToWS(remoteSocket, webSocket, vlessResponseHeader, re
   // 1. Socket.closed will have error
   // 2. Socket.readable will be close without any data coming
   if (hasIncomingData === false && retry) {
-    log(`retry`);
+    log('retry');
     retry();
   }
 }
