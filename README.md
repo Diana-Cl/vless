@@ -1,6 +1,6 @@
 $$\color{gray}\Huge \mathfrak{R}\color{red}{\sum}\color{gray}{\nu\iota\mathcal{l}_\sqrt{n}}$$
 
-<div dir="rtl">  
+<div dir="rtl">
 
 - تعدادی لینک اشتراک برای کلاینت‌های سینگ‌باکس، هیدیفای، نکوباکس، کلش‌متا، آمنزیا، نیکا، مهسا، ویتوری‌، نکوری و ...
 
@@ -11,7 +11,6 @@ $$\color{gray}\Huge \mathfrak{R}\color{red}{\sum}\color{gray}{\nu\iota\mathcal{l
 - Несколько ссылок для подписки на: v2rayNG, Sing-Box, Hiddify, NikaNG, MahsaNG, NekoBox, Husi, Exclave, Amnezia, Clash-Meta и ... Вернуть результат только
 
 - 为以下软件提供一些共享链接：v2rayNG, Sing-Box, Hiddify, NikaNG, MahsaNG, Nekobox, Husi, Exclave, Amnezia, Clash-Meta 等。
-
 
 <br>
 
@@ -80,15 +79,14 @@ https://raw.githubusercontent.com/NiREvil/vless/refs/heads/main/sing-box.json
 
 <br>
 
-### Scan with hiddify  
+### Scan with hiddify
 
 <p align="center">
-  <br><img src="edge/assets/QRCode-Dog.png" width="450px">  
+  <br><img src="edge/assets/QRCode-Dog.png" width="450px">
 
 ![rainbow](https://github.com/NiREvil/vless/assets/126243832/1aca7f5d-6495-44b7-aced-072bae52f256)
 
-<br>  
-
+<br>
 
 ## Table of Contents
 
@@ -123,7 +121,7 @@ https://raw.githubusercontent.com/NiREvil/vless/refs/heads/main/sing-box.json
 > script to modify the arrangement of the IPs or to combine them with other repositories.  
 > for ex: https://strawberry.victoriacross.ir
 
-[![Here](https://img.shields.io/badge/DEMO_FOR_LATEST_REAL_ADDRESS_GENERATOR-blue?logo=opencollective)](https://real-address1.victoriacross.ir/) <br><br>  
+[![Here](https://img.shields.io/badge/DEMO_FOR_LATEST_REAL_ADDRESS_GENERATOR-blue?logo=opencollective)](https://real-address1.victoriacross.ir/) <br><br>
 
 #### All IPs
 
@@ -534,15 +532,15 @@ https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/refs/heads/main/Vless [[
 
 https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/refs/heads/main/Reality
 
-https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/refs/heads/main/SS  
+https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/refs/heads/main/SS
 
-https://github.com/ALIILAPRO/v2rayNG-Config/blob/main/server.txt [[ALP?]]  
+https://github.com/ALIILAPRO/v2rayNG-Config/blob/main/server.txt [[ALP?]]
 
-https://raw.githubusercontent.com/Surfboardv2ray/TGParse/refs/heads/main/splitted/hysteria2  
+https://raw.githubusercontent.com/Surfboardv2ray/TGParse/refs/heads/main/splitted/hysteria2
 
 https://raw.githubusercontent.com/bamdad23/JavidnamanIran/refs/heads/main/latest
 
-https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/shadowsocks [[SR?]]  
+https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/shadowsocks [[SR?]]
 
 https://raw.githubusercontent.com/barry-far/V2ray-Configs/refs/heads/main/Sub1.txt [[BR?]]
 
@@ -600,7 +598,7 @@ https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs
 
 https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/vless
 
-https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/vmess  
+https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/vmess
 
 https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/refs/heads/master/collected-proxies/xray-json-full/actives_all.json
 
@@ -795,7 +793,7 @@ https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-conf
 
 ![rainbow](https://github.com/NiREvil/vless/assets/126243832/1aca7f5d-6495-44b7-aced-072bae52f256)
 
-## Nighty night, sweet dreams 
+## Nighty night, sweet dreams
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/25423296/163456776-7f95b81a-f1ed-45f7-b7ab-8fa810d529fa.png">
