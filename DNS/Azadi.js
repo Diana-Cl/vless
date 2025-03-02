@@ -958,9 +958,10 @@ const html = `
     }
     
     .alert {
-      position: fixed;
+      position: absolute;
+      left: 50px;
       top: 20px;
-      left: 50%;
+      margin: 20px
       transform: translateX(-50%);
       padding: 12px 20px;
       background-color: var(--container-bg);
@@ -994,9 +995,6 @@ const html = `
       .container, .panel-container {
         padding: 20px;
         margin: 12px;
-        cursor: pointer;
-        width: 100%;
-        max-width: 200px;
       }
 
       /* Scrollbar Styling */
@@ -1029,8 +1027,7 @@ const html = `
       
       button {
         padding: 12px 20px;
-        font-weight: 500;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
       }
     }
   </style>
