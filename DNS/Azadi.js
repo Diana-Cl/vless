@@ -3,7 +3,7 @@ const defaultdoh = 'https://cloudflare-dns.com/dns-query';
 
 // Security headers
 const csp =
-  "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';";
+  'default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\';';
 const securityHeaders = {
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
