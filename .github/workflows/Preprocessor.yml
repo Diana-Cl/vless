@@ -25,17 +25,20 @@ jobs:
         with:
           fetch-depth: 0
           submodules: 'recursive'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3' 
 
-      - name: Cache Composer packages
-        uses: actions/cache@v4
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+      - uses: actions/cache@v4
         with:
-          path: vendor
+          path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
@@ -58,7 +61,7 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "IPs Refreshed at: $(TZ='Asia/Tehran' date '+%H:%M:%S')" \
                        -m "The list of Cloudflare IPs has been updated" \
-                       --author="Diana <135276904+Diana-Cl@users.noreply.github.com>"
+                       --author="Diana-Cl <135276904+Diana-Cl@users.noreply.github.com>"
           else
             echo "No changes detected. Skipping commit."
           fi
@@ -66,4 +69,4 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
