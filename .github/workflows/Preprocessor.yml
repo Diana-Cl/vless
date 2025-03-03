@@ -25,27 +25,12 @@ jobs:
         with:
           fetch-depth: 0
           submodules: 'recursive'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3' 
-
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: |
-          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest || exit 1
-        if: hashFiles('composer.json') != ''
 
       - name: Run preprocessor.php
         run: php edge/preprocessor.php || exit 1
@@ -59,7 +44,7 @@ jobs:
         run: |
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "IPs Refreshed at: $(TZ='Asia/Tehran' date '+%H:%M:%S')" \
+            git commit -m "Cloudflare IPs Refreshed at: $(TZ='Asia/Tehran' date '+%H:%M:%S')" \
                        -m "The list of Cloudflare IPs has been updated" \
                        --author="Diana-Cl <135276904+Diana-Cl@users.noreply.github.com>"
           else
@@ -70,3 +55,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          
