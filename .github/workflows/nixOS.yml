@@ -11,10 +11,10 @@ jobs:
     strategy:
       matrix:
         build_target: [linux, macos, macos-intel, windows]
-        update_feature: [self-update, no-self-update]
+ #       update_feature: [self-update, no-self-update]
         exclude:
           - build_target: windows
-            update_feature: no-self-update
+#            update_feature: no-self-update
         include:
           - build_target: linux
             os: ubuntu-22.04
@@ -24,10 +24,10 @@ jobs:
             os: macos-13
           - build_target: windows
             os: windows-2022
-          - update_feature: self-update
-            update_name: "" 
-          - update_feature: no-self-update
-            update_name: "-noselfupdate"
+#          - update_feature: self-update
+#            update_name: "" 
+#          - update_feature: no-self-update
+#            update_name: "-noselfupdate"
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
