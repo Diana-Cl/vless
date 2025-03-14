@@ -1,177 +1,177 @@
 function createSingboxConfig(outbounds, validTags) {
-    return {
-        log: {
-            level: "error",
-            timestamp: true
+  return {
+    log: {
+      level: 'error',
+      timestamp: true,
+    },
+    dns: {
+      servers: [
+        {
+          type: 'tcp',
+          tag: 'proxy-dns',
+          detour: 'proxy',
+          domain_resolver: 'local-dns',
+          server: '185.228.168.9',
+          server_port: 53,
         },
-        dns: {
-            servers: [
-                {
-                    type: "tcp",
-                    tag: "proxy-dns",
-                    detour: "proxy",
-                    domain_resolver: "local-dns",
-                    server: "185.228.168.9",
-                    server_port: 53
-                },
-                {
-                    type: "tcp",
-                    tag: "local-dns",
-                    detour: "direct",
-                    domain_resolver: "",
-                    server: "8.8.4.4",
-                    server_port: 53
-                },
-                {
-                    type: "local",
-                    tag: "direct-dns",
-                    detour: "direct"
-                }
-            ],
-            rules: [
-                {
-                    rule_set: "geosite-ir",
-                    server: "direct-dns"
-                },
-                {
-                    clash_mode: "Direct",
-                    server: "direct-dns"
-                },
-                {
-                    source_ip_cidr: ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
-                    server: "proxy-dns"
-                },
-                {
-                    clash_mode: "Global",
-                    server: "proxy-dns"
-                }
-            ],
-            final: "proxy-dns",
-            strategy: "prefer_ipv4",
-            independent_cache: true
+        {
+          type: 'tcp',
+          tag: 'local-dns',
+          detour: 'direct',
+          domain_resolver: '',
+          server: '8.8.4.4',
+          server_port: 53,
         },
-        endpoints: [],
-        inbounds: [
-            {
-                type: "tun",
-                tag: "tun-in",
-                mtu: 9000,
-                address: ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
-                auto_route: true,
-                exclude_package: ["ir.mci.ecareapp", "com.myirancell"],
-                endpoint_independent_nat: true,
-                stack: "mixed",
-                platform: {
-                    http_proxy: {
-                        enabled: true,
-                        server: "127.0.0.1",
-                        server_port: 2080
-                    }
-                }
-            },
-            {
-                type: "mixed",
-                tag: "mixed-in",
-                listen: "127.0.0.1",
-                listen_port: 2080
-            }
-        ],
-        outbounds: [
-            {
-                type: "selector",
-                tag: "proxy",
-                outbounds: ["auto", "direct"].concat(validTags),
-                "default": "auto",
-                interrupt_exist_connections: true
-            },
-            {
-                type: "urltest",
-                tag: "auto",
-                outbounds: validTags,
-                url: "http://www.gstatic.com/generate_204",
-                interval: "10m0s",
-                tolerance: 50
-            },
-            {
-                type: "direct",
-                tag: "direct",
-                domain_strategy: "prefer_ipv4"
-            },
-            ...outbounds
-        ],
-        route: {
-            rules: [
-                {
-                    action: "sniff",
-                    timeout: "1s"
-                },
-                {
-                    protocol: "dns",
-                    action: "hijack-dns"
-                },
-                {
-                    clash_mode: "Direct",
-                    outbound: "direct"
-                },
-                {
-                    clash_mode: "Global",
-                    outbound: "proxy"
-                },
-                {
-                    rule_set: ["geoip-private", "geosite-private", "geosite-ir", "geoip-ir"],
-                    outbound: "direct"
-                },
-                {
-                    rule_set: "geosite-ads",
-                    outbound: "block"
-                }
-            ],
-            rule_set: [
-                {
-                    type: "remote",
-                    tag: "geosite-ads",
-                    format: "binary",
-                    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
-                    download_detour: "direct"
-                },
-                {
-                    type: "remote",
-                    tag: "geosite-private",
-                    format: "binary",
-                    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
-                    download_detour: "direct"
-                },
-                {
-                    type: "remote",
-                    tag: "geosite-ir",
-                    format: "binary",
-                    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ir.srs",
-                    download_detour: "direct"
-                },
-                {
-                    type: "remote",
-                    tag: "geoip-private",
-                    format: "binary",
-                    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs",
-                    download_detour: "direct"
-                },
-                {
-                    type: "remote",
-                    tag: "geoip-ir",
-                    format: "binary",
-                    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/ir.srs",
-                    download_detour: "direct"
-                }
-            ],
-            final: "proxy",
-            override_android_vpn: true,
-            auto_detect_interface: true,
-            default_domain_resolver: "direct-dns"
+        {
+          type: 'local',
+          tag: 'direct-dns',
+          detour: 'direct',
         },
-        experimental: {
-            cache_file: {
-                enabled: true
-            }
-        }
-    };
+      ],
+      rules: [
+        {
+          rule_set: 'geosite-ir',
+          server: 'direct-dns',
+        },
+        {
+          clash_mode: 'Direct',
+          server: 'direct-dns',
+        },
+        {
+          source_ip_cidr: ['172.19.0.1/30', 'fdfe:dcba:9876::1/126'],
+          server: 'proxy-dns',
+        },
+        {
+          clash_mode: 'Global',
+          server: 'proxy-dns',
+        },
+      ],
+      final: 'proxy-dns',
+      strategy: 'prefer_ipv4',
+      independent_cache: true,
+    },
+    endpoints: [],
+    inbounds: [
+      {
+        type: 'tun',
+        tag: 'tun-in',
+        mtu: 9000,
+        address: ['172.19.0.1/30', 'fdfe:dcba:9876::1/126'],
+        auto_route: true,
+        exclude_package: ['ir.mci.ecareapp', 'com.myirancell'],
+        endpoint_independent_nat: true,
+        stack: 'mixed',
+        platform: {
+          http_proxy: {
+            enabled: true,
+            server: '127.0.0.1',
+            server_port: 2080,
+          },
+        },
+      },
+      {
+        type: 'mixed',
+        tag: 'mixed-in',
+        listen: '127.0.0.1',
+        listen_port: 2080,
+      },
+    ],
+    outbounds: [
+      {
+        type: 'selector',
+        tag: 'proxy',
+        outbounds: ['auto', 'direct'].concat(validTags),
+        default: 'auto',
+        interrupt_exist_connections: true,
+      },
+      {
+        type: 'urltest',
+        tag: 'auto',
+        outbounds: validTags,
+        url: 'http://www.gstatic.com/generate_204',
+        interval: '10m0s',
+        tolerance: 50,
+      },
+      {
+        type: 'direct',
+        tag: 'direct',
+        domain_strategy: 'prefer_ipv4',
+      },
+      ...outbounds,
+    ],
+    route: {
+      rules: [
+        {
+          action: 'sniff',
+          timeout: '1s',
+        },
+        {
+          protocol: 'dns',
+          action: 'hijack-dns',
+        },
+        {
+          clash_mode: 'Direct',
+          outbound: 'direct',
+        },
+        {
+          clash_mode: 'Global',
+          outbound: 'proxy',
+        },
+        {
+          rule_set: ['geoip-private', 'geosite-private', 'geosite-ir', 'geoip-ir'],
+          outbound: 'direct',
+        },
+        {
+          rule_set: 'geosite-ads',
+          outbound: 'block',
+        },
+      ],
+      rule_set: [
+        {
+          type: 'remote',
+          tag: 'geosite-ads',
+          format: 'binary',
+          url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs',
+          download_detour: 'direct',
+        },
+        {
+          type: 'remote',
+          tag: 'geosite-private',
+          format: 'binary',
+          url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs',
+          download_detour: 'direct',
+        },
+        {
+          type: 'remote',
+          tag: 'geosite-ir',
+          format: 'binary',
+          url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ir.srs',
+          download_detour: 'direct',
+        },
+        {
+          type: 'remote',
+          tag: 'geoip-private',
+          format: 'binary',
+          url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs',
+          download_detour: 'direct',
+        },
+        {
+          type: 'remote',
+          tag: 'geoip-ir',
+          format: 'binary',
+          url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/ir.srs',
+          download_detour: 'direct',
+        },
+      ],
+      final: 'proxy',
+      override_android_vpn: true,
+      auto_detect_interface: true,
+      default_domain_resolver: 'direct-dns',
+    },
+    experimental: {
+      cache_file: {
+        enabled: true,
+      },
+    },
+  };
 }
