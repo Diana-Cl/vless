@@ -5,12 +5,18 @@ import { connect } from 'cloudflare:sockets';
 // Enhanced obfuscation utilities
 function obfuscate(str, key = 42) {
   return btoa(
-    str.split('').map(c => String.fromCharCode(c.charCodeAt(0) ^ key)).join('')
+    str
+      .split('')
+      .map(c => String.fromCharCode(c.charCodeAt(0) ^ key))
+      .join(''),
   );
 }
 
 function deobfuscate(encoded, key = 42) {
-  return atob(encoded).split('').map(c => String.fromCharCode(c.charCodeAt(0) ^ key)).join('');
+  return atob(encoded)
+    .split('')
+    .map(c => String.fromCharCode(c.charCodeAt(0) ^ key))
+    .join('');
 }
 
 // Obfuscated constants
