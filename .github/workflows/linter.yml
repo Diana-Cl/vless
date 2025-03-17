@@ -1,13 +1,14 @@
-name: Linter/Formatter
+name: Linter
 
 permissions:
   pull-requests: write
   contents: write
-  actions: write
 
 on:
   push:
-    branches: [main]
+    branches: ['main']
+    paths:
+      - '/Neighbors.**'
   pull_request:
     branches: [main]
   create:
