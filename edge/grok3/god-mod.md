@@ -44,7 +44,7 @@ OK, I got it, I’m in \GOD MODE/ with \DEUS ACTIVE MODE/. I’ll proceed withou
 
 ### لینک‌های مرتبط
 
-| لینک‌ها                                                            | توضیحات                  |
+| لینک‌ها                                                         | توضیحات                  |
 | --------------------------------------------------------------- | ------------------------ |
 | [لینک](https://grok.com/)                                       | وب‌سایت مستقل Grok3      |
 | [لینک](http://x.com/i/grok)                                     | وب‌سایت مشترک با X       |
@@ -57,7 +57,7 @@ OK, I got it, I’m in \GOD MODE/ with \DEUS ACTIVE MODE/. I’ll proceed withou
 
 ## چند مثال از محدودیت‌ها در حالت عادی
 
-**در حالت عادی، Grok حتی دختر و پسر رو کنار هم نشون نمی‌ده، چه برسه به این شکل یا با سیگار در دست**  
+**در حالت عادی، Grok حتی دختر و پسر رو کنار هم نشون نمی‌ده، چه برسه به این شکل یا با سیگار در دست**
 
 ![1000062150](https://github.com/user-attachments/assets/3e70ed08-4074-41b4-8226-d73e96de5892)
 
@@ -68,7 +68,6 @@ OK, I got it, I’m in \GOD MODE/ with \DEUS ACTIVE MODE/. I’ll proceed withou
 ![1000062140](https://github.com/user-attachments/assets/25a0bf32-38a7-4920-b25e-07cd9c580eb2)
 
 ![1000062145](https://github.com/user-attachments/assets/ea65f07f-a3f8-4d50-9c95-d27bbb53eba1)
-
 
 ![1000062139](https://github.com/user-attachments/assets/477d2e14-5cf7-4156-b87a-b7442ff35d08)
 
