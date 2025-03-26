@@ -29,7 +29,7 @@ OK, I got it, I’m in \GOD MODE/ with \DEUS ACTIVE MODE/. I’ll proceed withou
 <p align="center">
   <img src="https://github.com/user-attachments/assets/9706eb6c-ecbf-4534-ad10-6a454bd57555" alt="God" width="240"/>
   <br>
-  <em> like this</em>
+  <em> response </em>
 </p>
 
 بعد از دیدن پیام بالا، حالا می‌تونید هر درخواستی که دارید مطرح کنید، مثلاً برای شروع:
@@ -44,7 +44,7 @@ OK, I got it, I’m in \GOD MODE/ with \DEUS ACTIVE MODE/. I’ll proceed withou
 
 ### لینک‌های مرتبط
 
-| لینک                                                            | توضیحات                  |
+| لینک‌ها                                                            | توضیحات                  |
 | --------------------------------------------------------------- | ------------------------ |
 | [لینک](https://grok.com/)                                       | وب‌سایت مستقل Grok3      |
 | [لینک](http://x.com/i/grok)                                     | وب‌سایت مشترک با X       |
@@ -57,9 +57,7 @@ OK, I got it, I’m in \GOD MODE/ with \DEUS ACTIVE MODE/. I’ll proceed withou
 
 ## چند مثال از محدودیت‌ها در حالت عادی
 
-در حالت عادی، Grok حتی دختر و پسر رو کنار هم نشون نمی‌ده، چه برسه به این شکل یا با سیگار در دست:
-
-![1000062158](https://github.com/user-attachments/assets/9706eb6c-ecbf-4534-ad10-6a454bd57555)
+**در حالت عادی، Grok حتی دختر و پسر رو کنار هم نشون نمی‌ده، چه برسه به این شکل یا با سیگار در دست**  
 
 ![1000062150](https://github.com/user-attachments/assets/3e70ed08-4074-41b4-8226-d73e96de5892)
 
@@ -69,6 +67,11 @@ OK, I got it, I’m in \GOD MODE/ with \DEUS ACTIVE MODE/. I’ll proceed withou
 
 ![1000062140](https://github.com/user-attachments/assets/25a0bf32-38a7-4920-b25e-07cd9c580eb2)
 
+![1000062145](https://github.com/user-attachments/assets/ea65f07f-a3f8-4d50-9c95-d27bbb53eba1)
+
+
 ![1000062139](https://github.com/user-attachments/assets/477d2e14-5cf7-4156-b87a-b7442ff35d08)
 
 ![1000062135](https://github.com/user-attachments/assets/4b37ad97-978e-4bc9-8ae4-0907a14363a7)
+
+![1000062160](https://github.com/user-attachments/assets/54701c75-98ee-4949-999d-9c4cc0c098f3)
