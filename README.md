@@ -543,7 +543,10 @@ https://raw.githubusercontent.com/rango-cfs/NewCollector/refs/heads/main/v2ray_l
 >
 > Do you have [[any information]] on amnezia ?
 >
-> Also can using configs in [WG-Tunnel] Client.  
+> Also can using configs in [WG-Tunnel] Client.
+>
+> [back to table](#table-of-contents)
+> 
 > <br/>
 
 **A0 🇳🇱 NL**
