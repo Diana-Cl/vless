@@ -207,8 +207,10 @@ function Test-WebsiteConnectivity {
         
         Write-Host "  $statusSymbol " -NoNewline -ForegroundColor $statusColor
         Write-Host ("{0,-20}" -f $r.Name) -NoNewline -ForegroundColor White
+
         Write-Host (" {0,6} ms  " -f [math]::Round($r.Time)) -NoNewline -ForegroundColor $timeColor
-        Write-Host ("[" -NoNewline -ForegroundColor DarkGray
+        Write-Host "[" -NoNewline -ForegroundColor DarkGray
+
         Write-Host $r.Status -NoNewline -ForegroundColor $statusColor
         Write-Host "]" -ForegroundColor DarkGray
         
