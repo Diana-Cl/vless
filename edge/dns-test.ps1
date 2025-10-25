@@ -44,7 +44,10 @@ function Test-WebsiteConnectivity {
         [switch]$Quick,
         
         [Parameter(Mandatory = $false)]
-        [switch]$Verbose
+        [switch]$Verbose,
+        
+        [Parameter(Mandatory = $false)]
+        [string]$DNS = $null
     )
 
     # Full list of important websites
@@ -79,6 +82,31 @@ function Test-WebsiteConnectivity {
         Write-Host "Quick Test (Essential Sites Only)" -ForegroundColor Yellow
     } else {
         Write-Host "Full Test (All Sites)" -ForegroundColor Green
+    }
+    
+    if ($DNS) {
+        Write-Host "  DNS:  " -NoNewline -ForegroundColor Gray
+        Write-Host "$DNS (Custom)" -ForegroundColor Magenta
+        
+        # Temporarily change system DNS
+        Write-Host "  Info: Temporarily using custom DNS..." -ForegroundColor Yellow
+        
+        # Get active network adapter
+        $adapter = Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object -First 1
+        $adapterName = $adapter.Name
+        
+        # Backup current DNS
+        $originalDNS = (Get-DnsClientServerAddress -InterfaceAlias $adapterName -AddressFamily IPv4).ServerAddresses
+        
+        # Set custom DNS
+        try {
+            Set-DnsClientServerAddress -InterfaceAlias $adapterName -ServerAddresses $DNS -ErrorAction Stop
+            Start-Sleep -Milliseconds 500  # Wait for DNS to apply
+        }
+        catch {
+            Write-Host "  Error: Could not set DNS. Running with system DNS." -ForegroundColor Red
+            $DNS = $null
+        }
     }
     
     Write-Host "  Testing " -NoNewline -ForegroundColor Gray
@@ -238,20 +266,35 @@ function Test-WebsiteConnectivity {
 
     Write-Host "`n" + ("═" * 55) -ForegroundColor Cyan
     Write-Host ""
+    
+    # Restore original DNS if changed
+    if ($DNS -and $originalDNS) {
+        try {
+            Set-DnsClientServerAddress -InterfaceAlias $adapterName -ServerAddresses $originalDNS -ErrorAction Stop
+            Write-Host "  DNS restored to original settings." -ForegroundColor Green
+        }
+        catch {
+            Write-Host "  Warning: Could not restore DNS. Please check manually." -ForegroundColor Yellow
+        }
+    }
 }
 
-# Set aliases
 Set-Alias -Name test -Value Test-WebsiteConnectivity -Scope Global
 
-# Quick start guide
 Write-Host "`n  Quick Start:" -ForegroundColor Cyan
 Write-Host "  ────────────" -ForegroundColor DarkGray
 Write-Host "    test                     " -NoNewline -ForegroundColor Yellow
-Write-Host "# Test all websites" -ForegroundColor Gray
+Write-Host "# Test all websites (system DNS)" -ForegroundColor Gray
 Write-Host "    test -Quick              " -NoNewline -ForegroundColor Yellow
-Write-Host "# Test essential sites only (faster)" -ForegroundColor Gray
+Write-Host "# Test essential sites only" -ForegroundColor Gray
 Write-Host "    test -Verbose            " -NoNewline -ForegroundColor Yellow
 Write-Host "# Show detailed information" -ForegroundColor Gray
+Write-Host "    test -DNS 78.157.42.100  " -NoNewline -ForegroundColor Yellow
+Write-Host "# Test with Electro DNS" -ForegroundColor Gray
+Write-Host "    test -DNS 1.1.1.1        " -NoNewline -ForegroundColor Yellow
+Write-Host "# Test with Cloudflare DNS" -ForegroundColor Gray
+Write-Host "    test -DNS 8.8.8.8 -Quick " -NoNewline -ForegroundColor Yellow
+Write-Host "# Combine parameters" -ForegroundColor Gray
 Write-Host ""
 Write-Host "  This tests REAL connections, not just DNS!" -ForegroundColor Green
 Write-Host ""
