@@ -9,7 +9,7 @@
 # Commands:
 #   test              # Test all websites
 #   test -Quick       # Test only essential sites (faster)
-#   test -Verbose     # Show detailed response info
+#   test -Detailed    # Show detailed response info
 #
 # ═══════════════════════════════════════════════════════════════
 
@@ -44,7 +44,7 @@ function Test-WebsiteConnectivity {
         [switch]$Quick,
         
         [Parameter(Mandatory = $false)]
-        [switch]$Verbose,
+        [switch]$Detailed,
         
         [Parameter(Mandatory = $false)]
         [string]$DNS = $null
@@ -207,14 +207,12 @@ function Test-WebsiteConnectivity {
         
         Write-Host "  $statusSymbol " -NoNewline -ForegroundColor $statusColor
         Write-Host ("{0,-20}" -f $r.Name) -NoNewline -ForegroundColor White
-
         Write-Host (" {0,6} ms  " -f [math]::Round($r.Time)) -NoNewline -ForegroundColor $timeColor
-        Write-Host "[" -NoNewline -ForegroundColor DarkGray
-
+        Write-Host ("[" -NoNewline -ForegroundColor DarkGray
         Write-Host $r.Status -NoNewline -ForegroundColor $statusColor
         Write-Host "]" -ForegroundColor DarkGray
         
-        if ($Verbose -or $r.Status -ne "ACCESSIBLE") {
+        if ($Detailed -or $r.Status -ne "ACCESSIBLE") {
             Write-Host ("    └─ " + $r.Details) -ForegroundColor DarkGray
             if ($r.StatusCode -ne "N/A") {
                 Write-Host ("       HTTP " + $r.StatusCode) -ForegroundColor DarkGray
@@ -289,7 +287,7 @@ Write-Host "    test                     " -NoNewline -ForegroundColor Yellow
 Write-Host "# Test all websites (system DNS)" -ForegroundColor Gray
 Write-Host "    test -Quick              " -NoNewline -ForegroundColor Yellow
 Write-Host "# Test essential sites only" -ForegroundColor Gray
-Write-Host "    test -Verbose            " -NoNewline -ForegroundColor Yellow
+Write-Host "    test -Detailed            " -NoNewline -ForegroundColor Yellow
 Write-Host "# Show detailed information" -ForegroundColor Gray
 Write-Host "    test -DNS 78.157.42.100  " -NoNewline -ForegroundColor Yellow
 Write-Host "# Test with Electro DNS" -ForegroundColor Gray
