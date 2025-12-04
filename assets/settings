@@ -1,39 +1,35 @@
 {
-  "remote_link": "null",
+    "remote_link": "null",
 
-  "admob_id1": "ca-app-pub-3940256099942544~3347511713",
-  "admob_app_open1": "ca-app-pub-3940256099942544/3419835294",
-  "admob_interstitial1": "ca-app-pub-3940256099942544/1033173712",
-  "admob_native1": "ca-app-pub-3940256099942544/2247696110",
+    "admob_id1": "",
+    "admob_app_open1": "",
+    "admob_interstitial1": "",
+    "admob_native1": "",
 
-  "ads_native_main": "true",
-  "ads_native_chat": "true",
-  "ads_native_profile": "true",
+    "ads_native_main": "false",
+    "ads_native_chat": "false",
+    "ads_native_profile": "false",
 
-  "ads_full_proxies": "1",
-  "ads_full_changes": "1",
-  "ads_full_profile": "1",
+    "ads_full_proxies": "0",
+    "ads_full_changes": "0",
+    "ads_full_profile": "0",
 
-  "delay_app_open": "1",
-  "delay_native_req": "5",
-  "delay_native_seen": "5",
-  "delay_full": "1",
+    "delay_app_open": "9999",
+    "delay_native_req": "9999",
+    "delay_native_seen": "9999",
+    "delay_full": "9999",
 
-  "blacklist": "",
-  "force_join": "true",
-  "invisible": "true",
-  "show_deleted": "true",
+    "blacklist": "",
+    "force_join": "false",
+    "invisible": "false",
+    "show_deleted": "true",
+    "url": "",
 
-  "url": "https://mtrb0.website",
+    "xmod": "false",
+    "xmod_c": "0",
+    "xmod_d": "0",
 
-  "xmod": "true",
-  "xmod_c": "40",
-  "xmod_d": "40",
-
-  "test_number1": "5148",
-  "test_number2": "9637",
-
-  "mini_alert": "true",
-  "mini_text": "Hello from Diana’s config 😎",
-  "mini_link": "https://github.com/NiREvil/vless/"
+    "mini_alert": "false",
+    "mini_text": "Hello from Diana 😎",
+    "mini_link": "https://github.com/NiREvil/vless/"
 }
