@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes' ?>
 <map>
     <boolean name="iranian" value="true" />
-    <int name="join_counter" value="5" />
-    <long name="native_last_requesting" value="1765578213778" />
+    <int name="join_counter" value="28" />
+    <long name="native_last_requesting" value="1765529464192" />
     <boolean name="keep_contacts" value="true" />
     <boolean name="disable_proxy_vpn" value="true" />
     <boolean name="invisible" value="true" />
@@ -12,13 +12,12 @@
     <int name="delay_native_req" value="9999" />
     <boolean name="turbo_face" value="false" />
     <int name="medium_font_pos" value="8" />
-    <boolean name="preview_sticker" value="true" />
     <int name="forward_type" value="2" />
+    <boolean name="preview_sticker" value="true" />
     <boolean name="always_expand" value="true" />
     <int name="chea_count" value="0" />
     <int name="delay_full" value="9999" />
     <int name="member_long_touch" value="1" />
-    <string name="turbo_check_style">MaxLinesPro</string>
     <boolean name="enable24HourFormat" value="true" />
     <string name="normal_font_path">/data/user/0/ellipi.messenger/files/vazir.ttf</string>
     <boolean name="copy_sender" value="false" />
@@ -29,18 +28,15 @@
     <boolean name="ads_native_main" value="false" />
     <boolean name="bar_centerbtn" value="false" />
     <boolean name="ads_native_profile" value="false" />
-    <boolean name="revil_setup_ver_1" value="true" />
     <boolean name="hide_camera" value="false" />
     <boolean name="name_title" value="true" />
     <int name="delay_app_open" value="9999" />
     <boolean name="show_dtm" value="true" />
     <boolean name="swipe_forward" value="false" />
-    <boolean name="fast_edit" value="false" />
     <int name="cat_id" value="0" />
     <boolean name="confirm_video" value="true" />
-    <boolean name="disable_stories" value="false" />
     <int name="delay_native_seen" value="9999" />
-    <boolean name="bar_vertical" value="false" />
+    <boolean name="bar_vertical" value="true" />
     <boolean name="indonesian" value="false" />
     <boolean name="reaction_animation" value="true" />
     <int name="mono_font_pos" value="5" />
@@ -66,7 +62,7 @@
     <boolean name="editor_translator" value="false" />
     <boolean name="confirm_gcall" value="true" />
     <string name="mono_font_path">/data/user/0/ellipi.messenger/files/rmono.ttf</string>
-    <int name="sig_cnt" value="2" />
+    <int name="sig_cnt" value="20" />
     <boolean name="only_unmuted" value="true" />
     <boolean name="reply_vibration" value="true" />
     <boolean name="downloads_icon" value="false" />
@@ -86,11 +82,10 @@
     <boolean name="confirm_join" value="true" />
     <boolean name="edit_pencil" value="false" />
     <boolean name="chatbar" value="true" />
-    <boolean name="confirm_forward" value="false" />
     <boolean name="cavatar_in_group" value="true" />
     <boolean name="mutual_contact" value="true" />
-    <boolean name="inapp_player" value="true" />
     <int name="ads_full_changes" value="0" />
+    <boolean name="inapp_player" value="true" />
     <boolean name="direct_forward_tabs" value="true" />
     <boolean name="copy_part" value="false" />
     <boolean name="preview_gif" value="true" />
@@ -99,14 +94,13 @@
     <boolean name="cavatar_in_chat" value="false" />
     <boolean name="keep_chat_open" value="true" />
     <boolean name="keep_selection" value="true" />
-    <int name="contact_type" value="0" />
     <boolean name="confirm_audio" value="true" />
     <boolean name="jump_to_channel" value="true" />
     <boolean name="multi_for" value="true" />
     <string name="medium_font_path">/data/user/0/ellipi.messenger/files/vazir_bold-medium.ttf</string>
     <boolean name="contact_changes" value="true" />
     <boolean name="auto_pause_video" value="true" />
-    <boolean name="sender_as_channel" value="true" />
+    <boolean name="sender_as_channel" value="false" />
     <int name="sticker_size1" value="10" />
     <boolean name="greeting_sticker" value="true" />
     <boolean name="hide_anim_emoji_tabs" value="true" />
